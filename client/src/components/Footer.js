@@ -5,7 +5,7 @@ import './Container.css';
 const Footer = () => {
 	const history = useHistory();
 	return (
-		<div className="footer" style={{ backgroundColor: '#574193' }}>
+		<div className="footer" style={footer}>
 			<div className="container">
 				<div className="row w-100 py-5 m-auto justify-content-between">
 					{/* eslint-disable-next-line */}
@@ -38,6 +38,8 @@ const Footer = () => {
 					{/* eslint-disable-next-line */}
 					<a
 						href="https://www.kompasgramedia.com/"
+						target="_blank"
+						rel="noopener noreferrer"
 						className="d-block col-lg-3 px-0 text-center text-light"
 						style={footLink}
 					>
@@ -55,6 +57,10 @@ const Footer = () => {
 			</div>
 		</div>
 	);
+};
+
+const footer = {
+	backgroundColor: '#574193',
 };
 
 const footLink = {

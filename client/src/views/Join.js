@@ -6,7 +6,6 @@ const Join = () => {
   return (
 		<div className="home">
 			<BannerJoin />
-			<h1 className="text-center">General Kenobi</h1>
 			<Footer />
 		</div>
 	);

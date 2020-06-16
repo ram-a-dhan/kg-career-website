@@ -27,6 +27,7 @@ const navbar = {
 	height: '9vh',
 	boxShadow: '0px 1px 5px 0px rgba(5, 5, 5, 0.33)',
 	padding: '0% 7%',
+	zIndex: '1000',
 };
 
 const logo = {
