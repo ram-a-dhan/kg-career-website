@@ -5,7 +5,10 @@ import './BannerHome.css';
 const BannerHome = () => {
 	const history = useHistory();
 	return (
-		<div className="bannerHome" style={bannerHome}>
+		<div
+			className="bannerHome d-flex flex-column justify-content-center align-items-center"
+			style={bannerHome}
+		>
 			<h1 style={header1}>Grow beyond your work</h1>
 			<button
 				className="btn btn-lg btn-primary rounded-pill"
@@ -25,10 +28,6 @@ const bannerHome = {
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
 	height: '91vh',
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	alignItems: 'center',
 };
 
 const header1 = {

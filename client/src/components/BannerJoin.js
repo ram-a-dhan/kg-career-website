@@ -2,7 +2,10 @@ import React from 'react';
 
 const BannerJoin = () => {
 	return (
-		<div className="bannerJoin" style={bannerJoin}>
+		<div
+			className="bannerJoin d-flex flex-column justify-content-center align-items-center"
+			style={bannerJoin}
+		>
 			<h1 style={header1}>
 				It is not for the doer.
 				<br />
@@ -24,10 +27,6 @@ const bannerJoin = {
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
 	height: '91vh',
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	alignItems: 'center',
 };
 
 const header1 = {

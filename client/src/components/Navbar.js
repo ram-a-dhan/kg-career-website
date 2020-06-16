@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import './Navbar.css';
+import './Container.css';
 
 const Navbar = () => {
 	const history = useHistory();
@@ -9,7 +9,10 @@ const Navbar = () => {
 			className="navbar navbar-light bg-light sticky-top"
 			style={navbar}
 		>
-			<img src="./logo.png" alt="logo" style={logo} />
+			{/* eslint-disable-next-line */}
+			<a class="navbar-brand" href="#" onClick={() => history.push('/')}>
+				<img src="./logo.png" alt="logo" style={logo} />
+			</a>
 			<div style={navDiv}>
 				{/* eslint-disable-next-line */}
 				<a href="#" onClick={() => history.push('/')} style={navLink}>
@@ -28,7 +31,7 @@ const navbar = {
 
 const logo = {
 	width: 'auto',
-	height: '66%',
+	height: '6vh',
 	float: 'left',
 };
 
@@ -38,10 +41,10 @@ const navDiv = {
 
 const navLink = {
 	color: 'black',
-	textDecoration: 'none',
 	display: 'block',
 	marginLeft: '2rem',
 	letterSpacing: '0.1rem',
+	// fontSize: '3vh',
 };
 
 export default Navbar;
