@@ -1,0 +1,40 @@
+@media (min-width: 480px) {
+  .socialPic {
+    max-width: 40%;
+  }
+  .socialText {
+    position: relative;
+    left: 7rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .socialPic {
+    max-width: 100%;
+    position: relative;
+    right: -7rem;
+  }
+  .socialText {
+    position: relative;
+    left: -2rem;
+  }
+}
+
+@media (min-height: 480px) {
+  .socialH1 {
+    font-size: 4vh;
+  }
+  .socialP1 {
+    font-size: 2vh;
+    line-height: 3.5vh;
+  }
+}
+
+@media (max-height: 479px) {
+  .socialH1 {
+    font-size: 6vh;
+  }
+  .socialP1 {
+    font-size: 3vh;
+  }
+}

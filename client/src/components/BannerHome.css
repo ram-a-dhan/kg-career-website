@@ -1,11 +1,28 @@
-.btn-primary {
+@media (min-width: 480px) {
+  .bannerHomeH1 {
+    font-size: 7vh;
+  }
+  .btn-kg {
+    margin: 1rem !important;
+    padding: 1rem 2rem !important;
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .bannerHomeH1 {
+    font-size: 4vh;
+  }
+  .btn-kg {
+    margin: 0.5rem !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.8rem !important;
+    font-weight: 300 !important;
+  }
+}
+
+.btn-kg {
   color: #fff !important;
   background-color: #009cdc !important;
   border-color: #009cdc !important;
-}
-
-.btn-primary::hover {
-  color: #fff !important;
-  background-color: #005891 !important;
-  border-color: #005891 !important;
 }

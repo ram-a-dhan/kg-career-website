@@ -16,22 +16,22 @@
   }
 }
 
-@media (max-height: 479px) {
-  .header1 {
-    font-size: 6vh;
+@media (min-height: 480px) {
+  .aboutH1 {
+    font-size: 4vh;
   }
-  .text1 {
-    font-size: 3vh;
+  .aboutP1 {
+    font-size: 2vh;
+    line-height: 3.5vh;
   }
 }
 
-@media (min-height: 480px) {
-  .header1 {
-    font-size: 4vh;
+@media (max-height: 479px) {
+  .aboutH1 {
+    font-size: 6vh;
   }
-  .text1 {
-    font-size: 2vh;
-    line-height: 3.5vh;
+  .aboutP1 {
+    font-size: 3vh;
   }
 }
 

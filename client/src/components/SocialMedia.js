@@ -1,12 +1,13 @@
 import React from 'react';
+import './SocialMedia.css';
 
 const SocialMedia = () => {
 	return (
-		<div className="socialMedia d-flex flex-row flex-wrap justify-content-center align-items-center overflow-auto" style={socialMedia}>
-			<div className="m-3 float-left d-flex flex-row justify-content-center align-items-center">
+		<div className="socialMedia d-flex flex-row flex-wrap justify-content-around align-items-center overflow-hidden" style={socialMedia}>
+			<div className="socialText m-3 float-left d-flex flex-row justify-content-center align-items-center">
 				<div>
-					<h1 style={header1}>Stay Connected!</h1>
-					<p style={text1}>
+					<h1 className="socialH1" style={socialH1}>Stay Connected!</h1>
+					<p className="socialP1" style={socialP1}>
 						Follow our social media to receive <br />
 						career updates and in-depth look <br />
 						of working in Kompas Gramedia!
@@ -45,9 +46,9 @@ const SocialMedia = () => {
 					</div>
 				</div>
 			</div>
-			<div className="float-right overflow-hidden">
-				<img src="./socialmedia.png" alt="" style={socialPic} />
-			</div>
+			{/* <div className="float-right overflow-hidden"> */}
+				<img src="./socialmedia.png" alt="" className="socialPic right overflow-hidden" style={socialPic} />
+			{/* </div> */}
 		</div>
 	);
 };
@@ -56,16 +57,13 @@ const socialMedia = {
 	height:'91vh'
 };
 
-const header1 = {
+const socialH1 = {
 	color: '#004E9E',
-	fontSize: '200%',
-	marginBottom: '1rem',
 };
 
-const text1 = {
-  color: '#555',
+const socialP1 = {
+  color: '#888',
   letterSpacing: '0.1rem',
-  lineHeight: '2rem',
 };
 
 const socialIcon = {
@@ -75,8 +73,8 @@ const socialIcon = {
 };
 
 const socialPic = {
-	height: '40vw',
-	width: 'auto',
+	// height: '40vw',
+	// width: 'auto',
 };
 
 export default SocialMedia;

@@ -1,4 +1,5 @@
 import React from 'react';
+import './BannerJoin.css';
 
 const BannerJoin = () => {
 	return (
@@ -6,12 +7,12 @@ const BannerJoin = () => {
 			className="bannerJoin d-flex flex-column justify-content-center align-items-center"
 			style={bannerJoin}
 		>
-			<h1 style={header1}>
+			<h1 className="bannerJoinH1 text-light text-center mt-5" style={bannerJoinH1}>
 				It is not for the doer.
 				<br />
 				It is for the <span style={{textDecoration:'underline'}}>game-changer</span>.
 			</h1>
-			<h5 style={header2}>
+			<h5 className="bannerJoinH2 text-light text-center" style={bannerJoinH2}>
 				Inviting those that wants to be bigger than themselves.
 				<br />
 				Are you the game-changer we're looking for?
@@ -29,20 +30,12 @@ const bannerJoin = {
 	height: '91vh',
 };
 
-const header1 = {
-	color: 'white',
-	fontSize: '300%',
-	textAlign: 'center',
-	fontWeight: '400',
+const bannerJoinH1 = {
+	// fontWeight: '400',
 };
 
-const header2 = {
-	color: 'white',
-	fontSize: '150%',
-	textAlign: 'center',
+const bannerJoinH2 = {
 	fontWeight: '300',
-	margin: '1rem',
-	lineHeight: '6vh',
 };
 
 export default BannerJoin;

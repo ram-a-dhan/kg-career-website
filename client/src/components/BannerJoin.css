@@ -1,0 +1,19 @@
+@media (min-width: 480px) {
+  .bannerJoinH1 {
+    font-size: 7vh;
+  }
+  .bannerJoinH2 {
+    font-size: 3vh;
+	  line-height: 3rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .bannerJoinH1 {
+    font-size: 4vh;
+  }
+  .bannerJoinH2 {
+    font-size: 2vh;
+	  line-height: 1.5rem;
+  }
+}

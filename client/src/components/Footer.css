@@ -1,0 +1,11 @@
+@media (min-width: 480px) {
+  .footlink {
+    font-size: 1.7vh;
+  }
+}
+
+@media (max-width: 479px) {
+  .footlink {
+    font-size: 2vh;
+  }
+}

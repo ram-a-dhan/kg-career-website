@@ -45,7 +45,7 @@ const navLink = {
 	display: 'block',
 	marginLeft: '2rem',
 	letterSpacing: '0.1rem',
-	// fontSize: '3vh',
+	fontSize: '2vh',
 };
 
 export default Navbar;
