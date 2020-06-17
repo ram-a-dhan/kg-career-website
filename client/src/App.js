@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './views/Home';
-import Join from './views/Join';
+import JoinUs from './views/JoinUs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 			      <Home />
           </Route>
           <Route exact path="/join-us">
-			      <Join />
+			      <JoinUs />
           </Route>
 				</Switch>
 			</BrowserRouter>

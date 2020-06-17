@@ -1,0 +1,42 @@
+@media (min-width: 480px) {
+  .aboutPic {
+    max-width: 50%;
+  }
+  .aboutText {
+    margin: 0rem 5rem 0rem 2rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .aboutPic {
+    max-width: 80%;
+  }
+  .aboutText {
+    margin: 0rem 7rem 0rem 2rem;
+  }
+}
+
+@media (max-height: 479px) {
+  .header1 {
+    font-size: 6vh;
+  }
+  .text1 {
+    font-size: 3vh;
+  }
+}
+
+@media (min-height: 480px) {
+  .header1 {
+    font-size: 4vh;
+  }
+  .text1 {
+    font-size: 2vh;
+    line-height: 3.5vh;
+  }
+}
+
+#aboutStripe {
+  width: 20vw;
+  height: 100.2%;
+  background-color: #004E9E;
+}

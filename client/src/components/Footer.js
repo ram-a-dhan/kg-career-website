@@ -37,7 +37,7 @@ const Footer = () => {
 					</a>
 					{/* eslint-disable-next-line */}
 					<a
-						href="https://www.kompasgramedia.com/"
+						href="https://www.kompasgramedia.com"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="d-block col-lg-3 px-0 text-center text-light"

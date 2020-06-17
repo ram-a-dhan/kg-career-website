@@ -2,7 +2,7 @@ import React from "react";
 import BannerJoin from '../components/BannerJoin';
 import Footer from '../components/Footer';
 
-const Join = () => {
+const JoinUs = () => {
   return (
 		<div className="home">
 			<BannerJoin />
@@ -11,4 +11,4 @@ const Join = () => {
 	);
 };
 
-export default Join;
+export default JoinUs;

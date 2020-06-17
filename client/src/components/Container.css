@@ -1,5 +1,9 @@
 @media (min-width: 1360px) {
-.container, .container-lg, .container-md, .container-sm, .container-xl {
-    max-width: 87.5% !important;
-  }
+	.container,
+	.container-lg,
+	.container-md,
+	.container-sm,
+	.container-xl {
+		max-width: 87.5% !important;
+	}
 }

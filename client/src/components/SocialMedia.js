@@ -2,7 +2,7 @@ import React from 'react';
 
 const SocialMedia = () => {
 	return (
-		<div className="socialMedia d-flex flex-row flex-wrap justify-content-center overflow-auto">
+		<div className="socialMedia d-flex flex-row flex-wrap justify-content-center align-items-center overflow-auto" style={socialMedia}>
 			<div className="m-3 float-left d-flex flex-row justify-content-center align-items-center">
 				<div>
 					<h1 style={header1}>Stay Connected!</h1>
@@ -16,30 +16,30 @@ const SocialMedia = () => {
 						style={{ width: '15rem' }}
 					>
 						{/* eslint-disable-next-line */}
-						<a href="https://web.facebook.com/KompasGramediaKG/" target="_blank" rel="noopener noreferrer">
+						<a href="https://web.facebook.com/KompasGramediaKG" target="_blank" rel="noopener noreferrer">
 							<div
 								className="rounded-circle d-flex flex-row justify-content-center align-items-center"
-								style={{...socialIcon,padding: '0.7rem',backgroundColor: '#0063B0',}}
+								style={{...socialIcon,backgroundColor: '#0063B0',}}
 							>
-								<img src="./iconfacebook.png" alt="" />
+								<img src="./iconfacebook.png" alt="" style={{width: '2.5rem', height: 'auto'}} />
 							</div>
 						</a>
 						{/* eslint-disable-next-line */}
-						<a href="https://www.linkedin.com/company/kompas-gramedia/" target="_blank" rel="noopener noreferrer">
+						<a href="https://www.linkedin.com/company/kompas-gramedia" target="_blank" rel="noopener noreferrer">
 							<div
 								className="rounded-circle d-flex flex-row justify-content-center align-items-center"
-								style={{...socialIcon,padding: '0.9rem',backgroundColor: '#004E9E',}}
+								style={{...socialIcon,backgroundColor: '#004E9E',}}
 							>
-								<img src="./iconlinkedin.png" alt="" />
+								<img src="./iconlinkedin.png" alt="" style={{width: '2rem', height: 'auto'}} />
 							</div>
 						</a>
 						{/* eslint-disable-next-line */}
-						<a href="https://www.instagram.com/kompasgramedia/" target="_blank" rel="noopener noreferrer">
+						<a href="https://www.instagram.com/kompasgramedia" target="_blank" rel="noopener noreferrer">
 							<div
 								className="rounded-circle d-flex flex-row justify-content-center align-items-center"
-								style={{...socialIcon,padding: '0.9rem',backgroundColor: '#EF5E4A',}}
+								style={{...socialIcon,backgroundColor: '#EF5E4A',}}
 							>
-								<img src="./iconinstagram.png" alt="" />
+								<img src="./iconinstagram.png" alt="" style={{width: '2rem', height: 'auto'}} />
 							</div>
 						</a>
 					</div>
@@ -52,6 +52,10 @@ const SocialMedia = () => {
 	);
 };
 
+const socialMedia = {
+	height:'91vh'
+};
+
 const header1 = {
 	color: '#004E9E',
 	fontSize: '200%',
@@ -62,7 +66,7 @@ const text1 = {
   color: '#555',
   letterSpacing: '0.1rem',
   lineHeight: '2rem',
-}
+};
 
 const socialIcon = {
 	width: '4rem',
