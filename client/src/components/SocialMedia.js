@@ -46,9 +46,7 @@ const SocialMedia = () => {
 					</div>
 				</div>
 			</div>
-			{/* <div className="float-right overflow-hidden"> */}
 				<img src="./socialmedia.png" alt="" className="socialPic right overflow-hidden" style={socialPic} />
-			{/* </div> */}
 		</div>
 	);
 };
@@ -59,6 +57,7 @@ const socialMedia = {
 
 const socialH1 = {
 	color: '#004E9E',
+  fontWeight: '400',
 };
 
 const socialP1 = {
@@ -73,8 +72,6 @@ const socialIcon = {
 };
 
 const socialPic = {
-	// height: '40vw',
-	// width: 'auto',
 };
 
 export default SocialMedia;

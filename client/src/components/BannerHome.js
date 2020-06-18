@@ -35,8 +35,6 @@ const bannerHomeH1 = {
 };
 
 const buttonjoin = {
-	// margin: '1rem',
-	// padding: '1rem 2rem',
 };
 
 export default BannerHome;

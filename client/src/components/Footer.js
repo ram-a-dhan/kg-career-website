@@ -71,7 +71,6 @@ const footLink = {
 
 const logotype = {
 	height: '3rem',
-	width: 'auto',
 };
 
 export default Footer;

@@ -31,7 +31,7 @@ const bannerJoin = {
 };
 
 const bannerJoinH1 = {
-	// fontWeight: '400',
+	fontWeight: '400',
 };
 
 const bannerJoinH2 = {
