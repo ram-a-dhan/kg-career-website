@@ -23,7 +23,7 @@ const BannerHome = () => {
 
 const bannerHome = {
 	boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.33)',
-	backgroundImage: 'url(./banner.jpg)',
+	backgroundImage: 'url(./bannerHome.png)',
 	backgroundSize: 'cover',
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',

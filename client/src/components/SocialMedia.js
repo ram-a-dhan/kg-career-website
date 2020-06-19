@@ -13,7 +13,7 @@ const SocialMedia = () => {
 						of working in Kompas Gramedia!
 					</p>
 					<div
-						className="d-flex flex-row flex-nowrap justify-content-between"
+						className="d-flex flex-row flex-nowrap justify-content-between align-items-start"
 						style={{ width: '15rem' }}
 					>
 						{/* eslint-disable-next-line */}
@@ -46,13 +46,15 @@ const SocialMedia = () => {
 					</div>
 				</div>
 			</div>
-				<img src="./socialmedia.png" alt="" className="socialPic right overflow-hidden" style={socialPic} />
+			<img src="./socialPic.png" alt="" className="socialPic right" style={socialPic} />
 		</div>
 	);
 };
 
 const socialMedia = {
-	height:'91vh'
+	height:'80vh',
+	position: 'relative',
+	top: '-15vh',
 };
 
 const socialH1 = {
@@ -72,6 +74,8 @@ const socialIcon = {
 };
 
 const socialPic = {
+	overflowX: 'hidden',
+	overflowY: 'visible',
 };
 
 export default SocialMedia;

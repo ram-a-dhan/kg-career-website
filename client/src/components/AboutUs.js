@@ -17,11 +17,12 @@ const AboutUs = () => {
             </span>
           </p>
         </div>
-        <img src="./banner.jpg" alt="" className="aboutPic" style={aboutPic} />
+        <img src="./aboutPic.png" alt="" className="aboutPic" style={aboutPic} />
       </div>
       <div className="d-flex flex-row flex-wrap justify-content-end align-items-center" style={stripeContainer}>
         <div id="aboutStripe"></div>
       </div>
+      <div className="" style={bgContainer}></div>
     </>
   )
 };
@@ -31,7 +32,7 @@ const aboutUs = {
 };
 
 const aboutPic = {
-  borderRadius: '50rem 0rem 0rem 50rem',
+  // borderRadius: '50rem 0rem 0rem 50rem',
 };
 
 const aboutText = {
@@ -55,7 +56,19 @@ const stripeContainer = {
   position: 'absolute',
   top: '100vh',
   right: '0',
-  zIndex: '-1',
+  zIndex: '-2',
+}
+
+const bgContainer = {
+  width: '100%',
+  height: '91vh',
+  position: 'absolute',
+  top: '100vh',
+  zIndex: '-3',
+  backgroundImage: 'url(./aboutBg.png)',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'right bottom',
 }
 
 export default AboutUs;

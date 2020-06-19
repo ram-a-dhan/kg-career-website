@@ -16,7 +16,7 @@ const Footer = () => {
 						className="footlink d-block col-lg-3 px-0 mb-3 text-center text-light"
 						style={footLink}
 					>
-						<img src="./logotype.jpg" alt="logotype" style={logotype} />
+						<img src="./Logo_Kompas_Gramedia_3.png" alt="logotype" style={logotype} />
 					</a>
 					{/* eslint-disable-next-line */}
 					<a
@@ -70,7 +70,7 @@ const footLink = {
 };
 
 const logotype = {
-	height: '3rem',
+	height: '2rem',
 };
 
 export default Footer;
