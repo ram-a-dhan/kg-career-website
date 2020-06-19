@@ -5,7 +5,7 @@ const AboutUs = () => {
   return (
     <>
       <div className="aboutUs d-flex flex-row flex-wrap justify-content-end align-items-center" style={aboutUs}>
-        <div className="aboutText px-2 rounded-lg" style={aboutText}>
+        <div className="aboutText rounded-lg" style={aboutText}>
           <h1 className="aboutH1 text-right mb-1" style={aboutH1}>
             Who We Are
           </h1>
@@ -38,7 +38,7 @@ const aboutPic = {
 const aboutText = {
   width: '55vh',
   margin: '0rem 6rem 0rem 2rem',
-	backgroundColor: 'white',
+	backgroundColor: 'rgba(255,255,255,0.8)',
 };
 
 const aboutH1 = {
@@ -68,7 +68,7 @@ const bgContainer = {
   backgroundImage: 'url(./aboutBg.png)',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right bottom',
+  backgroundPosition: 'left bottom',
 }
 
 export default AboutUs;

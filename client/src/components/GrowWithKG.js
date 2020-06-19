@@ -48,7 +48,7 @@ const growPic = {
 const growText = {
   width: '55vh',
   margin: '0rem 2rem 0rem 6rem',
-	backgroundColor: 'white',
+	backgroundColor: 'rgba(255,255,255,0.8)',
 };
 
 const growH1 = {

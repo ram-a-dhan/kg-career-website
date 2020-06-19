@@ -9,43 +9,51 @@ const Footer = () => {
 		<div className="footer" style={footer}>
 			<div className="container">
 				<div className="row w-100 py-5 m-auto justify-content-between">
-					{/* eslint-disable-next-line */}
-					<a
-						href="#"
-						onClick={() => history.push('/')}
-						className="footlink d-block col-lg-3 px-0 mb-3 text-center text-light"
-						style={footLink}
-					>
-						<img src="./Logo_Kompas_Gramedia_3.png" alt="logotype" style={logotype} />
-					</a>
-					{/* eslint-disable-next-line */}
-					<a
-						href="#"
-						onClick={() => history.push('/')}
-						className="footlink d-block col-lg-3 px-0 text-center text-light"
-						style={footLink}
-					>
-						Home
-					</a>
-					{/* eslint-disable-next-line */}
-					<a
-						href="#"
-						onClick={() => history.push('/join-us')}
-						className="footlink d-block col-lg-3 px-0 text-center text-light"
-						style={footLink}
-					>
-						Search for Jobs
-					</a>
-					{/* eslint-disable-next-line */}
-					<a
-						href="https://www.kompasgramedia.com"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="footlink d-block col-lg-3 px-0 text-center text-light"
-						style={footLink}
-					>
-						Kompasgramedia.com
-					</a>
+					<div className="col-lg-3 px-0 text-center">
+						{/* eslint-disable-next-line */}
+						<a
+							href="#"
+							onClick={() => history.push('/')}
+							className="footlinkhome footlink text-light"
+							style={footLink}
+						>
+							<img src="./Logo_Kompas_Gramedia_3.png" alt="logotype" style={logotype} />
+						</a>
+					</div>
+					<div className="col-lg-3 px-0 text-center">
+						{/* eslint-disable-next-line */}
+						<a
+							href="#"
+							onClick={() => history.push('/')}
+							className="footlink text-light"
+							style={footLink}
+						>
+							Home
+						</a>
+					</div>
+					<div className="col-lg-3 px-0 text-center">
+						{/* eslint-disable-next-line */}
+						<a
+							href="#"
+							onClick={() => history.push('/join-us')}
+							className="footlink text-light"
+							style={footLink}
+						>
+							Search for Jobs
+						</a>
+					</div>
+					<div className="col-lg-3 px-0 text-center">
+						{/* eslint-disable-next-line */}
+						<a
+							href="https://www.kompasgramedia.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="footlink text-light"
+							style={footLink}
+						>
+							Kompasgramedia.com
+						</a>
+					</div>
 				</div>
 
 				<div className="clear-both border-bottom border-light w-100"></div>
@@ -66,7 +74,7 @@ const footer = {
 
 const footLink = {
 	lineHeight: '3rem',
-	letterSpacing: '0.1rem',
+	letterSpacing: '0.05rem',
 };
 
 const logotype = {

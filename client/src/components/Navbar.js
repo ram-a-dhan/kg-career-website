@@ -15,7 +15,7 @@ const Navbar = () => {
 			</a>
 			<div className="float-right" style={navDiv}>
 				{/* eslint-disable-next-line */}
-				<a href="#" onClick={() => history.push('/')} className="d-block ml-2" style={navLink}>
+				<a href="#" onClick={() => history.push('/')} className="d-block ml-2 text-dark" style={navLink}>
 					Home
 				</a>
 			</div>
@@ -40,8 +40,7 @@ const navDiv = {
 };
 
 const navLink = {
-	color: 'black',
-	letterSpacing: '0.1rem',
+	letterSpacing: '0.05rem',
 	fontSize: '2.25vh',
 };
 
