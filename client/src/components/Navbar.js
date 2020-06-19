@@ -42,7 +42,7 @@ const navDiv = {
 const navLink = {
 	color: 'black',
 	letterSpacing: '0.1rem',
-	fontSize: '2vh',
+	fontSize: '2.25vh',
 };
 
 export default Navbar;

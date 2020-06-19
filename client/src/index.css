@@ -1,16 +1,25 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url(./fonts/Nunito-Regular.ttf);
+}
+
 * {
   margin: 0rem;
   padding: 0rem;
   scroll-behavior: smooth;
+  font-family: Roboto, sans-serif;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar *, .footer *, .btn-kg, .bannerJoinH2 {
+  font-family: 'Nunito', sans-serif;
 }
 
 code {

@@ -9,7 +9,7 @@ const BannerHome = () => {
 			className="bannerHome d-flex flex-column justify-content-center align-items-center"
 			style={bannerHome}
 		>
-			<h1 className="bannerHomeH1 text-light text-center mt-5" style={bannerHomeH1}>Grow beyond your work</h1>
+			<h1 className="bannerHomeH1 text-light text-center" style={bannerHomeH1}>Grow beyond your work</h1>
 			<button
 				className="btn btn-kg rounded-pill"
 				onClick={() => history.push('/join-us')}
@@ -22,7 +22,7 @@ const BannerHome = () => {
 };
 
 const bannerHome = {
-	boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.33)',
+	boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.5)',
 	backgroundImage: 'url(./bannerHome.png)',
 	backgroundSize: 'cover',
 	backgroundPosition: 'center',
@@ -32,6 +32,7 @@ const bannerHome = {
 
 const bannerHomeH1 = {
 	fontWeight: '400',
+	marginTop: '6rem',
 };
 
 const buttonjoin = {
