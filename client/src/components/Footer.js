@@ -9,12 +9,12 @@ const Footer = () => {
 		<div className="footer" style={footer}>
 			<div className="container">
 				<div className="row w-100 py-5 m-auto justify-content-between">
-					<div className="col-lg-3 px-0 text-center">
+					<div className="footlinkhome col-lg-3 px-0 text-center">
 						{/* eslint-disable-next-line */}
 						<a
 							href="#"
 							onClick={() => history.push('/')}
-							className="footlinkhome footlink text-light"
+							className="footlink text-light"
 							style={footLink}
 						>
 							<img src="./Logo_Kompas_Gramedia_3.png" alt="logotype" style={logotype} />

@@ -1,10 +1,12 @@
 @media (min-width: 480px) {
   .socialPic {
     max-width: 40%;
+    position: relative; 
+    right: 2rem;
   }
   .socialText {
     position: relative;
-    left: 5rem;
+    left: 7rem;
   }
   .socialIconContainer {
     width: 15rem;

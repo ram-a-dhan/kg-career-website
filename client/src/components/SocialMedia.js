@@ -49,13 +49,13 @@ const SocialMedia = () => {
 };
 
 const socialMedia = {
-	height:'80vh',
-	position: 'relative',
-	top: '-15vh',
+	height:'91vh',
+	// position: 'relative',
+	// top: '-15vh',
 };
 
 const socialText = {
-	backgroundColor: 'rgba(255,255,255,0.8)',
+	// backgroundColor: 'rgba(255,255,255,0.8)',
 };
 
 const socialH1 = {
@@ -65,7 +65,7 @@ const socialH1 = {
 
 const socialP1 = {
   color: '#888',
-  letterSpacing: '0.1rem',
+  letterSpacing: '0.05rem',
 };
 
 const socialIconBg = {

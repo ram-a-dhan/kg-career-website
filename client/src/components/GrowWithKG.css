@@ -1,5 +1,5 @@
 @media (min-width: 480px) {
-  #growShape1 {
+  #growShape1, #growShape2, #growShape3 {
     top: -48vh;
     width: 40vw;
     height: 20vw;
@@ -14,7 +14,7 @@
 }
 
 @media (max-width: 479px) {
-  #growShape1 {
+  #growShape1, #growShape2, #growShape3 {
     top: -20vh;
     width: 80vw;
     height: 40vw;
@@ -32,6 +32,9 @@
   .growH1 {
     font-size: 4vh;
   }
+  .growH2 {
+    font-size: 2vh;
+  }
   .growP1, .growP2 {
     font-size: 2vh;
     line-height: 3.5vh;
@@ -41,6 +44,9 @@
 @media (max-height: 479px) {
   .growH1 {
     font-size: 6vh;
+  }
+  .growH2 {
+    font-size: 3vh;
   }
   .growP1, .growP2 {
     font-size: 3vh;
@@ -59,4 +65,32 @@
   width: 25vw;
   height: 100.2%;
   background-color: #327D32;
+}
+
+#growShape2 {
+  background-color: #E93B2E;
+  border-radius: 0rem 50rem 50rem 0rem;
+  transform: rotate(-25deg);
+  position: relative;
+  z-index: -1;
+}
+
+#growStripe2 {
+  width: 25vw;
+  height: 100.2%;
+  background-color: #AC181E;
+}
+
+#growShape3 {
+  background-color: #009CDC;
+  border-radius: 0rem 50rem 50rem 0rem;
+  transform: rotate(-25deg);
+  position: relative;
+  z-index: -1;
+}
+
+#growStripe3 {
+  width: 25vw;
+  height: 100.2%;
+  background-color: #004E9E;
 }

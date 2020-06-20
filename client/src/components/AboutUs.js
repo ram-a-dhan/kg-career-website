@@ -48,7 +48,7 @@ const aboutH1 = {
 
 const aboutP1 = {
   color: '#888',
-  letterSpacing: '0.1rem',
+  letterSpacing: '0.05rem',
 };
 
 const stripeContainer = {
