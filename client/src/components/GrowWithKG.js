@@ -4,6 +4,8 @@ import './GrowWithKG.css';
 
 const GrowWithKG = () => {
   // eslint-disable-next-line
+	const [num, setNum] = useState(1);
+  // eslint-disable-next-line
 	const [testimonials, setTestimonials] = useState([
 		{
 			id: 1,
@@ -30,15 +32,27 @@ const GrowWithKG = () => {
 				'I consider Kompas Gramedia as my second home. It feels very comfortable for me beacuse I can learn and play with a lot of new ideas and i have great team members supporting me in every step i took.',
 		},
 	]);
+
+	const handleNext = () => {
+		setNum(num === 3 ? 1 : num + 1);
+	}
+
 	return (
 		<div className="growWithKG" style={growWithKG}>
 			{
         testimonials
-          .filter(testimony => testimony.id === 3)
+          .filter(testimony => testimony.id === num)
           .map(testimony => {
             return <GrowSlide key={testimony.id} testimony={testimony}  />
           })
       }
+				<button
+					className="nextBg btn rounded-circle d-flex flex-row justify-content-center align-items-center"
+					style={{backgroundColor: '#009CDC',}}
+					onClick={() => handleNext()}
+				>
+					<img src="./iconnext.png" alt="" className="nextImg"/>
+				</button>
 		</div>
 	);
 };

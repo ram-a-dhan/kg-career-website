@@ -13,7 +13,7 @@ const GrowSlide = (props) => {
 					<h6 className="growH2 mt-2" style={growH2}>
 						<del>Working</del> Growing With KG
 					</h6>
-					<h1 className="growH1 text-left mb-3" style={growH1}>
+					<h1 id={`growTitle${props.testimony.id}`} className="growH1 text-left mb-3" style={growH1}>
 						{props.testimony.title}
 					</h1>
 					<span className="d-flex flex-row flex-nowrap">
@@ -72,7 +72,7 @@ const growText = {
 };
 
 const growH1 = {
-	color: '#004E9E',
+	// color: '#004E9E',
 	fontWeight: '400',
 };
 
