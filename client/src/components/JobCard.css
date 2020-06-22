@@ -1,0 +1,60 @@
+@media (min-width: 480px) {
+  .jobCard {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0rem 0.5rem 0.25rem 0.1rem rgba(128,128,128,0.1);
+    border-radius: 50rem;
+    margin: 1rem 0rem;
+    padding: 1.5rem 3rem;
+  }
+  .jobImg {
+    width: 10rem;
+  }
+  .jobDesc {
+    margin: 0rem 2rem;
+  }
+  .jobDesc * {
+    margin: 0.5rem 0rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .jobCard {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0rem 0rem 0.25rem 0.25rem rgba(128,128,128,0.1);
+    border-radius: 1rem;
+    margin: 1rem 0rem;
+    padding: 1rem 2rem;
+  }
+  .jobImg {
+    width: 100%;
+    margin: 1rem 0rem;
+  }
+  .jobDesc {
+    /* margin: 0rem 2rem; */
+  }
+  .jobDesc h6, .jobDesc p {
+    margin: 0.5rem 0rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-height: 480px) {
+  
+}
+
+@media (max-height: 479px) {
+  
+}
+
+.jobDesc * {
+  color: #555;
+}
+
+.jobDesc h6 {
+  font-weight: 700;
+}
+.jobDesc img {
+  height: 1rem;
+}

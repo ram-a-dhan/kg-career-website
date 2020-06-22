@@ -1,0 +1,11 @@
+@media (min-width: 480px) {
+  .searchJobs {
+    padding: 10vh 20vw;
+  }
+}
+
+@media (max-width: 479px) {
+  .searchJobs {
+    padding: 1rem 1rem;
+  }
+}
