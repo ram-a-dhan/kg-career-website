@@ -13,7 +13,7 @@ const BannerHome = () => {
 			<button
 				className="btn btn-kg rounded-pill"
 				onClick={() => history.push('/join-us')}
-				style={buttonjoin}
+				style={buttonJoin}
 			>
 				Find Your Calling
 			</button>
@@ -35,7 +35,7 @@ const bannerHomeH1 = {
 	marginTop: '6rem',
 };
 
-const buttonjoin = {
+const buttonJoin = {
 };
 
 export default BannerHome;

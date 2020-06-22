@@ -37,7 +37,7 @@ const aboutPic = {
 
 const aboutText = {
   width: '55vh',
-  margin: '0rem 6rem 0rem 2rem',
+  // margin: '0rem 6rem 0rem 2rem',
 	backgroundColor: 'rgba(255,255,255,0.8)',
 };
 

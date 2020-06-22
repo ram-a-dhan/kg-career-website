@@ -1,0 +1,98 @@
+@media (min-width: 480px) {
+  .infoGraph, .infoCircle, .infoPic {
+    height: 20rem;
+    width: 20rem;
+    margin: 0rem 1rem;
+  }
+  .infoPic {
+    position: relative;
+    z-index: -1;
+    top: -20rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .infoGraph, .infoCircle, .infoPic {
+    height: 15rem;
+    width: 15rem;
+    margin: 0rem 1rem;
+  }
+  .infoPic {
+    position: relative;
+    z-index: -1;
+    top: -15rem;
+  }
+}
+
+@media (min-height: 480px) {
+  
+}
+
+@media (max-height: 479px) {
+  
+}
+
+/* .circle1 {
+  background-image: url('../images/circle1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+};
+
+.circle2 {
+  background-image: url('../images/circle2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+};
+
+.circle3 {
+  background-image: url('../images/circle3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+};
+
+.circle4 {
+  background-image: url('../images/circle4.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+};
+
+.circle5 {
+  background-image: url('../images/circle5.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+};
+
+.graphPic1 {
+  background-image: url('../images/logo512.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+};
+
+.graphPic2 {
+  background-image: url('../images/logo512.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+};
+
+.graphPic3 {
+  background-image: url('../images/logo512.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+};
+
+.graphPic4 {
+  background-image: url('../images/logo512.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+};
+
+.graphPic5 {
+  background-image: url('../images/logo512.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}; */

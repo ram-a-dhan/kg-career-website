@@ -1,0 +1,49 @@
+@media (min-width: 480px) {
+  .impactText {
+    /* margin: 0rem 5rem 0rem 2rem; */
+    width: 22rem;
+    position: relative;
+    left: 10vw;
+    top: -5vh;
+  }
+}
+
+@media (max-width: 479px) {
+  .impactText {
+    /* margin: 0rem 7rem 0rem 1rem; */
+    width: 15rem;
+    position: relative;
+    left: 10vw;
+    top: -5vh;
+  }
+}
+
+@media (min-height: 480px) {
+  .impactH1 {
+    font-size: 4vh;
+  }
+  .impactP1 {
+    font-size: 2vh;
+    line-height: 3.5vh;
+  }
+}
+
+@media (max-height: 479px) {
+  .impactH1 {
+    font-size: 6vh;
+  }
+  .impactP1 {
+    font-size: 3vh;
+  }
+}
+
+.slider {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.slider::-webkit-scrollbar {
+  width: 0px;
+}
