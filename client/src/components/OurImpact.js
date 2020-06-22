@@ -21,20 +21,20 @@ const OurImpact = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3
+      items: 4
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 2
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
+      breakpoint: { max: 480, min: 0 },
+      items: 2
     }
   };
 	return (
     <>
-      <div className="ourImpact" style={ourImpact}>
+      <div className="ourImpact d-flex flex-column justify-content-center" style={ourImpact}>
         <div className="impactText d-flex flex-column justify-content-start align-items-start" style={impactText}>
           <h1 className="impactH1 text-left mb-4" style={impactH1}>Our Impact</h1>
           {/* eslint-disable-next-line */}
