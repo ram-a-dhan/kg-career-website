@@ -1,6 +1,8 @@
 import React , { useState } from 'react';
 import './OurImpact.css';
 import Infograph from './Infograph.js'
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const OurImpact = () => {
   // eslint-disable-next-line
@@ -11,23 +13,43 @@ const OurImpact = () => {
     { id: 4 },
     { id: 5 },
   ]);
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 4
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 	return (
-		<div className="ourImpact d-flex flex-column justify-content-center align-items-start" style={ourImpact}>
-			<div className="impactText d-flex flex-column justify-content-start align-items-start" style={impactText}>
-				<h1 className="impactH1 text-left mb-4" style={impactH1}>Our Impact</h1>
-				{/* eslint-disable-next-line */}
-				<p className="impactP1 text-left mb-2" style={impactP1}>Our ventures to build a better Indonesia. Soon, with you too! 🌟</p>
-			</div>
-			<div className="slider d-flex flex-row flex-nowrap justify-content-start align-items-center" style={{width: '100%', height: '50%'}}>
+    <>
+      <div className="ourImpact" style={ourImpact}>
+        <div className="impactText d-flex flex-column justify-content-start align-items-start" style={impactText}>
+          <h1 className="impactH1 text-left mb-4" style={impactH1}>Our Impact</h1>
+          {/* eslint-disable-next-line */}
+          <p className="impactP1 text-left mb-2" style={impactP1}>Our ventures to build a better Indonesia. Soon, with you too! 🌟</p>
+        </div>
+        <Carousel responsive={responsive} infinite={ true }>
           {
             graphs.map(graph => {
               return <Infograph key={graph.id} graph={graph} />
             })
           }
-          <div style={{height: '100%', width: '1px', paddingLeft: '2rem'}}></div>
-			</div>
-      <div className="" style={bgContainer}></div>
-    </div>
+        </Carousel>
+        <div className="" style={bgContainer}></div>
+      </div>
+    </>
 	);
 };
 
