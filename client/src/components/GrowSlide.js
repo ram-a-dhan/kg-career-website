@@ -6,15 +6,15 @@ const GrowSlide = (props) => {
 		// <div className="growWithKG">
 		<>
 			<div
-				className="d-flex flex-row-reverse flex-wrap justify-content-end align-items-center"
+				className="growSlide"
 				style={growWithKG}
 			>
-				<div className="growText rounded-lg" style={growText}>
+				<div className="growText rounded-lg" style={growText} data-aos="fade-up">
 					<h6 className="growH2 mt-2" style={growH2}>
-						<del>Working</del> Growing With KG
+						&nbsp; &nbsp; &nbsp; <del>Working</del> Growing With KG
 					</h6>
 					<h1 id={`growTitle${props.testimony.id}`} className="growH1 text-left mb-3" style={growH1}>
-						{props.testimony.title}
+						&nbsp; &nbsp; {props.testimony.title}
 					</h1>
 					<span className="d-flex flex-row flex-nowrap">
 						<p
@@ -36,12 +36,14 @@ const GrowSlide = (props) => {
 						{props.testimony.name + ', ' + props.testimony.position}
 					</p>
 				</div>
-				<img
-					src={`./growPic${props.testimony.id}.png`}
-					alt=""
-					className="growPic"
-					style={growPic}
-				/>
+				<div data-aos="fade-right">
+					<img
+						src={`./growPic${props.testimony.id}.png`}
+						alt=""
+						className="growPic"
+						style={growPic}
+					/>
+				</div>
 			</div>
 			<div id={`growShape${props.testimony.id}`}></div>
 			<div
@@ -50,7 +52,7 @@ const GrowSlide = (props) => {
 			>
 				<div id={`growStripe${props.testimony.id}`}></div>
 			</div>
-			<div id={`growBg${props.testimony.id}`} style={{...bgContainer, ...(props.testimony.id === 1 ? growBg1 : props.testimony.id === 2 ? growBg2 : growBg3)}}></div>
+				<div id={`growBg${props.testimony.id}`} style={{...bgContainer, ...(props.testimony.id === 1 ? growBg1 : props.testimony.id === 2 ? growBg2 : growBg3)}}></div>
 		</>
 		// </div>
 	);
@@ -67,7 +69,6 @@ const growPic = {
 
 const growText = {
 	width: '55vh',
-	margin: '0rem 2rem 0rem 6rem',
 	// backgroundColor: 'rgba(255,255,255,0.8)',
 };
 
