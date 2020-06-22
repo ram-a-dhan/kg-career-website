@@ -4,20 +4,26 @@ import './AboutUs.css';
 const AboutUs = () => {
   return (
     <>
-      <div className="aboutUs d-flex flex-row flex-wrap justify-content-end align-items-center" style={aboutUs}>
-        <div className="aboutText rounded-lg" style={aboutText}>
-          <h1 className="aboutH1 text-right mb-1" style={aboutH1}>
-            Who We Are
-          </h1>
-          <p className="aboutP1 text-right m-0" style={aboutP1}>
-            Kompas Gramedia (KG) is the biggest media conglomerate in Indonesia. We aim to be&nbsp;
-            <span style={{textDecoration: 'underline'}}>
-              the biggest, best, integrated and spread in South East Asia through knowledge base industry to create
-              well educated society, enlighten and respect to cultural differences and social welfare.
-            </span>
-          </p>
+      <div className="aboutUs" style={aboutUs}>
+        <div data-aos="fade-right">
+          <div className="aboutText rounded-lg" style={aboutText}>
+            <h1 className="aboutH1 text-right mb-1" style={aboutH1}>
+              Who We Are
+            </h1>
+            <p className="aboutP1 text-right m-0" style={aboutP1}>
+              Kompas Gramedia (KG) is the biggest media conglomerate in Indonesia. We aim to be&nbsp;
+              <span style={{textDecoration: 'underline'}}>
+                the biggest, best, integrated and spread in South East Asia through knowledge base industry to create
+                well educated society, enlighten and respect to cultural differences and social welfare.
+              </span>
+            </p>
+          </div>
         </div>
-        <img src="./aboutPic.png" alt="" className="aboutPic" style={aboutPic} />
+        <div style={{ textAlign: 'right' }}>
+          <div data-aos="fade-left">
+            <img src="./aboutPic.png" alt="" className="aboutPic" style={aboutPic} />
+          </div>
+        </div>
       </div>
       <div className="d-flex flex-row flex-wrap justify-content-end align-items-center" style={stripeContainer}>
         <div id="aboutStripe"></div>
