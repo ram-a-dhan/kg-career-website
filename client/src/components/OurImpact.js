@@ -35,18 +35,22 @@ const OurImpact = () => {
 	return (
     <>
       <div className="ourImpact d-flex flex-column justify-content-center" style={ourImpact}>
-        <div className="impactText d-flex flex-column justify-content-start align-items-start" style={impactText}>
-          <h1 className="impactH1 text-left mb-4" style={impactH1}>Our Impact</h1>
-          {/* eslint-disable-next-line */}
-          <p className="impactP1 text-left mb-2" style={impactP1}>Our ventures to build a better Indonesia. Soon, with you too! 🌟</p>
+        <div data-aos="fade-right">
+          <div className="impactText d-flex flex-column justify-content-start align-items-start" style={impactText}>
+            <h1 className="impactH1 text-left mb-4" style={impactH1}>Our Impact</h1>
+            {/* eslint-disable-next-line */}
+            <p className="impactP1 text-left mb-2" style={impactP1}>Our ventures to build a better Indonesia. Soon, with you too! 🌟</p>
+          </div>  
         </div>
-        <Carousel responsive={responsive} infinite={ true }>
-          {
-            graphs.map(graph => {
-              return <Infograph key={graph.id} graph={graph} />
-            })
-          }
-        </Carousel>
+        <div data-aos="zoom-in">
+          <Carousel responsive={responsive} infinite={ true }>
+            {
+              graphs.map(graph => {
+                return <Infograph key={graph.id} graph={graph} />
+              })
+            }
+          </Carousel>
+        </div>
         <div className="" style={bgContainer}></div>
       </div>
     </>

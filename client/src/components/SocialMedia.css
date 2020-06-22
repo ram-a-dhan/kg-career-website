@@ -1,6 +1,6 @@
 @media (min-width: 480px) {
   .socialPic {
-    max-width: 40%;
+    max-width: 80%;
     position: relative; 
     right: 2rem;
   }
@@ -19,17 +19,18 @@
     width: 2rem;
 	  height: 2rem;
   }
+  .socialMedia {
+    flex-direction: row;
+  }
 }
 
-@media (max-width: 479px) {
+@media (max-width: 850px) {
   .socialPic {
-    max-width: 100%;
+    max-width: 60%;
     position: relative;
-    right: -5rem;
   }
   .socialText {
     position: relative;
-    left: -2rem;
   }
   .socialIconContainer {
     width: 11rem;
@@ -41,6 +42,9 @@
   .socialIconImg {
     width: 1.5rem;
 	  height: 1.5rem;
+  }
+  .socialMedia {
+    flex-direction: column;
   }
 }
 
@@ -61,4 +65,13 @@
   .socialP1 {
     font-size: 3vh;
   }
+}
+
+.socialMedia {
+  text-align: center;
+  display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
 }
