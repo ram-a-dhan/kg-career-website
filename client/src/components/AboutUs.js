@@ -34,7 +34,8 @@ const AboutUs = () => {
 };
 
 const aboutUs = {
-	height:'91vh'
+  height:'91vh',
+	overflowX: 'hidden',
 };
 
 const aboutPic = {

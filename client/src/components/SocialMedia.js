@@ -7,8 +7,8 @@ const SocialMedia = () => {
 			<div data-aos="fade-right">
 				<div className="socialText m-3 float-left d-flex flex-row justify-content-center align-items-center" style={socialText}>
 					<div>
-						<h1 className="socialH1" style={socialH1}>Stay Connected!</h1>
-						<p className="socialP1" style={socialP1}>
+						<h1 className="socialH1 text-left" style={socialH1}>Stay Connected!</h1>
+						<p className="socialP1 text-left" style={socialP1}>
 							Follow our social media to receive <br />
 							career updates and in-depth look <br />
 							of working in Kompas Gramedia!
@@ -56,6 +56,8 @@ const socialMedia = {
 	height:'91vh',
 	// position: 'relative',
 	// top: '-15vh',
+	overflowX: 'hidden',
+
 };
 
 const socialText = {

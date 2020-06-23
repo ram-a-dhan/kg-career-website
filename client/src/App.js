@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 	return (
-		<div className="App" style={{ overflowX: 'hidden' }}>
+		<div className="App" /* style={{ overflowX: 'hidden' }} */>
 			<BrowserRouter>
 			  <Navbar />
 				<Switch>

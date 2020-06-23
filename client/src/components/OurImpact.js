@@ -21,7 +21,7 @@ const OurImpact = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4
+      items: 3
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -29,7 +29,7 @@ const OurImpact = () => {
     },
     mobile: {
       breakpoint: { max: 480, min: 0 },
-      items: 2
+      items: 1
     }
   };
 	return (
@@ -43,7 +43,7 @@ const OurImpact = () => {
           </div>  
         </div>
         <div data-aos="zoom-in">
-          <Carousel responsive={responsive} infinite={ true }>
+          <Carousel responsive={responsive} infinite={ true } centerMode>
             {
               graphs.map(graph => {
                 return <Infograph key={graph.id} graph={graph} />
@@ -58,7 +58,8 @@ const OurImpact = () => {
 };
 
 const ourImpact = {
-	height:'91vh',
+  height:'91vh',
+	overflowX: 'hidden',
 };
 
 const impactText = {

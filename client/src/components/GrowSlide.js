@@ -4,7 +4,7 @@ import './GrowWithKG.css';
 const GrowSlide = (props) => {
 	return (
 		// <div className="growWithKG">
-		<>
+		<div>
 			<div
 				className="growSlide"
 				style={growWithKG}
@@ -53,13 +53,13 @@ const GrowSlide = (props) => {
 				<div id={`growStripe${props.testimony.id}`}></div>
 			</div>
 				<div id={`growBg${props.testimony.id}`} style={{...bgContainer, ...(props.testimony.id === 1 ? growBg1 : props.testimony.id === 2 ? growBg2 : growBg3)}}></div>
-		</>
+		</div>
 		// </div>
 	);
 };
 
 const growWithKG = {
-	height: '91vh',
+	// height: '91vh',
 	// overflow: 'hidden',
 };
 
@@ -68,7 +68,7 @@ const growPic = {
 };
 
 const growText = {
-	width: '55vh',
+	// width: '55vh',
 	// backgroundColor: 'rgba(255,255,255,0.8)',
 };
 
