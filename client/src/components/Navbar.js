@@ -10,7 +10,7 @@ const Navbar = () => {
 			style={navbar}
 		>
 			{/* eslint-disable-next-line */}
-			<a class="navbar-brand" href="#" onClick={() => history.push('/')}>
+			<a className="navbar-brand" href="#" onClick={() => history.push('/')}>
 				<img src="./Logo_Kompas_Gramedia_1.png" alt="logo" className="float-left" style={logo} />
 			</a>
 			<div className="float-right" style={navDiv}>

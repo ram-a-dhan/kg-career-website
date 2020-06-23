@@ -3,13 +3,14 @@ import './JobCard.css';
 
 const JobCard = (props) => {
   return (
-    <a data-aos="fade-up" href="#">
+    // eslint-disable-next-line
+    <a data-aos="fade-up" href={props.job.link} target="_blank" rel="noopener noreferrer">
       <div className="jobCard d-flex flex-row flex-wrap justify-content-start align-items-center" style={jobCard}>
-        <img src="./Logo_Kompas_Gramedia_2.png" alt="" className="jobImg" style={jobImg} />
+        <img src={props.job.picture} alt="" className="jobImg" style={jobImg} />
         <div className="jobDesc d-flex flex-column justify-content-center">
-          <h6>{props.job.position + ' - ' + props.job.company}</h6>
+          <h6>{props.job.title}</h6>
           <p>{props.job.category}</p>
-          <p><span><img src="./jobLocation.png" /> {props.job.city + ', ' + props.job.province}</span></p>
+          <p><span><img src="./jobLocation.png" alt="" /> {props.job.location}</span></p>
         </div>
       </div>
     </a>

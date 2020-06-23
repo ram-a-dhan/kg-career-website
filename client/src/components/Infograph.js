@@ -65,6 +65,7 @@ const circle5 = {
 	backgroundRepeat: 'no-repeat',
 };
 
+// eslint-disable-next-line
 const infoPic = {};
 
 // eslint-disable-next-line
