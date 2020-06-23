@@ -51,7 +51,7 @@ const OurImpact = () => {
             }
           </Carousel>
         </div>
-        <div data-aos="fade-right" data-aos-duration="2500" className="" style={bgContainer}></div>
+        <div data-aos="fade-right" data-aos-duration="3000" className="" style={bgContainer}></div>
       </div>
     </>
 	);
