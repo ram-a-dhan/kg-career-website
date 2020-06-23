@@ -58,7 +58,7 @@ const GrowWithKG = () => {
 };
 
 const growWithKG = {
-	height: '91vh',
+	height: '100vh',
 };
 
 export default GrowWithKG;
