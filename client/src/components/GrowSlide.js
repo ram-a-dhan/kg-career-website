@@ -45,14 +45,14 @@ const GrowSlide = (props) => {
 					/>
 				</div>
 			</div>
-			<div id={`growShape${props.testimony.id}`}></div>
+			<div data-aos="fade-right" id={`growShape${props.testimony.id}`}></div>
 			<div
 				className="d-flex flex-row flex-wrap justify-content-start align-items-center"
 				style={stripeContainer}
 			>
-				<div id={`growStripe${props.testimony.id}`}></div>
+				<div data-aos="fade-right"  id={`growStripe${props.testimony.id}`}></div>
 			</div>
-				<div id={`growBg${props.testimony.id}`} style={{...bgContainer, ...(props.testimony.id === 1 ? growBg1 : props.testimony.id === 2 ? growBg2 : growBg3)}}></div>
+				<div data-aos="fade-right" data-aos-duration="1500" id={`growBg${props.testimony.id}`} style={{...bgContainer, ...(props.testimony.id === 1 ? growBg1 : props.testimony.id === 2 ? growBg2 : growBg3)}}></div>
 		</div>
 		// </div>
 	);

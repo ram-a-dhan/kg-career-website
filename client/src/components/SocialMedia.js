@@ -56,7 +56,7 @@ const socialMedia = {
 	height:'91vh',
 	// position: 'relative',
 	// top: '-15vh',
-	overflowX: 'hidden',
+	overflow: 'hidden',
 
 };
 

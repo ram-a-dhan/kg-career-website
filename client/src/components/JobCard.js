@@ -3,7 +3,7 @@ import './JobCard.css';
 
 const JobCard = (props) => {
   return (
-    <a href="#">
+    <a data-aos="fade-up" href="#">
       <div className="jobCard d-flex flex-row flex-wrap justify-content-start align-items-center" style={jobCard}>
         <img src="./Logo_Kompas_Gramedia_2.png" alt="" className="jobImg" style={jobImg} />
         <div className="jobDesc d-flex flex-column justify-content-center">

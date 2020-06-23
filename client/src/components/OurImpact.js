@@ -51,7 +51,7 @@ const OurImpact = () => {
             }
           </Carousel>
         </div>
-        <div className="" style={bgContainer}></div>
+        <div data-aos="fade-right" data-aos-duration="2500" className="" style={bgContainer}></div>
       </div>
     </>
 	);
@@ -59,7 +59,7 @@ const OurImpact = () => {
 
 const ourImpact = {
   height:'91vh',
-	overflowX: 'hidden',
+	overflow: 'hidden',
 };
 
 const impactText = {

@@ -26,16 +26,16 @@ const AboutUs = () => {
         </div>
       </div>
       <div className="d-flex flex-row flex-wrap justify-content-end align-items-center" style={stripeContainer}>
-        <div id="aboutStripe"></div>
+        <div data-aos="fade-down" id="aboutStripe"></div>
       </div>
-      <div className="" style={bgContainer}></div>
+      <div data-aos="zoom-in" data-aos-duration="1500" className="" style={bgContainer}></div>
     </>
   )
 };
 
 const aboutUs = {
   height:'91vh',
-	overflowX: 'hidden',
+	overflow: 'hidden',
 };
 
 const aboutPic = {
