@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Infograph.css';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 const Infograph = (props) => {
+	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<div className="infoGraph">
+		<div className="infoGraph" onClick={ () => setIsOpen(true) }>
 			<div
 				className={`infoCircle rounded-circle circle${props.graph.id}`}
 				style={{
@@ -24,6 +27,12 @@ const Infograph = (props) => {
 				style={{ ...infoPic, ...graphPic1 }}
 			></div> */}
 			<img className="infoPic rounded-circle" src="./banner.jpg" alt="" />
+			{isOpen && (
+				<Lightbox
+					mainSrc={"./banner.jpg"}
+					onCloseRequest={ () => setIsOpen(false) }
+				/>
+				)}
 		</div>
 	);
 };

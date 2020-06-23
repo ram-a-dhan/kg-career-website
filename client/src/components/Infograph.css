@@ -1,3 +1,7 @@
+.infoCircle {
+  cursor: pointer;
+}
+
 @media (min-width: 480px) {
   .infoGraph, .infoCircle, .infoPic {
     height: 20rem;
