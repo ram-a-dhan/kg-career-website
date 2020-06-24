@@ -8,7 +8,6 @@ const JoinUs = () => {
 		<div className="home">
 			<BannerJoin />
 			<SearchJobs />
-			<Footer />
 		</div>
 	);
 };
