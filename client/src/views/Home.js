@@ -14,7 +14,6 @@ const Home = () => {
 			<OurImpact />
 			<GrowWithKG />
 			<SocialMedia />
-			<Footer />
 		</div>
 	);
 };
