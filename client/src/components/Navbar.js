@@ -1,21 +1,28 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { clickGA } from '../helpers/clickGA';
 import './Container.css';
 
 const Navbar = () => {
 	const history = useHistory();
+
+	const clickHome = () => {
+		clickGA('Link','Go to Homepage');
+		history.push('/');
+	};
+
 	return (
 		<div
 			className="navbar navbar-light sticky-top"
 			style={navbar}
 		>
 			{/* eslint-disable-next-line */}
-			<a className="navbar-brand" href="#" onClick={() => history.push('/')}>
+			<a className="navbar-brand" href="#" onClick={() => clickHome()}>
 				<img src="./Logo_Kompas_Gramedia_1.png" alt="logo" className="float-left" style={logo} />
 			</a>
 			<div className="float-right" style={navDiv}>
 				{/* eslint-disable-next-line */}
-				<a href="#" onClick={() => history.push('/')} className="d-block ml-2 text-dark" style={navLink}>
+				<a href="#" onClick={() => clickHome()} className="d-block ml-2 text-dark" style={navLink}>
 					Home
 				</a>
 			</div>

@@ -1,10 +1,22 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { clickGA } from '../helpers/clickGA';
 import './Container.css';
 import './Footer.css';
 
 const Footer = () => {
 	const history = useHistory();
+
+	const clickHome = () => {
+		clickGA('Link','Go to Homepage');
+		history.push('/');
+	};
+
+	const clickJobs = () => {
+		clickGA('Link','Go to Jobs page');
+		history.push('/join-us');
+	};
+
 	return (
 		<div className="footer" style={footer}>
 			<div className="container">
@@ -13,7 +25,7 @@ const Footer = () => {
 						{/* eslint-disable-next-line */}
 						<a
 							href="#"
-							onClick={() => history.push('/')}
+							onClick={() => clickHome()}
 							className="footlink text-light"
 							style={footLink}
 						>
@@ -24,7 +36,7 @@ const Footer = () => {
 						{/* eslint-disable-next-line */}
 						<a
 							href="#"
-							onClick={() => history.push('/')}
+							onClick={() => clickHome()}
 							className="footlink text-light"
 							style={footLink}
 						>
@@ -35,7 +47,7 @@ const Footer = () => {
 						{/* eslint-disable-next-line */}
 						<a
 							href="#"
-							onClick={() => history.push('/join-us')}
+							onClick={() => clickJobs()}
 							className="footlink text-light"
 							style={footLink}
 						>
@@ -48,6 +60,7 @@ const Footer = () => {
 							href="https://www.kompasgramedia.com"
 							target="_blank"
 							rel="noopener noreferrer"
+							onClick={() => clickGA('Link (External)', 'Go to kompasgramedia.com')}
 							className="footlink text-light"
 							style={footLink}
 						>

@@ -1,9 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { clickGA } from '../helpers/clickGA';
 import './BannerHome.css';
 
 const BannerHome = () => {
 	const history = useHistory();
+
+	const clickJobs = () => {
+		clickGA('Link','Go to Jobs page');
+		history.push('/join-us');
+	};
+
 	return (
 		<div
 			className="bannerHome d-flex flex-column justify-content-center align-items-center"
@@ -12,7 +19,7 @@ const BannerHome = () => {
 			<h1 className="bannerHomeH1 text-light text-center" style={bannerHomeH1}>Grow beyond your work</h1>
 			<button
 				className="btn btn-kg rounded-pill"
-				onClick={() => history.push('/join-us')}
+				onClick={() => clickJobs()}
 				style={buttonJoin}
 			>
 				Find Your Calling

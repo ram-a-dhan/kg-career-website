@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import './Infograph.css';
+import { clickGA } from '../helpers/clickGA';
 import Lightbox from 'react-image-lightbox';
+import './Infograph.css';
 import 'react-image-lightbox/style.css';
 
 const Infograph = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
+
+	const clickInfograph = () => {
+		clickGA('Media', 'Open infographics');
+		setIsOpen(true);
+	};
+
 	return (
-		<div className="infoGraph" onClick={ () => setIsOpen(true) }>
+		<div className="infoGraph" onClick={() => clickInfograph()}>
 			<div
 				className={`infoCircle rounded-circle circle${props.graph.id}`}
 				style={{

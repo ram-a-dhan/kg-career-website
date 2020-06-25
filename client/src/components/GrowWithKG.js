@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import GrowSlide from './GrowSlide'
+import GrowSlide from './GrowSlide';
+import { clickGA } from '../helpers/clickGA';
 import './GrowWithKG.css';
 
 const GrowWithKG = () => {
@@ -33,7 +34,8 @@ const GrowWithKG = () => {
 		},
 	]);
 
-	const handleNext = () => {
+	const clickSlideshow = () => {
+		clickGA('Media', 'Show next testimonial slide');
 		setNum(num === 3 ? 1 : num + 1);
 	}
 
@@ -49,7 +51,7 @@ const GrowWithKG = () => {
 				<button
 					className="nextBg btn rounded-circle d-flex flex-row justify-content-center align-items-center"
 					style={{backgroundColor: '#009CDC',}}
-					onClick={() => handleNext()}
+					onClick={() => clickSlideshow()}
 				>
 					<img src="./iconnext.png" alt="" className="nextImg"/>
 				</button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { clickGA } from '../helpers/clickGA';
 import './SocialMedia.css';
 
 const SocialMedia = () => {
@@ -15,7 +16,12 @@ const SocialMedia = () => {
 						</p>
 						<div className="socialIconContainer d-flex flex-row flex-nowrap justify-content-between align-items-start">
 							{/* eslint-disable-next-line */}
-							<a href="https://web.facebook.com/KompasGramediaKG" target="_blank" rel="noopener noreferrer">
+							<a
+								href="https://web.facebook.com/KompasGramediaKG"
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={() => clickGA('Link (External)', 'Go to KG Facebook page')}
+							>
 								<div
 									className="socialIconBg rounded-circle d-flex flex-row justify-content-center align-items-center"
 									style={{...socialIconBg,backgroundColor: '#0063B0',}}
@@ -24,7 +30,12 @@ const SocialMedia = () => {
 								</div>
 							</a>
 							{/* eslint-disable-next-line */}
-							<a href="https://www.linkedin.com/company/kompas-gramedia" target="_blank" rel="noopener noreferrer">
+							<a
+								href="https://www.linkedin.com/company/kompas-gramedia"
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={() => clickGA('Link (External)', 'Go to KG Linkedin page')}
+							>
 								<div
 									className="socialIconBg rounded-circle d-flex flex-row justify-content-center align-items-center"
 									style={{...socialIconBg,backgroundColor: '#004E9E',}}
@@ -33,7 +44,12 @@ const SocialMedia = () => {
 								</div>
 							</a>
 							{/* eslint-disable-next-line */}
-							<a href="https://www.instagram.com/kompasgramedia" target="_blank" rel="noopener noreferrer">
+							<a
+								href="https://www.instagram.com/kompasgramedia"
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={() => clickGA('Link (External)', 'Go to KG Instagram page')}
+							>
 								<div
 									className="socialIconBg rounded-circle d-flex flex-row justify-content-center align-items-center"
 									style={{...socialIconBg,backgroundColor: '#EF5E4A',}}
