@@ -41,7 +41,7 @@ const SearchJobs = () => {
     <div id="searchJobs" className="searchJobs d-flex flex-column justify-content-start align-items-center" style={searchJobs}>
       {
         // eslint-disable-next-line
-        loading && (
+        loading && !jobs.length && (
           <div className="jobsLoadingText">
             <h4>Loading... Please wait...</h4>
             <div class="spinner-border" style={{width: '3rem', height: '3rem', color: '#009CDC', margin: '1rem'}} role="status">

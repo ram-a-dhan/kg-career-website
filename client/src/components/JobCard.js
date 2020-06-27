@@ -3,9 +3,20 @@ import { clickGA } from '../helpers/clickGA';
 import './JobCard.css';
 
 const JobCard = (props) => {
+
+  const clickKalibrr = (individualLink) => {
+    clickGA('Link (External)', 'Go to Kalibrr link');
+    clickGA('Link (External)', individualLink);
+  };
+
   return (
     // eslint-disable-next-line
-    <a data-aos="fade-up" href={props.job.link} target="_blank" rel="noopener noreferrer" onClick={() => clickGA('Link (External)', 'Go to Kalibrr link')}>
+    <a
+      data-aos="fade-up"
+      href={props.job.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => clickKalibrr(props.job.link)}>
       <div className="jobCard d-flex flex-row flex-wrap justify-content-start align-items-center" style={jobCard}>
         <img src={props.job.picture} alt="" className="jobImg" style={jobImg} />
         <div className="jobDesc d-flex flex-column justify-content-center">

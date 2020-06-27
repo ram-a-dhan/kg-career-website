@@ -45,7 +45,7 @@ const SocialMedia = () => {
 							</a>
 							{/* eslint-disable-next-line */}
 							<a
-								href="https://www.instagram.com/kompasgramedia"
+								href="https://www.instagram.com/workwithkg"
 								target="_blank"
 								rel="noopener noreferrer"
 								onClick={() => clickGA('Link (External)', 'Go to KG Instagram page')}
