@@ -13,14 +13,14 @@ const Navbar = () => {
 
 	return (
 		<div
-			className="navbar navbar-light sticky-top"
+			className="navbar navbar-light sticky-top flex-nowrap justify-content-between align-items-center"
 			style={navbar}
 		>
 			{/* eslint-disable-next-line */}
 			<a className="navbar-brand" href="#" onClick={() => clickHome()}>
 				<img src="./Logo_Kompas_Gramedia_1.png" alt="logo" className="float-left" style={logo} />
 			</a>
-			<div className="float-right d-flex flex-row flex-nowrap" style={navDiv}>
+			<div className="float-right d-flex flex-row flex-nowrap justify-content-end align-items-center" style={navDiv}>
 				{/* eslint-disable-next-line */}
 				<a href="#" onClick={() => clickHome()} className="d-block ml-4 text-dark" style={navLink}>
 					Home
@@ -50,7 +50,7 @@ const navDiv = {
 };
 
 const navLink = {
-	letterSpacing: '0.05rem',
+	// letterSpacing: '0.05rem',
 	fontSize: '2.25vh',
 };
 

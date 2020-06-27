@@ -10,7 +10,7 @@ const SearchJobs = () => {
   const getJobs = async () => {
     const count = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=0')
     if (!count) return false;
-    const vacancies = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=1' /* + count.data.total_count */)
+    const vacancies = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=' + count.data.total_count)
     if (!vacancies) return false;
     vacancies.data.jobs.forEach(vacancy => {
       setJobs(allJobs => [
