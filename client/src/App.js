@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
 	useEffect(() => {
-		ReactGA.initialize('UA-170602354-1');
+		ReactGA.initialize('UA-171059012-1');
 		ReactGA.pageview(window.location.pathname + window.location.search);
 	}, []);
 
