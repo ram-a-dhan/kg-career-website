@@ -8,9 +8,17 @@ const SearchJobs = () => {
   const [loading, setLoading] = useState(true);
 
   const getJobs = async () => {
-    const count = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=0')
+    const count = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=0', {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
     if (!count) return false;
-    const vacancies = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=' + count.data.total_count)
+    const vacancies = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=' + count.data.total_count, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
     if (!vacancies) return false;
     vacancies.data.jobs.forEach(vacancy => {
       setJobs(allJobs => [
@@ -44,8 +52,8 @@ const SearchJobs = () => {
         loading && !jobs.length && (
           <div className="jobsLoadingText">
             <h4>Loading... Please wait...</h4>
-            <div class="spinner-border" style={{width: '3rem', height: '3rem', color: '#009CDC', margin: '1rem'}} role="status">
-              <span class="sr-only">Loading...</span>
+            <div className="spinner-border" style={{width: '3rem', height: '3rem', color: '#009CDC', margin: '1rem'}} role="status">
+              <span className="sr-only">Loading...</span>
             </div>
             <h6>Click <a href="#searchJobs" onClick={() => handleReload()}>here</a> to try again if it takes too long.</h6>
           </div>

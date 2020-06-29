@@ -25,6 +25,7 @@ const Navbar = () => {
 				<a href="#" onClick={() => clickHome()} className="d-block ml-4 text-dark" style={navLink}>
 					Home
 				</a>
+				{/* eslint-disable-next-line */}
 				<a href="#" onClick={() => clickGA('Link (External)', 'Go to Internship Challenge')} className="d-block ml-4 text-dark" style={navLink}>
 					Join Internship Challenge
 				</a>
