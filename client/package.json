@@ -10,15 +10,13 @@
     "aos": "^2.3.4",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
-    "infinite-react-carousel": "^1.2.11",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^3.0.0",
     "react-image-lightbox": "^5.1.1",
     "react-multi-carousel": "^2.5.5",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-text-filter": "^3.0.2"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
