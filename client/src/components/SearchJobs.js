@@ -33,6 +33,10 @@ const SearchJobs = () => {
     getJobs();
   };
 
+  const handleFilter = () => {
+    
+  };
+
   useEffect(() => {
     getJobs();
   },[]);
@@ -51,9 +55,12 @@ const SearchJobs = () => {
           </div>
           // eslint-disable-next-line
         ) || (
-          jobs.map(job => {
-            return <JobCard key={job.id} job={job} />
-          })
+          <>
+            <input type="search" placeholder="Filter by Keyword" className="filterBox text-dark text-center p-1" style={filterBox} />
+            {jobs.map(job => {
+              return <JobCard key={job.id} job={job} />
+            })}
+          </>
         )
       }
     </div>
@@ -67,5 +74,12 @@ const searchJobs = {
   backgroundPosition: 'center top',
   // padding: '10vh 20vw'
 };
+
+const filterBox = {
+	border: '0px',
+  height: '4rem',
+  backgroundColor: 'white',
+  fontWeight: '700',
+}
 
 export default SearchJobs;

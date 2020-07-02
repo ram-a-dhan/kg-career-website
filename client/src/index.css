@@ -18,7 +18,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.navbar *, .footlink, .btn-kg, .bannerJoinH2, p, .jobDesc *, .jobsLoadingText * {
+.navbar *, .footlink, .btn-kg, .bannerJoinH2, p, .jobDesc *, .jobsLoadingText *, .filterBox {
   font-family: 'Nunito', sans-serif;
 }
 
