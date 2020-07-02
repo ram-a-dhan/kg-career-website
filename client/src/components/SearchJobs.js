@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import JobCard from './JobCard';
 import './SearchJobs.css';
 import axios from 'axios';
+import useFilter from '../hooks/useFilter';
 
 const SearchJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const { filtered, onChangeText } = useFilter(jobs);
   const [loading, setLoading] = useState(true);
 
   const getJobs = async () => {
     const count = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=0')
     if (!count) return false;
-    const vacancies = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=1' + count.data.total_count)
+    const vacancies = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=' + count.data.total_count)
     if (!vacancies) return false;
     vacancies.data.jobs.forEach(vacancy => {
       setJobs(allJobs => [
@@ -51,9 +53,17 @@ const SearchJobs = () => {
           </div>
           // eslint-disable-next-line
         ) || (
-          jobs.map(job => {
-            return <JobCard key={job.id} job={job} />
-          })
+          <>
+            <input
+              type="search"
+              onChange={onChangeText}
+              placeholder="Filter by Keyword"
+              className="filterBox text-dark text-center p-1" style={filterBox}
+            />
+            {jobs.map(job => {
+              return <JobCard key={job.id} job={job} />
+            })}
+          </>
         )
       }
     </div>
@@ -67,5 +77,12 @@ const searchJobs = {
   backgroundPosition: 'center top',
   // padding: '10vh 20vw'
 };
+
+const filterBox = {
+	border: '0px',
+  height: '4rem',
+  backgroundColor: 'white',
+  fontWeight: '700',
+}
 
 export default SearchJobs;
