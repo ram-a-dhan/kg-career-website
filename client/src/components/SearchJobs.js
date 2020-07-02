@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import JobCard from './JobCard';
 import './SearchJobs.css';
 import axios from 'axios';
+import useFilter from '../hooks/useFilter';
 
 const SearchJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const { filtered, onChangeText } = useFilter(jobs);
   const [loading, setLoading] = useState(true);
 
   const getJobs = async () => {
@@ -33,10 +35,6 @@ const SearchJobs = () => {
     getJobs();
   };
 
-  const handleFilter = () => {
-    
-  };
-
   useEffect(() => {
     getJobs();
   },[]);
@@ -56,7 +54,12 @@ const SearchJobs = () => {
           // eslint-disable-next-line
         ) || (
           <>
-            <input type="search" placeholder="Filter by Keyword" className="filterBox text-dark text-center p-1" style={filterBox} />
+            <input
+              type="search"
+              onChange={onChangeText}
+              placeholder="Filter by Keyword"
+              className="filterBox text-dark text-center p-1" style={filterBox}
+            />
             {jobs.map(job => {
               return <JobCard key={job.id} job={job} />
             })}
