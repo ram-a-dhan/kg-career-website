@@ -6,27 +6,29 @@ import useFilter from '../hooks/useFilter';
 
 const SearchJobs = () => {
   const [jobs, setJobs] = useState([]);
-  const { filtered, onChangeText } = useFilter(jobs);
+  const { filtered, setFiltered, onChangeText } = useFilter(jobs);
   const [loading, setLoading] = useState(true);
-
+  useEffect(() => {
+    setFiltered(jobs);
+    // eslint-disable-next-line
+  }, [jobs]);
   const getJobs = async () => {
     const count = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=0')
     if (!count) return false;
     const vacancies = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=' + count.data.total_count)
     if (!vacancies) return false;
+    let job = [];
     vacancies.data.jobs.forEach(vacancy => {
-      setJobs(allJobs => [
-        ...allJobs,
-        {
-          id: vacancy.id,
-          title: vacancy.name,
-          category: vacancy.function,
-          location: `${vacancy.google_location.address_components.city}, ${vacancy.google_location.address_components.region}`,
-          picture: vacancy.company_info.logo,
-          link: `https://www.kalibrr.com/c/${vacancy.company_info.code}/jobs/${vacancy.id}/${vacancy.slug}`
-        }
-      ])
+      job.push({
+        id: vacancy.id,
+        title: vacancy.name,
+        category: vacancy.function,
+        location: `${vacancy.google_location.address_components.city}, ${vacancy.google_location.address_components.region}`,
+        picture: vacancy.company_info.logo,
+        link: `https://www.kalibrr.com/c/${vacancy.company_info.code}/jobs/${vacancy.id}/${vacancy.slug}`
+      });
     });
+    setJobs(job);
     setLoading(false);
   };
 
@@ -46,8 +48,8 @@ const SearchJobs = () => {
         loading && (
           <div className="jobsLoadingText">
             <h4>Loading... Please wait...</h4>
-            <div class="spinner-border" style={{width: '3rem', height: '3rem', color: '#009CDC', margin: '1rem'}} role="status">
-              <span class="sr-only">Loading...</span>
+            <div className="spinner-border" style={{width: '3rem', height: '3rem', color: '#009CDC', margin: '1rem'}} role="status">
+              <span className="sr-only">Loading...</span>
             </div>
             <h6>Click <a href="#searchJobs" onClick={() => handleReload()}>here</a> to try again if it takes too long.</h6>
           </div>
@@ -60,7 +62,7 @@ const SearchJobs = () => {
               placeholder="Filter by Keyword"
               className="filterBox text-dark text-center p-1" style={filterBox}
             />
-            {jobs.map(job => {
+            {filtered.map(job => {
               return <JobCard key={job.id} job={job} />
             })}
           </>

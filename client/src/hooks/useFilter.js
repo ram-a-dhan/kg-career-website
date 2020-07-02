@@ -12,6 +12,7 @@ export default (jobList) => {
   };
   return {
     filtered,
+    setFiltered,
     onChangeText: (event) => {
       filteredList(event);
     },
