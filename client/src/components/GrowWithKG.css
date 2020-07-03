@@ -61,7 +61,9 @@
 
 @media (min-height: 480px) {
   .growH1 {
-    font-size: 3.5vh;
+    font-size: 4vh;
+    text-indent: -1.6rem;
+    padding-left: 1rem;
   }
   .growH2 {
     font-size: 2vh;
