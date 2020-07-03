@@ -59,7 +59,7 @@ const SearchJobs = () => {
             <input
               type="search"
               onChange={onChangeText}
-              placeholder="Filter by Keyword"
+              placeholder="Search by Keyword"
               className="filterBox text-dark text-center p-1" style={filterBox}
             />
             {filtered.map(job => {
