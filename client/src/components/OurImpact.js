@@ -7,11 +7,11 @@ import 'react-multi-carousel/lib/styles.css';
 const OurImpact = () => {
   // eslint-disable-next-line
   const [graphs, setGraphs] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
+    { id: 1, filename: 'StratX_Larisin-01.jpg' },
+    { id: 2, filename: 'StratX-02.jpg' },
+    { id: 3, filename: 'Rekata-03.jpg' },
+    { id: 4, filename: 'banner.jpg' },
+    { id: 5, filename: 'banner.jpg' },
   ]);
   const responsive = {
     superLargeDesktop: {

@@ -33,10 +33,10 @@ const Infograph = (props) => {
 				className="infoPic rounded-circle"
 				style={{ ...infoPic, ...graphPic1 }}
 			></div> */}
-			<img className="infoPic rounded-circle" src="./banner.jpg" alt="" />
+			<img className="infoPic rounded-circle" src={`./${props.graph.filename}`} alt="" />
 			{isOpen && (
 				<Lightbox
-					mainSrc={"./banner.jpg"}
+					mainSrc={`./${props.graph.filename}`}
 					onCloseRequest={ () => setIsOpen(false) }
 				/>
 				)}
