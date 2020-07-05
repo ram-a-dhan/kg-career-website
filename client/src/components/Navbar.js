@@ -26,7 +26,13 @@ const Navbar = () => {
 					Home
 				</a>
 				{/* eslint-disable-next-line */}
-				<a href="#" onClick={() => clickGA('Link (External)', 'Go to Internship Challenge')} className="d-block ml-4 text-dark" style={navLink}>
+				<a
+					href="https://www.kalibrr.com/c/kompas-gramedia/jobs/157817/kompas-gramedia-internship-challenge-2020?ref=recruiter_job_card_clipboard_2512880"
+					target="_blank"
+					rel="noopener noreferrer"
+					onClick={() => clickGA('Link (External)', 'Go to Internship Challenge')}
+					className="d-block ml-4 text-dark"
+					style={navLink}>
 					Join Internship Challenge
 				</a>
 			</div>

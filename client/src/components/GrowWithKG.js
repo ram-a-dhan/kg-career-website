@@ -10,27 +10,30 @@ const GrowWithKG = () => {
 	const [testimonials, setTestimonials] = useState([
 		{
 			id: 1,
-			name: 'Cika Theresia',
-			position: 'Product Executive Larisin',
-			title: ' W̶o̶r̶k̶ Grow Together',
+			name: 'Lintang Maraya Syahdenal',
+			position: 'Cust. Exp. &  Qualitative Research Officer of StratX',
+			title: ' Using data as insight',
 			quote:
-				'We have lots of chance to learn and turn my research ideas into reality, and I learn a lot about how to put my academic experience into practice. It is a great place to learn and share together.',
+				'Selama di StratX, saya tidak hanya mengembangkan skill yang terkait pekerjaan utama saya sebagai Researcher namun juga mempelajari ilmu lain yang tentu saja menambah skill saya. Saya belajar pula untuk menggunakan data sebagai sebuah insight dan strategi untuk membantu bisnis. StratX menurut saya adalah tempat yang sangat cocok untuk mereka yang mau maju dan berkembang.',
+			picture: 'Lintang Maraya - StratX.png',
 		},
 		{
 			id: 2,
-			name: 'John Doe',
-			position: 'HR Specialist Kompas Gramedia',
-			title: 'Your Voice Matters',
+			name: 'Andika Pramudya',
+			position: 'Associate Creative Director of Rekata',
+			title: 'Where innovation comes true',
 			quote:
-				'Work at Kompas Gramedia values high flexibility, with emphasis on result-driven workstyle, so we have the freedom to define how we should perform, as long as we can deliver the best result.',
+				'Bergabung di Rekata, membuat saya tumbuh melebihi level saya yang sebelumnya dan makin kaya secara ilmu, serta pengalaman. Di Rekata, banyak inovasi yang sebelumnya sulit terealisasi kini satu persatu dapat dijalankan bersama anggota yang lain. Khususnya inovasi dalam mengembangkan isi dari buku-buku fisik menjadi konten digital seperti film, game, virtual reality dan lainnya sehingga dapat semakin berguna bagi banyak orang di era digital ini.',
+			picture: 'Andika - Rekata.png',
 		},
 		{
 			id: 3,
-			name: 'Jane Doe',
-			position: 'HR Specialist Kompas Gramedia',
-			title: 'Bring the Best Out of You',
+			name: 'Cahyo Listyanto',
+			position: 'Chief Technology Officer of Larisin',
+			title: 'Supportive and collaborative',
 			quote:
-				'I consider Kompas Gramedia as my second home. It feels very comfortable for me beacuse I can learn and play with a lot of new ideas and i have great team members supporting me in every step i took.',
+				'Menjadi salah satu pemimpin di Larisin adalah pekerjaan yang cukup menantang. Banyak banget hal yang masih harus dipelajari. Saya senang karena semua orang di Larisin ikut memberikan dukungan untuk mencoba membuat dunia yang lebih baik dengan melakukan hal-hal yang susah. Di Larisin, kita masih berjuang, tetapi sambil belajar banyak hal baru.',
+			picture: 'Cahyo - Larisin.png',
 		},
 	]);
 

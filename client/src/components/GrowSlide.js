@@ -38,7 +38,7 @@ const GrowSlide = (props) => {
 				</div>
 				<div data-aos="fade-right">
 					<img
-						src={`./growPic${props.testimony.id}.png`}
+						src={`./${props.testimony.picture}`}
 						alt=""
 						className="growPic"
 						style={growPic}
