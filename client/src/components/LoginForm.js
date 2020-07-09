@@ -1,22 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../store/actions/authAction';
 import './LoginForm.css';
 
 const LoginForm = () => {
-  return (
-    <div className="loginSpace">
-      <div className="loginForm p-5 rounded-lg shadow">
-        <form>
-          <div className="form-group">
-            <input type="text" className="form-control text-center" id="username" placeholder="Username" />
-          </div>
-          <div className="form-group">
-            <input type="password" className="form-control text-center" id="password" placeholder="Password" />
-          </div>
-          <button type="submit" className="btn btn-block btn-outline-primary">Log In</button>
-        </form>
-      </div>
-    </div>
-  )
+  const [credentials, setCredentials] = useState({
+		username: '',
+		password: '',
+	});
+	const history = useHistory();
+	const dispatch = useDispatch();
+
+	const handleCredentials = (event) => {
+		let name = event.target.name;
+		let value = event.target.value;
+		setCredentials({
+			...credentials,
+			[name]: value,
+		});
+	};
+
+  const handleLoginSubmit = (event) => {
+		event.preventDefault();
+		dispatch(login(credentials));
+		history.push('/dashboard');
+  };
+
+	return (
+		<div className="loginSpace">
+			<div className="loginForm p-5 rounded-lg shadow">
+				<form onSubmit={handleLoginSubmit}>
+					<div className="form-group">
+						<input
+							type="text"
+							className="form-control text-center"
+							id="username"
+              name="username"
+              value={credentials.username}
+              onChange={handleCredentials}
+							placeholder="Username"
+						/>
+					</div>
+					<div className="form-group">
+						<input
+							type="password"
+							className="form-control text-center"
+							id="password"
+							name="password"
+              value={credentials.password}
+              onChange={handleCredentials}
+							placeholder="Password"
+						/>
+					</div>
+					<input
+						type="submit"
+						value="Log In"
+						className="btn btn-block btn-outline-primary"
+					/>
+				</form>
+			</div>
+		</div>
+	);
 };
 
 export default LoginForm;

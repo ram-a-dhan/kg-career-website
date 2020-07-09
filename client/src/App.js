@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import PrivateRoute from 'react-router-private';
+// import { useSelector } from 'react-redux';
 import ReactGA from 'react-ga';
 import Navbar from './components/Navbar';
 import Home from './views/Home';
@@ -11,8 +12,7 @@ import Dashboard from './views/Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-	// eslint-disable-next-line
-	const [loginStatus, setLoginStatus] = useState(false);
+	// const isLoggedIn = useSelector(state => state.authReducer);
 
 	useEffect(() => {
 		ReactGA.initialize('UA-171059012-1');
@@ -33,13 +33,13 @@ function App() {
 					<PrivateRoute
 						exact path="/login"
 						component={Login}
-						authStatus={!loginStatus}
+						authStatus={!localStorage.access_token}
 						redirectURL="/dashboard"
 					/>
 					<PrivateRoute
 						exact path="/dashboard"
 						component={Dashboard}
-						authStatus={loginStatus}
+						authStatus={localStorage.access_token}
 						redirectURL="/login"
 					/>
 				</Switch>
