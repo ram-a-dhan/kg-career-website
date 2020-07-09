@@ -3,7 +3,7 @@ const multer = require('multer');
 const storage = require('../helpers/multerStorage');
 const fs = require('fs');
 
-const serverUrl = 'http://localhost:3000/' // jangan lupa ganti
+const serverUrl = 'https://fathomless-plains-81425.herokuapp.com/' // jangan lupa ganti
 
 class JoinUsController {
   static getBanner = async(req, res, next) => {
