@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import PrivateRoute from 'react-router-private';
 // import { useSelector } from 'react-redux';
 import ReactGA from 'react-ga';
@@ -30,6 +30,14 @@ function App() {
           <Route exact path="/join-us">
 			      <JoinUs />
           </Route>
+					{/* this one can't properly redirect but consistent */}
+					{/* <Route exact path="/login">
+						{localStorage.access_token ? <Redirect to="/dashboard" /> : <Login />}
+					</Route>
+					<Route exact path="/dashboard">
+						{!localStorage.access_token ? <Redirect to="/login" /> : <Dashboard />}
+					</Route> */}
+					{/* this one can properly redirect but inconsistent */}
 					<PrivateRoute
 						exact path="/login"
 						component={Login}
