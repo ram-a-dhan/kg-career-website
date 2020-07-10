@@ -34,8 +34,7 @@ const GrowSlide = (props) => {
 						</p>
 					</span>
 					<p className="growP2 mb-0" style={growP2}>
-						{/* {props.testimony.name + ', ' + props.testimony.position} */}
-						{ props.testimony.job_description }
+						{props.testimony.name + ', ' + props.testimony.position}
 					</p>
 				</div>
 				<div data-aos="fade-right">
