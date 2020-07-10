@@ -1,0 +1,17 @@
+@media (min-width: 720px) {
+  .overviewItem {
+    width: 33%;
+  }
+}
+
+@media (max-width: 719px) {
+  .overviewItem {
+    width: 75%;
+  }
+}
+
+@media (max-width: 479px) {
+  .overviewItem {
+    width: 100%;
+  }
+}
