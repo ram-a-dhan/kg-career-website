@@ -6,7 +6,7 @@ import './LoginForm.css';
 
 const LoginForm = () => {
   const [credentials, setCredentials] = useState({
-		username: '',
+		email: '',
 		password: '',
 	});
 	const history = useHistory();
@@ -35,11 +35,11 @@ const LoginForm = () => {
 						<input
 							type="text"
 							className="form-control text-center"
-							id="username"
-              name="username"
-              value={credentials.username}
+							id="email"
+              name="email"
+              value={credentials.email}
               onChange={handleCredentials}
-							placeholder="Username"
+							placeholder="Email"
 						/>
 					</div>
 					<div className="form-group">
