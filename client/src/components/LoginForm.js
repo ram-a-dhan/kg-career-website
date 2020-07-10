@@ -75,6 +75,7 @@ const LoginForm = () => {
 					<button
 						type="submit"
 						className="btn btn-block btn-outline-primary"
+						disabled={isLoading ? true : false}
 					>
 						{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Log In'}
 					</button>
