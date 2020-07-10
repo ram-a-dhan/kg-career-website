@@ -2,6 +2,7 @@ import React from 'react';
 import './GrowWithKG.css';
 
 const GrowSlide = (props) => {
+	let counter = (props.counter % 3) + 1;
 	return (
 		// <div className="growWithKG">
 		<div>
@@ -29,30 +30,31 @@ const GrowSlide = (props) => {
 							"
 						</p>
 						<p className="growP1 mb-1 text-left" style={growP1}>
-							{props.testimony.quote}
+							{props.testimony.message}
 						</p>
 					</span>
 					<p className="growP2 mb-0" style={growP2}>
-						{props.testimony.name + ', ' + props.testimony.position}
+						{/* {props.testimony.name + ', ' + props.testimony.position} */}
+						{ props.testimony.job_description }
 					</p>
 				</div>
 				<div data-aos="fade-right">
 					<img
-						src={`./${props.testimony.picture}`}
+						src={ props.testimony.photo_path }
 						alt=""
 						className="growPic"
 						style={growPic}
 					/>
 				</div>
 			</div>
-			<div data-aos="fade-right" id={`growShape${props.testimony.id}`}></div>
+			<div data-aos="fade-right" id={`growShape${counter}`}></div>
 			<div
 				className="d-flex flex-row flex-wrap justify-content-start align-items-center"
 				style={stripeContainer}
 			>
-				<div data-aos="fade-right"  id={`growStripe${props.testimony.id}`}></div>
+				<div data-aos="fade-right"  id={`growStripe${counter}`}></div>
 			</div>
-				<div data-aos="fade-right" data-aos-duration="1500" id={`growBg${props.testimony.id}`} style={{...bgContainer, ...(props.testimony.id === 1 ? growBg1 : props.testimony.id === 2 ? growBg2 : growBg3)}}></div>
+				<div data-aos="fade-right" data-aos-duration="1500" id={`growBg${counter}`} style={{...bgContainer, ...(counter === 1 ? growBg1 : counter === 2 ? growBg2 : growBg3)}}></div>
 		</div>
 		// </div>
 	);

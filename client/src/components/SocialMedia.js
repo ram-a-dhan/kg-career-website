@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { clickGA } from '../helpers/clickGA';
 import './SocialMedia.css';
 
 const SocialMedia = () => {
+	const [socialMediaData, setSocialMediaData] = useState({});
+	const socialMediaReducer = useSelector(state => state.dataReducer.social);
+	useEffect(() => {
+		if (socialMediaReducer) setSocialMediaData({
+			facebook: socialMediaReducer.find(data => data.name === 'Facebook').link,
+			linkedin: socialMediaReducer.find(data => data.name === 'Linkedin').link,
+			instagram: socialMediaReducer.find(data => data.name === 'Instagram').link,
+		});
+	}, [socialMediaReducer]);
 	return (
 		<div className="socialMedia" style={socialMedia}>
 			<div data-aos="fade-right">
@@ -17,7 +27,7 @@ const SocialMedia = () => {
 						<div className="socialIconContainer d-flex flex-row flex-nowrap justify-content-between align-items-start">
 							{/* eslint-disable-next-line */}
 							<a
-								href="https://web.facebook.com/KompasGramediaKG"
+								href={ socialMediaData.facebook }
 								target="_blank"
 								rel="noopener noreferrer"
 								onClick={() => clickGA('Link (External)', 'Go to KG Facebook page')}
@@ -31,7 +41,7 @@ const SocialMedia = () => {
 							</a>
 							{/* eslint-disable-next-line */}
 							<a
-								href="https://www.linkedin.com/company/kompas-gramedia"
+								href={ socialMediaData.linkedin }
 								target="_blank"
 								rel="noopener noreferrer"
 								onClick={() => clickGA('Link (External)', 'Go to KG Linkedin page')}
@@ -45,7 +55,7 @@ const SocialMedia = () => {
 							</a>
 							{/* eslint-disable-next-line */}
 							<a
-								href="https://www.instagram.com/workwithkg"
+								href={ socialMediaData.instagram }
 								target="_blank"
 								rel="noopener noreferrer"
 								onClick={() => clickGA('Link (External)', 'Go to KG Instagram page')}

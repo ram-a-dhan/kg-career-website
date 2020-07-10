@@ -1,4 +1,5 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './OurImpact.css';
 import Infograph from './Infograph.js'
 import Carousel from 'react-multi-carousel';
@@ -6,13 +7,18 @@ import 'react-multi-carousel/lib/styles.css';
 
 const OurImpact = () => {
   // eslint-disable-next-line
-  const [graphs, setGraphs] = useState([
-    { id: 1, filename: 'Rekata-03.jpg' },
-    { id: 2, filename: 'StratX-02.jpg' },
-    { id: 3, filename: 'StratX_Larisin-01.jpg' },
-    // { id: 4, filename: 'banner.jpg' },
-    // { id: 5, filename: 'banner.jpg' },
-  ]);
+  // const [graphs, setGraphs] = useState([
+  //   { id: 1, filename: 'Rekata-03.jpg' },
+  //   { id: 2, filename: 'StratX-02.jpg' },
+  //   { id: 3, filename: 'StratX_Larisin-01.jpg' },
+  //   // { id: 4, filename: 'banner.jpg' },
+  //   // { id: 5, filename: 'banner.jpg' },
+  // ]);
+  const [graphs, setGraphs] = useState([]);
+  const impactReducer = useSelector(state => state.dataReducer.impact);
+  useEffect(() => {
+    if (impactReducer) setGraphs(impactReducer);
+  }, [impactReducer]);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
