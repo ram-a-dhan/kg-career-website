@@ -5,21 +5,17 @@ export const login = (credentials) => {
   return async (dispatch) => {
     try {
       console.log(credentials);
-      
       const response = await axios({
         method: 'POST',
         url: 'https://fathomless-plains-81425.herokuapp.com/user/login',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Access-Control-Allow-Origin': '*',
-        },
+        // url: 'http://localhost:3000/user/login',
         data: credentials,
       });
       console.log(response);
-      // dispatch({
-      //   type: 'LOGIN',
-      //   payload: response,
-      // }); 
+      dispatch({
+        type: 'LOGIN',
+        payload: response,
+      }); 
       // eslint-disable-next-line
     } catch (err) {
       toast.fire({

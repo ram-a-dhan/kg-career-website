@@ -3,7 +3,7 @@ import { toast } from '../../helpers/swalToast';
 const authReducer = (state = false, action) => {
   switch (action.type) {
     case 'LOGIN':
-      localStorage.setItem('access_token', action.payload.access_token);
+      localStorage.setItem('access_token', action.payload.data.access_token);
       toast.fire({
         icon: 'success',
         title: 'Login successful',
