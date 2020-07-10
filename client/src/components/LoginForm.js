@@ -33,7 +33,7 @@ const LoginForm = () => {
 				<form onSubmit={handleLoginSubmit}>
 					<div className="form-group">
 						<input
-							type="text"
+							type="email"
 							className="form-control text-center"
 							id="email"
               name="email"
