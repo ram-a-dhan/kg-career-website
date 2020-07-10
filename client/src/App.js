@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import PrivateRoute from 'react-router-private';
+import { BrowserRouter, Switch, Route, } from 'react-router-dom';
+import { PublicRoute, PrivateRoute } from './configs/PublicPrivateRoute';
 // import { useSelector } from 'react-redux';
 import ReactGA from 'react-ga';
 import Navbar from './components/Navbar';
@@ -30,6 +30,9 @@ function App() {
           <Route exact path="/join-us">
 			      <JoinUs />
           </Route>
+					{/* this one works perfectly */}
+					<PublicRoute exact path="/login" component={Login} />
+					<PrivateRoute exact path="/dashboard" component={Dashboard} />
 					{/* this one can't properly redirect but consistent */}
 					{/* <Route exact path="/login">
 						{localStorage.access_token ? <Redirect to="/dashboard" /> : <Login />}
@@ -38,7 +41,7 @@ function App() {
 						{!localStorage.access_token ? <Redirect to="/login" /> : <Dashboard />}
 					</Route> */}
 					{/* this one can properly redirect but inconsistent */}
-					<PrivateRoute
+					{/* <PrivateRoute
 						exact path="/login"
 						component={Login}
 						authStatus={!localStorage.access_token}
@@ -49,7 +52,7 @@ function App() {
 						component={Dashboard}
 						authStatus={localStorage.access_token}
 						redirectURL="/login"
-					/>
+					/> */}
 				</Switch>
 				<Footer />
 			</BrowserRouter>
