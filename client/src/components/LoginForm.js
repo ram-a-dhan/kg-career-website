@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../store/actions/authAction';
+import axios from 'axios';
+import { toast } from '../helpers/swalToast';
 import './LoginForm.css';
 
 const LoginForm = () => {
+	const [isLoading , setIsLoading] = useState(false);
   const [credentials, setCredentials] = useState({
 		email: '',
 		password: '',
 	});
 	const history = useHistory();
-	const dispatch = useDispatch();
 
 	const handleCredentials = (event) => {
 		let name = event.target.name;
@@ -21,10 +21,29 @@ const LoginForm = () => {
 		});
 	};
 
-  const handleLoginSubmit = (event) => {
+  const handleLoginSubmit = async (event) => {
 		event.preventDefault();
-		dispatch(login(credentials));
-		history.push('/dashboard');
+		setIsLoading(true);
+		try {
+      const response = await axios({
+        method: 'POST',
+        url: 'https://fathomless-plains-81425.herokuapp.com/user/login',
+        // url: 'http://localhost:3000/user/login',
+        data: credentials,
+			});
+			localStorage.setItem('access_token', response.data.access_token);
+      toast.fire({
+        icon: 'success',
+        title: 'Login successful',
+      });
+			history.push('/dashboard');
+    } catch (err) {
+      toast.fire({
+        icon: 'error',
+        title: err.response.data.msg,
+      });
+		}
+		setIsLoading(false);
   };
 
 	return (
@@ -53,11 +72,12 @@ const LoginForm = () => {
 							placeholder="Password"
 						/>
 					</div>
-					<input
+					<button
 						type="submit"
-						value="Log In"
 						className="btn btn-block btn-outline-primary"
-					/>
+					>
+						{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Log In'}
+					</button>
 				</form>
 			</div>
 		</div>
