@@ -1,8 +1,4 @@
 .loginSpace {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
   height: 91vh;
   position: relative;
   top: -18vh;

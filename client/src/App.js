@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route, } from 'react-router-dom';
 import { PublicRoute, PrivateRoute } from './configs/PublicPrivateRoute';
-// import { useSelector } from 'react-redux';
+import dataAction from './store/actions/dataAction';
 import ReactGA from 'react-ga';
 import Navbar from './components/Navbar';
 import Home from './views/Home';
@@ -10,21 +10,19 @@ import Footer from './components/Footer';
 import JoinUs from './views/JoinUs';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
+import SocialEdit from './views/SocialEdit';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import dataAction from './store/actions/dataAction';
 
 function App() {
-	// const isLoggedIn = useSelector(state => state.authReducer);
 	const dispatch = useDispatch();
 	useEffect(() => {
 		ReactGA.initialize('UA-171059012-1');
 		ReactGA.pageview(window.location.pathname + window.location.search);
 		dispatch(dataAction());
-		// eslint-disable-next-line
-	}, []);
+	}, [dispatch]);
 
 	return (
-		<div className="App" /* style={{ overflowX: 'hidden' }} */>
+		<div className="App">
 			<BrowserRouter>
 			  <Navbar />
 				<Switch>
@@ -36,6 +34,7 @@ function App() {
           </Route>
 					<PublicRoute exact path="/login" component={Login} />
 					<PrivateRoute exact path="/dashboard" component={Dashboard} />
+					<PrivateRoute exact path="/social-edit/:id" component={SocialEdit} />
 				</Switch>
 				<Footer />
 			</BrowserRouter>

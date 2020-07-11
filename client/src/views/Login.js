@@ -33,7 +33,7 @@ const Login = () => {
 	
   return (
 		<div className="home">
-			<div className="loginSpace">
+			<div className="loginSpace d-flex flex-column flex-nowrap justify-content-center align-items-center">
 				<div className="loginForm p-5 rounded-lg shadow">
 					<form onSubmit={handleLoginSubmit}>
 						<div className="form-group">

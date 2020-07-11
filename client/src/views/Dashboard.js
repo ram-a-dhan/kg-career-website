@@ -16,8 +16,7 @@ export default function Dashboard() {
 		<div className="home">
 			<AdminNavbar />
 			<div
-				className="dashboardOverview container d-flex flex-column flex-nowrap justify-content-start align-items-center"
-				style={dashboard}
+				className="dashboard container d-flex flex-column flex-nowrap justify-content-start align-items-center"
 			>
 				<h1 className="my-5">Dashboard</h1>
 				{/* ======================================== */}
@@ -42,12 +41,15 @@ export default function Dashboard() {
 										<td>{ban.subtitle}</td>
 										<td><img className="dashImg" src={ban.banner_path} alt="" /></td>
 										<td>
-											<button
-												className="btn btn-outline-warning m-1"
-												// onClick={history.push('/banner-edit/' + ban.id)}
-											>
-												Edit
-											</button>
+											{/* eslint-disable-next-line */}
+											<a href="#">
+												<button
+													className="btn btn-outline-warning m-1"
+													// onClick={() => history.push('/banner-edit/' + ban.id)}
+												>
+													Edit
+												</button>
+											</a>
 										</td>
 									</tr>
 								)
@@ -58,12 +60,15 @@ export default function Dashboard() {
 				</table>
 				{/* ======================================== */}
 				<h3 className="my-5">Infographics</h3>
-				<button
-					className="btn btn-outline-primary mb-3"
-					// onClick={history.push('/infographic-add')}
-				>
-					Add
-				</button>
+				{/* eslint-disable-next-line */}
+				<a href="#">
+					<button
+						className="btn btn-outline-primary mb-3"
+						// onClick={() => history.push('/infographic-add')}
+					>
+						Add
+					</button>
+				</a>
 				<table className="table table-hover">
 					<thead>
 						<tr>
@@ -80,18 +85,21 @@ export default function Dashboard() {
 										<th scope="row"><img className="dashImg" src={graphic.logo_path} alt="" /></th>
 										<td><img className="dashImg" src={graphic.main_image_path} alt="" /></td>
 										<td>
-											<button
-												className="btn btn-outline-warning m-1"
-												// onClick={history.push('/infographic-edit/' + graphic.id)}
-											>
-												Edit
-											</button>
-											<button
-												className="btn btn-outline-danger"
-												// onClick={handleDeleteInfographic(graphic.id)}
-											>
-												Delete
-											</button>
+											{/* eslint-disable-next-line */}
+											<a href="#">
+												<button
+													className="btn btn-outline-warning m-1"
+													// onClick={() => history.push('/infographic-edit/' + graphic.id)}
+												>
+													Edit
+												</button>
+												<button
+													className="btn btn-outline-danger"
+													// onClick={handleDeleteInfographic(graphic.id)}
+												>
+													Delete
+												</button>
+											</a>
 										</td>
 									</tr>
 								)
@@ -101,12 +109,15 @@ export default function Dashboard() {
 				</table>
 				{/* ======================================== */}
 				<h3 className="my-5">Testimonials</h3>
-				<button
-					className="btn btn-outline-primary mb-3"
-					// onClick={history.push('/testimonial-add')}
-				>
-					Add
-				</button>
+				{/* eslint-disable-next-line */}
+				<a href="#">
+					<button
+						className="btn btn-outline-primary mb-3"
+						// onClick={() => history.push('/testimonial-add')}
+					>
+						Add
+					</button>
+				</a>
 				<table className="table table-hover">
 					<thead>
 						<tr>
@@ -127,18 +138,21 @@ export default function Dashboard() {
 										<td>{testi.name} / {testi.position}</td>
 										<td><img className="dashImg" src={testi.photo_path} alt="" /></td>
 										<td>
-											<button
-												className="btn btn-outline-warning m-1"
-												// onClick={history.push('/testimonial-edit' + testi.id)}
-											>
-												Edit
-											</button>
-											<button
-												className="btn btn-outline-danger"
-												// onClick={handleDeleteTestimonial(testi.id)}
-											>
-												Delete
-											</button>
+											{/* eslint-disable-next-line */}
+											<a href="#">
+												<button
+													className="btn btn-outline-warning m-1"
+													// onClick={() => history.push('/testimonial-edit/' + testi.id)}
+												>
+													Edit
+												</button>
+												<button
+													className="btn btn-outline-danger"
+													// onClick={handleDeleteTestimonial(testi.id)}
+												>
+													Delete
+												</button>
+											</a>
 										</td>
 									</tr>
 								)
@@ -164,12 +178,15 @@ export default function Dashboard() {
 										<th scope="row">{site.name}</th>
 										<td>{site.link}</td>
 										<td>
-											<button 
-												className="btn btn-outline-warning m-1"
-												// onClick={history.push('/socialmedia-edit' + site.id)}
-											>
-												Edit
-											</button>
+											{/* eslint-disable-next-line */}
+											<a href="#">
+												<button 
+													className="btn btn-outline-warning m-1"
+													onClick={() => history.push('/social-edit/' + site.id)}
+												>
+													Edit
+												</button>
+											</a>
 										</td>
 									</tr>
 								)
@@ -180,8 +197,4 @@ export default function Dashboard() {
 			</div>
 		</div>
 	);
-};
-
-const dashboard = {
-	minHeight: '82vh',
 };
