@@ -11,20 +11,19 @@ const Infograph = (props) => {
 		clickGA('Media', 'Open infographics');
 		setIsOpen(true);
 	};
-
 	return (
 		<div className="infoGraph" onClick={() => clickInfograph()}>
 			<div
 				className={`infoCircle rounded-circle circle${props.graph.id}`}
 				style={{
 					...infoCircle,
-					...(props.graph.id === 1
+					...(props.graph.id % 5 === 1
 						? circle1
-						: props.graph.id === 2
+						: props.graph.id % 5 === 2
 						? circle2
-						: props.graph.id === 3
+						: props.graph.id % 5 === 3
 						? circle3
-						: props.graph.id === 4
+						: props.graph.id % 5 === 4
 						? circle4
 						: circle5),
 				}}
@@ -33,10 +32,14 @@ const Infograph = (props) => {
 				className="infoPic rounded-circle"
 				style={{ ...infoPic, ...graphPic1 }}
 			></div> */}
-			<img className="infoPic rounded-circle" src={`./${props.graph.filename}`} alt="" />
+			{
+				props.graph.logo_path ?
+				<img className="infoPic rounded-circle" src={ props.graph.logo_path } alt="" />
+				: <img className="infoPic rounded-circle" src={ props.graph.main_image_path } alt="" />
+			}
 			{isOpen && (
 				<Lightbox
-					mainSrc={`./${props.graph.filename}`}
+					mainSrc={ props.graph.main_image_path }
 					onCloseRequest={ () => setIsOpen(false) }
 				/>
 				)}

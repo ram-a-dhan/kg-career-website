@@ -1,27 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './AboutUs.css';
 
 const AboutUs = () => {
+  const [bannerData, setBannerData] = useState({
+		title: '',
+		subtitle: '',
+		banner_path: ''
+	});
+	const bannerReducer = useSelector(state => state.dataReducer.banner);
+	useEffect(() => {
+		if (bannerReducer) setBannerData(bannerReducer.find(data => data.name === 'Who We Are'));
+  }, [bannerReducer]);
+  // Pikirin yang text decoration <<<<
   return (
     <>
       <div className="aboutUs" style={aboutUs}>
         <div data-aos="fade-right">
           <div className="aboutText rounded-lg" style={aboutText}>
             <h1 className="aboutH1 text-right mb-1" style={aboutH1}>
-              Who We Are
+              { bannerData.title }
             </h1>
             <p className="aboutP1 text-right m-0" style={aboutP1}>
-              Kompas Gramedia (KG) is the biggest media conglomerate in Indonesia. We aim to be&nbsp;
+              {/* Kompas Gramedia (KG) is the biggest media conglomerate in Indonesia. We aim to be&nbsp;
               <span style={{textDecoration: 'underline'}}>
                 the biggest, best, integrated and spread in South East Asia through knowledge base industry to create
                 well educated society, enlighten and respect to cultural differences and social welfare.
-              </span>
+              </span> */}
+              { bannerData.subtitle }
             </p>
           </div>
         </div>
         <div style={{ textAlign: 'right' }}>
           <div data-aos="fade-left">
-            <img src="./aboutPic.png" alt="" className="aboutPic" style={aboutPic} />
+            <img src={ bannerData.banner_path } alt="" className="aboutPic" style={aboutPic} />
           </div>
         </div>
       </div>

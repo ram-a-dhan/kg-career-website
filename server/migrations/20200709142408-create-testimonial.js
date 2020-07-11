@@ -28,13 +28,23 @@ module.exports = {
           }
         }
       },
-      job_description: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
             args: true,
-            msg: 'Job Description cannot be empty'
+            msg: 'Name cannot be empty'
+          }
+        }
+      },
+      position: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'Position cannot be empty'
           }
         }
       },

@@ -34,13 +34,23 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
     },
-    job_description: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
         validate: {
           notEmpty: {
             args: true,
             msg: 'Name cannot be empty'
+          }
+        }
+    },
+    position: {
+      type: DataTypes.STRING,
+      allowNull: false,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'Position cannot be empty'
           }
         }
     },

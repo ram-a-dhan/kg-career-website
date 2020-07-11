@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { clickGA } from '../helpers/clickGA';
+import { useSelector } from 'react-redux';
 import './BannerHome.css';
 
 const BannerHome = () => {
 	const history = useHistory();
-
+	const [bannerData, setBannerData] = useState({
+		title: '',
+		subtitle: '',
+		banner_path: ''
+	});
+	const bannerReducer = useSelector(state => state.dataReducer.banner);
+	useEffect(() => {
+		if (bannerReducer) setBannerData(bannerReducer.find(data => data.name === 'Top Banner'));
+	}, [bannerReducer]);
 	const clickJobs = () => {
 		clickGA('Link','Go to Jobs page');
 		history.push('/join-us');
 	};
-
+	// Belum nempatin subtitle <<<<
 	return (
 		<div
 			className="bannerHome d-flex flex-column justify-content-center align-items-center"
-			style={bannerHome}
+			style={{...bannerHome, backgroundImage: `url(${bannerData.banner_path})`,}}
 		>
-			<h1 className="bannerHomeH1 text-light text-center" style={bannerHomeH1}>Grow beyond your work</h1>
+			<h1 className="bannerHomeH1 text-light text-center" style={bannerHomeH1}>{ bannerData.title }</h1>
 			<button
 				className="btn btn-kg rounded-pill"
 				onClick={() => clickJobs()}
@@ -30,7 +39,7 @@ const BannerHome = () => {
 
 const bannerHome = {
 	boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.5)',
-	backgroundImage: 'url(./bannerHome.png)',
+	// backgroundImage: 'url(./bannerHome.png)',
 	backgroundSize: 'cover',
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
