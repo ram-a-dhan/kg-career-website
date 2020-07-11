@@ -12,7 +12,6 @@ const DashboardOverview = () => {
 	});
 	const history = useHistory();
 	const dataReducer = useSelector(state => state.dataReducer);
-	console.log(dataReducer);
 	useEffect(() => {
 		if (dataReducer) setData(dataReducer);
 	},[dataReducer]);
@@ -39,14 +38,14 @@ const DashboardOverview = () => {
 					{data.banner && (
 						data.banner.map(ban => {
 							return (
-								<tr>
+								<tr key={ban.id}>
 									<th scope="row">{ban.name}</th>
 									<td>{ban.title}</td>
 									<td>{ban.subtitle}</td>
 									<td><img className="dashImg" src={ban.banner_path} alt="" /></td>
 									<td>
 										<button
-											className="btn btn-warning m-1"
+											className="btn btn-outline-warning m-1"
 											// onClick={history.push('/banner-edit/' + ban.id)}
 										>
 											Edit
@@ -62,12 +61,12 @@ const DashboardOverview = () => {
 			{/* ======================================== */}
 			<h3 className="my-5">Infographics</h3>
 			<button
-				className="btn btn-primary mb-3"
+				className="btn btn-outline-primary mb-3"
 				// onClick={history.push('/infographic-add')}
 			>
 				Add
 			</button>
-			<table class="table table-hover">
+			<table className="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">Thumbnail</th>
@@ -79,18 +78,18 @@ const DashboardOverview = () => {
 					{data.impact && (
 						data.impact.map(graphic => {
 							return (
-								<tr>
+								<tr key={graphic.id}>
 									<th scope="row"><img className="dashImg" src={graphic.logo_path} alt="" /></th>
 									<td><img className="dashImg" src={graphic.main_image_path} alt="" /></td>
 									<td>
 										<button
-											className="btn btn-warning m-1"
+											className="btn btn-outline-warning m-1"
 											// onClick={history.push('/infographic-edit/' + graphic.id)}
 										>
 											Edit
 										</button>
 										<button
-											className="btn btn-danger"
+											className="btn btn-outline-danger"
 											// onClick={handleDeleteInfographic(graphic.id)}
 										>
 											Delete
@@ -105,12 +104,12 @@ const DashboardOverview = () => {
 			{/* ======================================== */}
 			<h3 className="my-5">Testimonials</h3>
 			<button
-				className="btn btn-primary mb-3"
+				className="btn btn-outline-primary mb-3"
 				// onClick={history.push('/testimonial-add')}
 			>
 				Add
 			</button>
-			<table class="table table-hover">
+			<table className="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">Title</th>
@@ -124,20 +123,20 @@ const DashboardOverview = () => {
 					{data.testimonial && (
 						data.testimonial.map(testi => {
 							return (
-								<tr>
+								<tr key={testi.id}>
 									<th scope="row">{testi.title}</th>
 									<td>{testi.message}</td>
 									<td>{testi.name} / {testi.position}</td>
 									<td><img className="dashImg" src={testi.photo_path} alt="" /></td>
 									<td>
 										<button
-											className="btn btn-warning m-1"
+											className="btn btn-outline-warning m-1"
 											// onClick={history.push('/testimonial-edit' + testi.id)}
 										>
 											Edit
 										</button>
 										<button
-											className="btn btn-danger"
+											className="btn btn-outline-danger"
 											// onClick={handleDeleteTestimonial(testi.id)}
 										>
 											Delete
@@ -151,7 +150,7 @@ const DashboardOverview = () => {
 			</table>
 			{/* ======================================== */}
 			<h3 className="my-5">Social Media</h3>
-			<table class="table table-hover">
+			<table className="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">Site</th>
@@ -163,12 +162,12 @@ const DashboardOverview = () => {
 					{data.social && (
 						data.social.map(site => {
 							return (
-								<tr>
+								<tr key={site.id}>
 									<th scope="row">{site.name}</th>
 									<td>{site.link}</td>
 									<td>
 										<button 
-											className="btn btn-warning m-1"
+											className="btn btn-outline-warning m-1"
 											// onClick={history.push('/socialmedia-edit' + site.id)}
 										>
 											Edit
