@@ -38,9 +38,7 @@ export default function SocialEdit() {
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 		dispatch(updateSocial(data.id, { link: data.link }));
-		setTimeout(() => {
-			history.push('/dashboard');
-		}, 2000);
+		history.push('/dashboard');
 	};
 
 	const handleReset = (event) => {

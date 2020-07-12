@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { graphicAdd } from '../store/actions/cmsAction';
+import { toast } from '../helpers/swalToast';
 import AdminNavbar from '../components/AdminNavbar';
 import './AdminCrud.css';
 
@@ -32,24 +33,34 @@ export default function GraphicAdd() {
 		// 	...data,
 		// 	[name]: files,
 		// })
-		console.log('FILE',event.target.files[0]);
+		// console.log(event.target.files[0]);
+		const { name, files } = event.target;
 		setData({
-			main_image_path: event.target.files[0],
-			logo_path: event.target.files[0],
+			...data,
+			[name]: files[0]
 		})
-		console.log('DATA',data);
+		// setData({
+		// 	main_image_path: event.target.files[0],
+		// 	logo_path: event.target.files[0],
+		// })
 	};
-
+	
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
-		const formData = new FormData();
-		formData.append('main_image_path', data.main_image_path);
-		formData.append('logo_path', data.logo_path);
-		console.log('FORMDATA',formData);
-		dispatch(graphicAdd(data.id, formData));
-		setTimeout(() => {
+		if (data.main_image_path) {
+			const formData = new FormData();
+			if (!data.main_image_path) console.log('error');
+			formData.append('main_image_path', data.main_image_path);
+			formData.append('logo_path', data.logo_path);
+			console.log('FORMDATA',formData);
+			dispatch(graphicAdd(formData));
 			history.push('/dashboard');
-		}, 2000);
+		} else {
+			toast.fire({
+				icon: 'error',
+				title: 'Input atleast main image'
+			});
+		}
 	};
 
 	const handleReset = (event) => {

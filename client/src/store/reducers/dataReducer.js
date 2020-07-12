@@ -9,13 +9,31 @@ export default (state = [], action) => {
         icon: 'success',
         title: 'Submit successful',
       });
-      return action.payload;
+      return {...state, state: action.payload};
     case 'UPDATE_SOCIAL':
       toast.fire({
         icon: 'success',
         title: 'Update successful',
       });
-      return action.payload;
+      return {...state, state: action.payload};
+    case 'ERROR_TOAST':
+      let msg = '';
+      if (action.payload.response) {
+        if (Array.isArray(action.payload.response.data.msg)) {
+          msg = action.payload.response.data.msg.join('<br>');
+        } else {
+          msg = action.payload.response.data.msg;
+        }
+      } else if (action.payload.request) {
+        msg = action.payload.request;
+      } else {
+        msg = action.payload.message;
+      }
+      toast.fire({
+        icon: 'error',
+        title: msg,
+      });
+      return state
     default:
       return state;
   }
