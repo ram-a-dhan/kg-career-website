@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { graphicAdd } from '../store/actions/cmsAction';
 import AdminNavbar from '../components/AdminNavbar';
 import './AdminCrud.css';
 
 export default function GraphicAdd() {
 	const [data, setData] = useState({
-		id: null,
-		logo_path: '',
-		main_image_path: '',
+		// id: null,
+		logo_path: null,
+		main_image_path: null,
 	});
 
 	const history = useHistory();
@@ -26,17 +26,27 @@ export default function GraphicAdd() {
 	}, [graphicReducer, location]);
 
 	const handleFormInput = (event) => {
-		const name = event.target.name;
-		const value = event.target.value;
+		// const name = event.target.name;
+		// const files = event.target.files[0];
+		// setData({
+		// 	...data,
+		// 	[name]: files,
+		// })
+		console.log('FILE',event.target.files[0]);
 		setData({
-			...data,
-			[name]: value,
+			main_image_path: event.target.files[0],
+			logo_path: event.target.files[0],
 		})
+		console.log('DATA',data);
 	};
 
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
-		// dispatch(updateGraphic(data.id, { logo_path: data.logo_path, main_image_path: data.main_image_path }));
+		const formData = new FormData();
+		formData.append('main_image_path', data.main_image_path);
+		formData.append('logo_path', data.logo_path);
+		console.log('FORMDATA',formData);
+		dispatch(graphicAdd(data.id, formData));
 		setTimeout(() => {
 			history.push('/dashboard');
 		}, 2000);
