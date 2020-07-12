@@ -11,7 +11,8 @@ export default function Dashboard() {
 	useEffect(() => {
 		if (dataReducer) setData(dataReducer);
 	},[dataReducer]);
-
+	// console.log('AFTER', data);
+	
 	return (
 		<div className="home">
 			<AdminNavbar />

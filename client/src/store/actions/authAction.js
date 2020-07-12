@@ -15,10 +15,10 @@ export const login = (credentials) => {
         payload: response,
       }); 
       // eslint-disable-next-line
-    } catch (err) {
+    } catch (error) {
       toast.fire({
         icon: 'error',
-        title: err.response.data.msg,
+        title: error.response.data.msg,
       });
     }
   };
