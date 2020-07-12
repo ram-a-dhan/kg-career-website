@@ -2,3 +2,10 @@
   min-height: 82vh;
 }
 
+.formWidth {
+  width: 330px;
+}
+
+.fileInput {
+  padding: 0.2rem !important;
+}

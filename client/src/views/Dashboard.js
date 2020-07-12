@@ -65,7 +65,7 @@ export default function Dashboard() {
 				<a href="#">
 					<button
 						className="btn btn-outline-primary mb-3"
-						// onClick={() => history.push('/infographic-add')}
+						onClick={() => history.push('/graphic-add')}
 					>
 						Add
 					</button>
@@ -90,13 +90,13 @@ export default function Dashboard() {
 											<a href="#">
 												<button
 													className="btn btn-outline-warning m-1"
-													// onClick={() => history.push('/infographic-edit/' + graphic.id)}
+													// onClick={() => history.push('/graphic-edit/' + graphic.id)}
 												>
 													Edit
 												</button>
 												<button
 													className="btn btn-outline-danger"
-													// onClick={handleDeleteInfographic(graphic.id)}
+													// onClick={handleDeleteGraphic(graphic.id)}
 												>
 													Delete
 												</button>
