@@ -1,30 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { graphicAdd } from '../store/actions/cmsAction';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { toast } from '../helpers/swalToast';
 import AdminNavbar from '../components/AdminNavbar';
 import './AdminCrud.css';
 
 export default function GraphicAdd() {
+	const [isLoading, setIsLoading] = useState(false);
 	const [data, setData] = useState({
 		logo_path: null,
 		main_image_path: null,
 	});
 
 	const history = useHistory();
-	const location = useLocation();
 	const dispatch = useDispatch();
-
-	const graphicReducer = useSelector((state) => state.dataReducer.impact);
-	useEffect(() => {
-		if (graphicReducer) {
-			setData(graphicReducer.find(
-					(one) => one.id === Number(location.pathname.split('/')[2])
-			));
-		}
-	}, [graphicReducer, location]);
 
 	const handleFormInput = (event) => {
 		const { name, files } = event.target;
@@ -36,14 +26,13 @@ export default function GraphicAdd() {
 	
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		if (data.main_image_path) {
+		if (data) {
 			const formData = new FormData();
 			if (!data.main_image_path) console.log('error');
 			formData.append('main_image_path', data.main_image_path);
 			formData.append('logo_path', data.logo_path);
-			console.log('FORMDATA',formData);
 			try {
-				// disini setstate loading = true nya
+				setIsLoading(true);
 				const response = await axios({
 					method: 'POST',
 					url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
@@ -55,30 +44,36 @@ export default function GraphicAdd() {
 				});
 				if (response) {
 					dispatch({
-						type: 'ADD_GRAPH',
+						type: 'SUBMIT_GRAPHIC',
 						payload: response.data
 					})
-					// disini setstate loading false lagi
-					// dispatch(graphicAdd(response.data));
 					history.push('/dashboard');
 				}
 			} catch (error) {
-				console.log(error);
+				dispatch({
+					type: 'ERROR_TOAST',
+					payload: error
+				})
 			}
-			history.push('/dashboard');
 		} else {
 			toast.fire({
 				icon: 'error',
-				title: 'Input atleast main image'
+				title: 'Input at least main image'
 			});
 		}
+		setIsLoading(false);
 	};
 
 	const handleReset = (event) => {
 		event.preventDefault();
-		setData(graphicReducer.find(
-				(one) => one.id === Number(location.pathname.split('/')[2])
-		));
+		const formData = new FormData();
+		formData.delete('main_image_path');
+		formData.delete('logo_path');
+		setData({
+			main_image_path: null,
+			logo_path: null,
+		})
+		console.log(data);
 	};
 
 	return (
@@ -110,8 +105,8 @@ export default function GraphicAdd() {
 					<button type="reset" className="btn btn-outline-secondary" onClick={handleReset}>
 						Reset
 					</button>
-					<button type="submit" className="btn btn-outline-primary float-right">
-						Submit
+					<button type="submit" className="btn btn-outline-primary float-right" disabled={isLoading}>
+						{isLoading ? <div class="spinner-border spinner-border-sm" role="status"></div> : 'Submit'}
 					</button>
 				</form>
 			</div>

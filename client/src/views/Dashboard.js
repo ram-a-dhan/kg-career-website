@@ -90,17 +90,17 @@ export default function Dashboard() {
 											<a href="#">
 												<button
 													className="btn btn-outline-warning m-1"
-													// onClick={() => history.push('/graphic-edit/' + graphic.id)}
+													onClick={() => history.push('/graphic-edit/' + graphic.id)}
 												>
 													Edit
 												</button>
+											</a>
 												<button
 													className="btn btn-outline-danger"
 													// onClick={handleDeleteGraphic(graphic.id)}
 												>
 													Delete
 												</button>
-											</a>
 										</td>
 									</tr>
 								)
@@ -147,13 +147,13 @@ export default function Dashboard() {
 												>
 													Edit
 												</button>
+											</a>
 												<button
 													className="btn btn-outline-danger"
 													// onClick={handleDeleteTestimonial(testi.id)}
 												>
 													Delete
 												</button>
-											</a>
 										</td>
 									</tr>
 								)

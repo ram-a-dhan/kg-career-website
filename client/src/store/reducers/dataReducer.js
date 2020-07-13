@@ -4,14 +4,18 @@ export default (state = [], action) => {
   switch (action.type) {
     case 'ADD_INITIAL_DATA':
       return action.payload;
-    case 'ADD_GRAPH':
-      return {...state, impact: [...state.impact, action.payload]};
     case 'SUBMIT_GRAPHIC':
       toast.fire({
         icon: 'success',
         title: 'Submit successful',
       });
-      return {...state, state: action.payload};
+      return {...state, impact: [...state.impact, action.payload]};
+    case 'UPDATE_GRAPHIC':
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
+      });
+      return {...state, impact: [...state.impact, action.payload]};
     case 'UPDATE_SOCIAL':
       toast.fire({
         icon: 'success',
@@ -26,10 +30,10 @@ export default (state = [], action) => {
         } else {
           msg = action.payload.response.data.msg;
         }
-      } else if (action.payload.request) {
-        msg = action.payload.request;
-      } else {
+      } else if (action.payload.message) {
         msg = action.payload.message;
+      } else {
+        msg = action.payload.request;
       }
       toast.fire({
         icon: 'error',

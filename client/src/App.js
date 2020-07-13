@@ -11,6 +11,7 @@ import JoinUs from './views/JoinUs';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
 import GraphicAdd from './views/GraphicAdd';
+import GraphicEdit from './views/GraphicEdit';
 import SocialEdit from './views/SocialEdit';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -36,6 +37,7 @@ function App() {
 					<PublicRoute exact path="/login" component={Login} />
 					<PrivateRoute exact path="/dashboard" component={Dashboard} />
 					<PrivateRoute exact path="/graphic-add" component={GraphicAdd} />
+					<PrivateRoute exact path="/graphic-edit/:id" component={GraphicEdit} />
 					<PrivateRoute exact path="/social-edit/:id" component={SocialEdit} />
 				</Switch>
 				<Footer />
