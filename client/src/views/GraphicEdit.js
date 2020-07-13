@@ -21,6 +21,7 @@ export default function GraphicEdit() {
 	const graphicReducer = useSelector((state) => state.dataReducer.impact);
 	useEffect(() => {
 		if (graphicReducer) {
+			console.log(graphicReducer);
 			setData(graphicReducer.find(
 					(one) => one.id === Number(params.id))
 			);
@@ -42,7 +43,8 @@ export default function GraphicEdit() {
 			if (!data.main_image_path) console.log('error');
 			formData.append('main_image_path', data.main_image_path);
 			formData.append('logo_path', data.logo_path);
-			console.log('FORMDATA',formData);
+			console.log('DATA', data);
+			console.log('FORMDATA', formData);
 			try {
 				setIsLoading(true);
 				const response = await axios({
@@ -57,7 +59,7 @@ export default function GraphicEdit() {
 				if (response) {
 					dispatch({
 						type: 'UPDATE_GRAPHIC',
-						payload: response.data
+						payload: { id: data.id, data: response.data }
 					})
 					history.push('/dashboard');
 				}
@@ -119,7 +121,7 @@ export default function GraphicEdit() {
 							Reset
 						</button>
 						<button type="submit" className="btn btn-outline-warning float-right">
-							{isLoading ? <div class="spinner-border spinner-border-sm" role="status"></div> : 'Update'}
+							{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Update'}
 						</button>
 					</form>
 				</>

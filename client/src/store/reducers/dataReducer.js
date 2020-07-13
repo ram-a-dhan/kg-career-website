@@ -10,12 +10,22 @@ export default (state = [], action) => {
         title: 'Submit successful',
       });
       return {...state, impact: [...state.impact, action.payload]};
-    case 'UPDATE_GRAPHIC':
-      toast.fire({
-        icon: 'success',
-        title: 'Update successful',
-      });
-      return {...state, impact: [...state.impact, action.payload]};
+      case 'UPDATE_GRAPHIC':
+        toast.fire({
+          icon: 'success',
+          title: 'Update successful',
+        });
+        // let temp = [...state.impact];
+        // const newImpact = temp.map(element => {
+        //   if (element.id === action.payload.id) return { id: element.id, ...action.payload.data }
+        // });
+        // return {...state, impact: newImpact };
+        //////////////////
+        // let newState = {...state};
+        // newState.impact = newState.impact.map(element => {
+        //   if (element.id === action.payload.id) return { id: element.id, ...action.payload.data }
+        // });
+        // return newState;
     case 'UPDATE_SOCIAL':
       toast.fire({
         icon: 'success',
