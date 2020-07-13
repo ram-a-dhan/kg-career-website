@@ -23,14 +23,18 @@ class HomeController {
           const { title, subtitle } = req.body;
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
-          if (!req.file) throw createError(400, 'Input Image');
-          const banner_path = serverUrl + req.file.path.replace('public/', '');
-          const query = { title, subtitle, banner_path };
+          let query = { title, subtitle };
+          if (req.file) {
+            const newBannerPath = serverUrl + req.file.path.replace('public/', '');
+            query.banner_path = newBannerPath;
+          }
           const prevBanner = await banner.findOne({ where: { name: 'Top Banner' } });
           await banner.update(query, { where: { name: 'Top Banner' } });
-          const regex = new RegExp(serverUrl, "g");
-          const prevPath = prevBanner.banner_path.replace(regex, '');
-          fs.unlinkSync(prevPath);
+          if (req.file) {
+            const regex = new RegExp(serverUrl, "g");
+            const prevPath = prevBanner.banner_path.replace(regex, 'public/');
+            fs.unlinkSync(prevPath);
+          }
           res.status(200).json({ msg: 'Success' });
         } catch (err) {
           if (req.file) fs.unlinkSync(req.file.path);
@@ -57,14 +61,18 @@ class HomeController {
           const { title, subtitle } = req.body;
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
-          if (!req.file) throw createError(400, 'Input Image');
-          const banner_path = serverUrl + req.file.path.replace('public/', '');
-          const query = { title, subtitle, banner_path };
+          let query = { title, subtitle };
+          if (req.file) {
+            const newBannerPath = serverUrl + req.file.path.replace('public/', '');
+            query.banner_path = newBannerPath;
+          }
           const prevBanner = await banner.findOne({ where: { name: 'Who We Are' } });
           await banner.update(query, { where: { name: 'Who We Are' } });
-          const regex = new RegExp(serverUrl, "g");
-          const prevPath = prevBanner.banner_path.replace(regex, '');
-          fs.unlinkSync(prevPath);
+          if (req.file) {
+            const regex = new RegExp(serverUrl, "g");
+            const prevPath = prevBanner.banner_path.replace(regex, 'public/');
+            fs.unlinkSync(prevPath);
+          }
           res.status(200).json({ msg: 'Success' });
         } catch (err) {
           if (req.file) fs.unlinkSync(req.file.path);
@@ -96,12 +104,10 @@ class HomeController {
         try {
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
-          let logo_path;
-          let main_image_path;
+          let logo_path = '';
           if (!req.files['main_image_path']) createError(400, 'Input main image');
           if (req.files['logo_path']) logo_path = serverUrl + req.files['logo_path'][0].path.replace('public/', '');
-          else logo_path = '';
-          if (req.files['main_image_path']) main_image_path = serverUrl + req.files['main_image_path'][0].path.replace('public/', '');
+          const main_image_path = serverUrl + req.files['main_image_path'][0].path.replace('public/', '');
           const result = await impact.create({ logo_path, main_image_path });
           res.status(201).json(result);
         } catch (err) {
@@ -129,18 +135,19 @@ class HomeController {
         try {
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
-          let logo_path;
-          let main_image_path;
-          if (!req.files['main_image_path']) createError(400, 'Input main image');
-          if (req.files['logo_path']) logo_path = serverUrl + req.files['logo_path'][0].path.replace('public/', '');
-          else logo_path = '';
-          if (req.files['main_image_path']) main_image_path = serverUrl + req.files['main_image_path'][0].path.replace('public/', '');
-          await impact.update({ logo_path, main_image_path }, { where: { id } });
+          let query = {};
+          if (req.files['main_image_path']) query.main_image_path = serverUrl + req.files['main_image_path'][0].path.replace('public/', '');
+          if (req.files['logo_path']) query.logo_path = serverUrl + req.files['logo_path'][0].path.replace('public/', '');
+          await impact.update(query, { where: { id } });
           const regex = new RegExp(serverUrl, "g");
-          const prevPathLogo = impactData.logo_path.replace(regex, '');
-          const prevPathMain = impactData.main_image_path.replace(regex, '');
-          if (impactData.logo_path) fs.unlinkSync(prevPathLogo);
-          fs.unlinkSync(prevPathMain);
+          if (req.files['main_image_path']) {
+            const prevPathMain = impactData.main_image_path.replace(regex, 'public/');
+            fs.unlinkSync(prevPathMain);
+          }
+          if (req.files['logo_path']) {
+            const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
+            fs.unlinkSync(prevPathLogo);
+          }
           res.status(201).json({ msg: 'Success' });
         } catch (err) {
           if (req.files['main_image_path']) fs.unlinkSync(req.files['main_image_path'][0].path);
@@ -159,8 +166,8 @@ class HomeController {
       if (!impactData) throw createError(404, 'Our Impact Not Found');
       await impact.destroy({ where: { id } });
       const regex = new RegExp(serverUrl, "g");
-      const prevPathLogo = impactData.logo_path.replace(regex, '');
-      const prevPathMain = impactData.main_image_path.replace(regex, '');
+      const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
+      const prevPathMain = impactData.main_image_path.replace(regex, 'public/');
       fs.unlinkSync(prevPathLogo);
       fs.unlinkSync(prevPathMain);
       res.status(200).json({ msg: 'Success' });
@@ -194,7 +201,7 @@ class HomeController {
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
           const { title, message, job_description } = req.body;
-          if (!title || !message || !job_description) throw createError(400, 'Input all forms');
+          if (!title || !message || !job_description || !req.file) throw createError(400, 'Input all forms');
           const photo_path = serverUrl + req.file.path.replace('public/', '');
           const result = await testimonial.create({
             title,
@@ -225,6 +232,7 @@ class HomeController {
   static updateTestimonial = async(req, res, next) => {
     try {
       const { id } = req.params;
+      if (!id) throw createError(404, 'Input Id in params')
       const testimonialData = await testimonial.findOne({ where: { id } });
       if (!testimonialData) throw createError(404, 'Testimonial not found');
       const upload = multer({ storage: storage }).single('photo_path');
@@ -233,22 +241,19 @@ class HomeController {
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
           const { title, message, job_description } = req.body;
+          let query = { title, message, job_description };
           if (!title || !message || !job_description) throw createError(400, 'Input all forms');
-          if (!id) throw createError(404, 'Input Id in params')
-          const photo_path = serverUrl + req.file.path.replace('public/', '');
-          await testimonial.update({
-            title,
-            message,
-            job_description,
-            photo_path
-          }, {
+          if (req.file) query.photo_path = serverUrl + req.file.path.replace('public/', '');
+          await testimonial.update(query, {
             where: {
               id
             }
           });
-          const regex = new RegExp(serverUrl, "g");
-          const prevPath = testimonialData.photo_path.replace(regex, '');
-          fs.unlinkSync(prevPath);
+          if (req.file) {
+            const regex = new RegExp(serverUrl, "g");
+            const prevPath = testimonialData.photo_path.replace(regex, 'public/');
+            fs.unlinkSync(prevPath);
+          }
           res.status(200).json({ msg: 'Success' });
         } catch (err) {
           if (req.file) fs.unlinkSync(req.file.path);
@@ -266,7 +271,7 @@ class HomeController {
       if (!testimonialData) throw createError(404, 'Testimonial not found');
       await testimonial.destroy({ where: { id } });
       const regex = new RegExp(serverUrl, "g");
-      const prevPath = testimonialData.photo_path.replace(regex, '');
+      const prevPath = testimonialData.photo_path.replace(regex, 'public/');
       fs.unlinkSync(prevPath);
       res.status(200).json({ msg: 'Success' });
     } catch (err) {
