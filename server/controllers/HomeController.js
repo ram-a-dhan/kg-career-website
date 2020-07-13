@@ -30,12 +30,14 @@ class HomeController {
           }
           const prevBanner = await banner.findOne({ where: { name: 'Top Banner' } });
           await banner.update(query, { where: { name: 'Top Banner' } });
+          let result = prevBanner.banner_path;
           if (req.file) {
             const regex = new RegExp(serverUrl, "g");
             const prevPath = prevBanner.banner_path.replace(regex, 'public/');
             fs.unlinkSync(prevPath);
+            result = serverUrl + req.file.path.replace('public/', '');
           }
-          res.status(200).json({ msg: 'Success' });
+          res.status(200).json({ url: result });
         } catch (err) {
           if (req.file) fs.unlinkSync(req.file.path);
           next(err);
@@ -68,12 +70,14 @@ class HomeController {
           }
           const prevBanner = await banner.findOne({ where: { name: 'Who We Are' } });
           await banner.update(query, { where: { name: 'Who We Are' } });
+          let result = prevBanner.banner_path;
           if (req.file) {
             const regex = new RegExp(serverUrl, "g");
             const prevPath = prevBanner.banner_path.replace(regex, 'public/');
             fs.unlinkSync(prevPath);
+            result = serverUrl + req.file.path.replace('public/', '');
           }
-          res.status(200).json({ msg: 'Success' });
+          res.status(200).json({ url: result });
         } catch (err) {
           if (req.file) fs.unlinkSync(req.file.path);
           next(err);
@@ -140,15 +144,21 @@ class HomeController {
           if (req.files['logo_path']) query.logo_path = serverUrl + req.files['logo_path'][0].path.replace('public/', '');
           await impact.update(query, { where: { id } });
           const regex = new RegExp(serverUrl, "g");
+          let result = {
+            main_image_path: impactData.main_image_path,
+            logo_path: impactData.logo_path
+          };
           if (req.files['main_image_path']) {
+            result.main_image_path = serverUrl + req.files['main_image_path'][0].path.replace('public/', '');
             const prevPathMain = impactData.main_image_path.replace(regex, 'public/');
             fs.unlinkSync(prevPathMain);
           }
           if (req.files['logo_path']) {
+            result.logo_path = serverUrl + req.files['logo_path'][0].path.replace('public/', '');
             const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
             fs.unlinkSync(prevPathLogo);
           }
-          res.status(201).json({ msg: 'Success' });
+          res.status(201).json(result);
         } catch (err) {
           if (req.files['main_image_path']) fs.unlinkSync(req.files['main_image_path'][0].path);
           if (req.files['logo_path']) fs.unlinkSync(req.files['logo_path'][0].path);
@@ -249,12 +259,14 @@ class HomeController {
               id
             }
           });
+          let result = testimonialData.photo_path;
           if (req.file) {
             const regex = new RegExp(serverUrl, "g");
             const prevPath = testimonialData.photo_path.replace(regex, 'public/');
             fs.unlinkSync(prevPath);
+            result = serverUrl + req.file.path.replace('public/', '');
           }
-          res.status(200).json({ msg: 'Success' });
+          res.status(200).json({ url: result });
         } catch (err) {
           if (req.file) fs.unlinkSync(req.file.path);
           next(err);

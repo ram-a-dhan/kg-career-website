@@ -29,12 +29,14 @@ class JoinUsController {
           }
           const prevBanner = await banner.findOne({ where: { name: 'Join Us' } });
           await banner.update(query, { where: { name: 'Join Us' } });
+          let result = prevBanner.banner_path;
           if (req.file) {
             const regex = new RegExp(serverUrl, "g");
             const prevPath = prevBanner.banner_path.replace(regex, 'public/');
             fs.unlinkSync(prevPath);
+            result = serverUrl + req.file.path.replace('public/', '');
           }
-          res.status(200).json({ msg: 'Success' });
+          res.status(200).json({ url: result });
         } catch (err) {
           if (req.file) fs.unlinkSync(req.file.path);
           next(err);
