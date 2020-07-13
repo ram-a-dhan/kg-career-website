@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { toast } from '../../helpers/swalToast';
 
 const baseUrl = 'https://fathomless-plains-81425.herokuapp.com';
 
@@ -12,10 +11,10 @@ export default () => {
         payload: data
       })
     } catch (err) {
-      if (err.response) toast.fire({
-        icon: 'error',
-        title: err.response.data.msg,
-      });
+      dispatch({
+				type: 'ERROR_TOAST',
+				payload: err
+			})
     }
   }
 }

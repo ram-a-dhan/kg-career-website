@@ -1,33 +1,30 @@
 import axios from 'axios';
-import { toast } from '../../helpers/swalToast';
 
 export const graphicAdd = (data) => {
 	return async (dispatch, getState) => {
     try {
-      console.log(data);
       const response = await axios({
         method: 'POST',
         url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
         data: data,
         headers: {
           token: localStorage.access_token,
-          'Content-Type': 'multipart/form-data',
+          'content-type': 'multipart/form-data'
 				},
       });
       if (response) {
-        console.log(response);
         let newData = getState().dataReducer;
-        newData.impact = newData.impact.push(response.data);
+				newData.impact = [...newData.impact, newData.impact.push(response.data)];
         dispatch({
           type: 'SUBMIT_GRAPHIC',
           payload: newData
         })
       }
     } catch (error) {
-      toast.fire({
-				icon: 'error',
-				title: error.response.data.msg,
-			});
+			dispatch({
+				type: 'ERROR_TOAST',
+				payload: error
+			})
     }
   };
 };
@@ -55,10 +52,10 @@ export const updateSocial = (id, updatedData) => {
 				});
 			}
 		} catch (error) {
-			toast.fire({
-				icon: 'error',
-				title: error.response.data.msg,
-			});
+			dispatch({
+				type: 'ERROR_TOAST',
+				payload: error
+			})
 		}
 	};
 };

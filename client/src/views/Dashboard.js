@@ -80,9 +80,9 @@ export default function Dashboard() {
 					</thead>
 					<tbody>
 						{data.impact && (
-							data.impact.map(graphic => {
+							data.impact.map((graphic, idx) => {
 								return (
-									<tr key={graphic.id}>
+									<tr key={idx}>
 										<th scope="row"><img className="dashImg" src={graphic.logo_path} alt="" /></th>
 										<td><img className="dashImg" src={graphic.main_image_path} alt="" /></td>
 										<td>

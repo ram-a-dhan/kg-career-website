@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { toast } from '../../helpers/swalToast';
 
 export const login = (credentials) => {
   return async (dispatch) => {
@@ -16,10 +15,10 @@ export const login = (credentials) => {
       }); 
       // eslint-disable-next-line
     } catch (error) {
-      toast.fire({
-        icon: 'error',
-        title: error.response.data.msg,
-      });
+      dispatch({
+				type: 'ERROR_TOAST',
+				payload: error
+			})
     }
   };
 };
