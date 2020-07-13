@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { graphicAdd } from '../store/actions/cmsAction';
+import axios from 'axios';
 import { toast } from '../helpers/swalToast';
 import AdminNavbar from '../components/AdminNavbar';
 import './AdminCrud.css';
 
 export default function GraphicAdd() {
 	const [data, setData] = useState({
-		// id: null,
 		logo_path: null,
 		main_image_path: null,
 	});
@@ -27,25 +27,14 @@ export default function GraphicAdd() {
 	}, [graphicReducer, location]);
 
 	const handleFormInput = (event) => {
-		// const name = event.target.name;
-		// const files = event.target.files[0];
-		// setData({
-		// 	...data,
-		// 	[name]: files,
-		// })
-		// console.log(event.target.files[0]);
 		const { name, files } = event.target;
 		setData({
 			...data,
 			[name]: files[0]
 		})
-		// setData({
-		// 	main_image_path: event.target.files[0],
-		// 	logo_path: event.target.files[0],
-		// })
 	};
 	
-	const handleFormSubmit = (event) => {
+	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		if (data.main_image_path) {
 			const formData = new FormData();
@@ -53,7 +42,23 @@ export default function GraphicAdd() {
 			formData.append('main_image_path', data.main_image_path);
 			formData.append('logo_path', data.logo_path);
 			console.log('FORMDATA',formData);
-			dispatch(graphicAdd(formData));
+			try {
+				const response = await axios({
+					method: 'POST',
+					url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
+					data: formData,
+					headers: {
+						token: localStorage.access_token,
+						'content-type': 'multipart/form-data'
+					},
+				});
+				if (response) {
+					dispatch(graphicAdd(response.data));
+					history.push('/dashboard');
+				}
+			} catch (error) {
+				console.log(error);
+			}
 			history.push('/dashboard');
 		} else {
 			toast.fire({

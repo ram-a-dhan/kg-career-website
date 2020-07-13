@@ -1,32 +1,40 @@
 import axios from 'axios';
 
 export const graphicAdd = (data) => {
-	return async (dispatch, getState) => {
-    try {
-      const response = await axios({
-        method: 'POST',
-        url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
-        data: data,
-        headers: {
-          token: localStorage.access_token,
-          'content-type': 'multipart/form-data'
-				},
-      });
-      if (response) {
-        let newData = getState().dataReducer;
-				newData.impact = [...newData.impact, newData.impact.push(response.data)];
-        dispatch({
-          type: 'SUBMIT_GRAPHIC',
-          payload: newData
-        })
-      }
-    } catch (error) {
+	return (dispatch, getState) => {
+		let newData = getState().dataReducer;
+		newData.impact = [...newData.impact, newData.impact.push(data)];
 			dispatch({
-				type: 'ERROR_TOAST',
-				payload: error
+				type: 'SUBMIT_GRAPHIC',
+				payload: newData
 			})
-    }
-  };
+		}
+	// return async (dispatch, getState) => {
+  //   try {
+  //     const response = await axios({
+  //       method: 'POST',
+  //       url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
+  //       data: data,
+  //       headers: {
+  //         token: localStorage.access_token,
+  //         'content-type': 'multipart/form-data'
+	// 			},
+  //     });
+  //     if (response) {
+  //       let newData = getState().dataReducer;
+	// 			newData.impact = [...newData.impact, newData.impact.push(response.data)];
+  //       dispatch({
+  //         type: 'SUBMIT_GRAPHIC',
+  //         payload: newData
+  //       })
+  //     }
+  //   } catch (error) {
+	// 		dispatch({
+	// 			type: 'ERROR_TOAST',
+	// 			payload: error
+	// 		})
+  //   }
+  // };
 };
 
 export const updateSocial = (id, updatedData) => {
