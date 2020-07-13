@@ -13,7 +13,7 @@ export default function GraphicEdit() {
 		logo_path: '',
 		main_image_path: '',
 	});
-
+	
 	const history = useHistory();
 	const location = useLocation();
 	const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export default function GraphicEdit() {
 			[name]: files[0]
 		})
 	};
-
+	console.log(data);
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		if (data) {
@@ -90,16 +90,28 @@ export default function GraphicEdit() {
 			<div className="adminCrud d-flex flex-column flex-nowrap justify-content-start align-items-center">
 			{/* {(data.main_image_path && data.logo_path) && ( */}
 				<>
-					<form onSubmit={handleFormSubmit} style={{ width: '330px' }}>
+					<form className="formWidth" onSubmit={handleFormSubmit}>
 						<div className="form-group">
-							<img src={data.main_image_path} alt="" />
+							<img src={data.main_image_path} alt="" className="formWidth" />
 							<label htmlFor="main_image_path">Main Image</label>
 							<input
 								type="file"
-								className="form-control btn btn-outline-primary"
+								className="form-control fileInput"
 								id="main_image_path"
 								name="main_image_path"
-								value={data.main_image_path}
+								// value={data.main_image_path}
+								onChange={handleFormInput}
+							/>
+						</div>
+						<div className="form-group">
+							<img src={data.logo_path} alt="" className="formWidth" />
+							<label htmlFor="logo_path">Thumbnail</label>
+							<input
+								type="file"
+								className="form-control fileInput"
+								id="logo_path"
+								name="logo_path"
+								// value={data.logo_path}
 								onChange={handleFormInput}
 							/>
 						</div>
