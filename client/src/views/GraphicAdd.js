@@ -73,7 +73,6 @@ export default function GraphicAdd() {
 			main_image_path: null,
 			logo_path: null,
 		})
-		console.log(data);
 	};
 
 	return (

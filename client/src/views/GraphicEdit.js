@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { toast } from '../helpers/swalToast';
@@ -15,17 +15,17 @@ export default function GraphicEdit() {
 	});
 	
 	const history = useHistory();
-	const location = useLocation();
+	const params = useParams();
 	const dispatch = useDispatch();
 
 	const graphicReducer = useSelector((state) => state.dataReducer.impact);
 	useEffect(() => {
 		if (graphicReducer) {
 			setData(graphicReducer.find(
-					(one) => one.id === Number(location.pathname.split('/')[2])
-			));
+					(one) => one.id === Number(params.id))
+			);
 		}
-	}, [graphicReducer, location]);
+	}, [graphicReducer, params]);
 
 	const handleFormInput = (event) => {
 		const { name, files } = event.target;
@@ -34,7 +34,7 @@ export default function GraphicEdit() {
 			[name]: files[0]
 		})
 	};
-	console.log(data);
+
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		if (data) {
@@ -79,8 +79,8 @@ export default function GraphicEdit() {
 	const handleReset = (event) => {
 		event.preventDefault();
 		setData(graphicReducer.find(
-				(one) => one.id === Number(location.pathname.split('/')[2])
-		));
+				(one) => one.id === Number(params.id))
+		);
 	};
 
 	return (
@@ -88,7 +88,7 @@ export default function GraphicEdit() {
 			<AdminNavbar />
 			<h1 className="text-center my-5">Edit Infographic</h1>
 			<div className="adminCrud d-flex flex-column flex-nowrap justify-content-start align-items-center">
-			{/* {(data.main_image_path && data.logo_path) && ( */}
+			{data && (
 				<>
 					<form className="formWidth" onSubmit={handleFormSubmit}>
 						<div className="form-group">
@@ -123,7 +123,7 @@ export default function GraphicEdit() {
 						</button>
 					</form>
 				</>
-			{/* )}	 */}
+			)}
 			</div>
 		</div>
 	);
