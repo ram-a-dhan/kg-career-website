@@ -43,6 +43,7 @@ export default function GraphicAdd() {
 			formData.append('logo_path', data.logo_path);
 			console.log('FORMDATA',formData);
 			try {
+				// disini setstate loading = true nya
 				const response = await axios({
 					method: 'POST',
 					url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
@@ -53,7 +54,12 @@ export default function GraphicAdd() {
 					},
 				});
 				if (response) {
-					dispatch(graphicAdd(response.data));
+					dispatch({
+						type: 'ADD_GRAPH',
+						payload: response.data
+					})
+					// disini setstate loading false lagi
+					// dispatch(graphicAdd(response.data));
 					history.push('/dashboard');
 				}
 			} catch (error) {

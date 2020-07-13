@@ -4,6 +4,8 @@ export default (state = [], action) => {
   switch (action.type) {
     case 'ADD_INITIAL_DATA':
       return action.payload;
+    case 'ADD_GRAPH':
+      return {...state, impact: [...state.impact, action.payload]};
     case 'SUBMIT_GRAPHIC':
       toast.fire({
         icon: 'success',
