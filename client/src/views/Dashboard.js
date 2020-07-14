@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AdminNavbar from '../components/AdminNavbar';
+import axios from 'axios';
+import swal from 'sweetalert2';
 import './Dashboard.css';
 
 export default function Dashboard() {
@@ -11,8 +13,29 @@ export default function Dashboard() {
 	useEffect(() => {
 		if (dataReducer) setData(dataReducer);
 	},[dataReducer]);
-	// console.log('AFTER', data);
+	// console.log('DATAREDUCER', data);
 	
+	const handleDeleteGraphic = (graphic) => {
+		swal.fire({
+			title: 'Delete this Infograph?',
+			imageUrl: `${graphic.main_image_path}`,
+			imageHeight: 200,
+			imageAlt: 'Infographic',
+			showCancelButton: true,
+			confirmButtonColor: '#DC3545',
+			cancelButtonColor: '#007BFF',
+			confirmButtonText: 'Delete'
+		}).then((result) => {
+			if (result.value) {
+				swal.fire(
+					'Deleted!',
+					'Your file has been deleted.',
+					'success'
+				)
+			}
+		})
+	};
+
 	return (
 		<div className="home">
 			<AdminNavbar />
@@ -97,7 +120,7 @@ export default function Dashboard() {
 											</a>
 												<button
 													className="btn btn-outline-danger"
-													// onClick={handleDeleteGraphic(graphic.id)}
+													onClick={() => handleDeleteGraphic(graphic)}
 												>
 													Delete
 												</button>

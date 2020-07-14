@@ -15,11 +15,16 @@ export default (state = [], action) => {
           icon: 'success',
           title: 'Update successful',
         });
-        // let temp = [...state.impact];
-        // const newImpact = temp.map(element => {
-        //   if (element.id === action.payload.id) return { id: element.id, ...action.payload.data }
-        // });
-        // return {...state, impact: newImpact };
+        let temp = [...state.impact];
+        const newImpact = temp.map(element => {
+          if (element.id === action.payload.id) {
+            return { id: element.id, ...action.payload.data }
+          } else {
+            return { ...element };
+          }
+        });
+        // console.log('NEWIMPACT', newImpact);
+        return {...state, impact: newImpact };
         //////////////////
         // let newState = {...state};
         // newState.impact = newState.impact.map(element => {

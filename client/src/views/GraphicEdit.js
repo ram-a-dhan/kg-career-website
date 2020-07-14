@@ -21,7 +21,7 @@ export default function GraphicEdit() {
 	const graphicReducer = useSelector((state) => state.dataReducer.impact);
 	useEffect(() => {
 		if (graphicReducer) {
-			console.log(graphicReducer);
+			// console.log('GRAPHICREDUCER', graphicReducer);
 			setData(graphicReducer.find(
 					(one) => one.id === Number(params.id))
 			);
@@ -43,8 +43,6 @@ export default function GraphicEdit() {
 			if (!data.main_image_path) console.log('error');
 			formData.append('main_image_path', data.main_image_path);
 			formData.append('logo_path', data.logo_path);
-			console.log('DATA', data);
-			console.log('FORMDATA', formData);
 			try {
 				setIsLoading(true);
 				const response = await axios({

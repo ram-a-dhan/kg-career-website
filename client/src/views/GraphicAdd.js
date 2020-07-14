@@ -105,7 +105,7 @@ export default function GraphicAdd() {
 						Reset
 					</button>
 					<button type="submit" className="btn btn-outline-primary float-right" disabled={isLoading}>
-						{isLoading ? <div class="spinner-border spinner-border-sm" role="status"></div> : 'Submit'}
+						{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Submit'}
 					</button>
 				</form>
 			</div>
