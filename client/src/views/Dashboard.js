@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import AdminNavbar from '../components/AdminNavbar';
 import axios from 'axios';
 import swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import './Dashboard.css';
 export default function Dashboard() {
 	const [data, setData] = useState({});
 	const history = useHistory();
+	const dispatch = useDispatch();
 	const dataReducer = useSelector(state => state.dataReducer);
 	useEffect(() => {
 		if (dataReducer) setData(dataReducer);
@@ -25,13 +26,28 @@ export default function Dashboard() {
 			confirmButtonColor: '#DC3545',
 			cancelButtonColor: '#007BFF',
 			confirmButtonText: 'Delete'
-		}).then((result) => {
+		}).then( async (result) => {
 			if (result.value) {
-				swal.fire(
-					'Deleted!',
-					'Your file has been deleted.',
-					'success'
-				)
+				try {
+					const response = await axios({
+						method: 'DELETE',
+						url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + graphic.id,
+						headers: {
+							token: localStorage.access_token,
+						},
+					});
+					if (response.data.msg === 'Success') {
+						dispatch({
+							type: 'DELETE_GRAPHIC',
+							payload: { id: graphic.id },
+						})
+					}
+				} catch (error) {
+					dispatch({
+						type: 'ERROR_TOAST',
+						payload: error,
+					})
+				}
 			}
 		})
 	};

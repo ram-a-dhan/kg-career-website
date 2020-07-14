@@ -54,6 +54,7 @@ export default function GraphicEdit() {
 						'content-type': 'multipart/form-data'
 					},
 				});
+				console.log('EDIT RESPONSE',response);
 				if (response) {
 					dispatch({
 						type: 'UPDATE_GRAPHIC',
