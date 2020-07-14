@@ -28,7 +28,7 @@ export default function GraphicAdd() {
 		event.preventDefault();
 		if (data) {
 			const formData = new FormData();
-			if (!data.main_image_path) console.log('error');
+			if (!data.main_image_path) throw { message: 'Main Image required' }
 			formData.append('main_image_path', data.main_image_path);
 			formData.append('logo_path', data.logo_path);
 			try {
