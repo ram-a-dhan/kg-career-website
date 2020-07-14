@@ -148,12 +148,12 @@ class HomeController {
             main_image_path: impactData.main_image_path,
             logo_path: impactData.logo_path
           };
-          if (req.files['main_image_path']) {
+          if (req.files['main_image_path'] && impactData.main_image_path) {
             result.main_image_path = serverUrl + req.files['main_image_path'][0].path.replace('public/', '');
             const prevPathMain = impactData.main_image_path.replace(regex, 'public/');
             fs.unlinkSync(prevPathMain);
           }
-          if (req.files['logo_path']) {
+          if (req.files['logo_path'] && impactData.logo_path) {
             result.logo_path = serverUrl + req.files['logo_path'][0].path.replace('public/', '');
             const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
             fs.unlinkSync(prevPathLogo);
@@ -178,8 +178,8 @@ class HomeController {
       const regex = new RegExp(serverUrl, "g");
       const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
       const prevPathMain = impactData.main_image_path.replace(regex, 'public/');
-      fs.unlinkSync(prevPathLogo);
-      fs.unlinkSync(prevPathMain);
+      if (impactData.logo_path) fs.unlinkSync(prevPathLogo);
+      if (impactData.main_image_path) fs.unlinkSync(prevPathMain);
       res.status(200).json({ msg: 'Success' });
     } catch (err) {
       next(err);
