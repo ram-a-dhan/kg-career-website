@@ -25,43 +25,42 @@ export default function GraphicAdd() {
 	};
 	
 	const handleFormSubmit = async (event) => {
-		event.preventDefault();
-		if (data) {
-			try {
-				const formData = new FormData();
-				if (!data.main_image_path) throw { message: 'Main Image required' }
-				formData.append('main_image_path', data.main_image_path);
-				formData.append('logo_path', data.logo_path);
-				setIsLoading(true);
-				const response = await axios({
-					method: 'POST',
-					url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
-					data: formData,
-					headers: {
-						token: localStorage.access_token,
-						'content-type': 'multipart/form-data'
-					},
-				});
-				if (response) {
+		try {
+			event.preventDefault();
+			if (data) {
+					const formData = new FormData();
+					// eslint-disable-next-line
+					if (!data.main_image_path) throw { message: 'Main Image required' }
+					formData.append('main_image_path', data.main_image_path);
+					formData.append('logo_path', data.logo_path);
+					setIsLoading(true);
+					const response = await axios({
+						method: 'POST',
+						url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
+						data: formData,
+						headers: {
+							token: localStorage.access_token,
+							'content-type': 'multipart/form-data'
+						},
+					});
 					dispatch({
 						type: 'SUBMIT_GRAPHIC',
 						payload: response.data
 					})
 					history.push('/dashboard');
-				}
-			} catch (error) {
-				dispatch({
-					type: 'ERROR_TOAST',
-					payload: error
-				})
+			} else {
+				toast.fire({
+					icon: 'error',
+					title: 'Input at least main image'
+				});
 			}
-		} else {
-			toast.fire({
-				icon: 'error',
-				title: 'Input at least main image'
-			});
+			setIsLoading(false);
+		} catch (error) {
+			dispatch({
+				type: 'ERROR_TOAST',
+				payload: error
+			})
 		}
-		setIsLoading(false);
 	};
 
 	const handleReset = (event) => {

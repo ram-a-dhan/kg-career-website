@@ -31,6 +31,7 @@ export default function BannerEdit() {
 	}, [bannerReducer, params]);
 
 	const handleFormInput = (event) => {
+		console.log(event.target.name);
 		const { name, value } = event.target;
 		setData({
 			...data,
@@ -39,34 +40,29 @@ export default function BannerEdit() {
 	};
 
 	const handleFormSubmit = async (event) => {
-		event.preventDefault();
-		if (data) {
-			try {
-				const formData = new FormData();
-				if (!data.banner_path) throw { message: 'Banner Image required' }
-				formData.append('title', data.title);
-				formData.append('subtitle', data.subtitle);
-				formData.append('banner_path', data.banner_path);
-				let apiURL = '';
-				if (data.name === 'Top Banner') {
-					apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';
-				} else if (data.name === 'Who We Are') {
-					apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/whoweare';
-				} else if (data.name === 'Join Us') {
-					apiURL = 'https://fathomless-plains-81425.herokuapp.com/joinus';
-				}
-				setIsLoading(true);
-				const response = await axios({
-					method: 'PUT',
-					url: apiURL,
-					data: formData,
-					headers: {
-						token: localStorage.access_token,
-						'content-type': 'multipart/form-data'
-					},
-				});
-				console.log('EDIT RESPONSE',response);
-				if (response) {
+		try {
+			event.preventDefault();
+			if (data) {
+					const formData = new FormData();
+					// eslint-disable-next-line
+					if (!data.banner_path) throw { message: 'Banner Image required' }
+					formData.append('title', data.title);
+					formData.append('subtitle', data.subtitle);
+					formData.append('banner_path', data.banner_path);
+					let apiURL = '';
+					if (data.name === 'Top Banner') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';
+					else if (data.name === 'Who We Are') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/whoweare';
+					else if (data.name === 'Join Us') apiURL = 'https://fathomless-plains-81425.herokuapp.com/joinus';
+					setIsLoading(true);
+					const response = await axios({
+						method: 'PUT',
+						url: apiURL,
+						data: formData,
+						headers: {
+							token: localStorage.access_token,
+							'content-type': 'multipart/form-data'
+						},
+					});
 					dispatch({
 						type: 'UPDATE_BANNER',
 						payload: {
@@ -74,26 +70,24 @@ export default function BannerEdit() {
 							data: {
 								title: data.title,
 								subtitle: data.subtitle,
-								// banner_path: response.data,
-								banner_path: 'https://via.placeholder.com/200x200.png?text=Grow+With+KG'
+								banner_path: response.data.url,
 							}
 						}
 					})
 					history.push('/dashboard');
-				}
-			} catch (error) {
-				dispatch({
-					type: 'ERROR_TOAST',
-					payload: error
-				})
+			} else {
+				toast.fire({
+					icon: 'error',
+					title: 'Input at least main image'
+				});
 			}
-		} else {
-			toast.fire({
-				icon: 'error',
-				title: 'Input at least main image'
-			});
+			setIsLoading(false);
+		} catch (error) {
+			dispatch({
+				type: 'ERROR_TOAST',
+				payload: error
+			})
 		}
-		setIsLoading(false);
 	};
 
 	const handleReset = (event) => {
@@ -102,7 +96,7 @@ export default function BannerEdit() {
 				(one) => one.id === Number(params.id))
 		);
 	};
-
+	console.log(data);
 	return (
 		<div className="home">
 			<AdminNavbar />
@@ -117,7 +111,8 @@ export default function BannerEdit() {
 								type="text"
 								id="title"
 								className="form-control"
-								value={data.title}
+								name="title"
+								defaultValue={data.title}
 								onChange={handleFormInput}
 							/>
 						</div>
@@ -127,7 +122,8 @@ export default function BannerEdit() {
 								rows="5"
 								id="subtitle"
 								className="form-control"
-								value={data.subtitle}
+								name="subtitle"
+								defaultValue={data.subtitle}
 								onChange={handleFormInput}
 							/>
 						</div>
