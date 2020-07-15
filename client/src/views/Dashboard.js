@@ -85,7 +85,7 @@ export default function Dashboard() {
 											<a href="#">
 												<button
 													className="btn btn-outline-warning m-1"
-													// onClick={() => history.push('/banner-edit/' + ban.id)}
+													onClick={() => history.push('/banner-edit/' + ban.id)}
 												>
 													Edit
 												</button>

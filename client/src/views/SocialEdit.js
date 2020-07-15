@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSocial } from '../store/actions/cmsAction';
 
@@ -14,17 +14,17 @@ export default function SocialEdit() {
 	});
 
 	const history = useHistory();
-	const location = useLocation();
+	const params = useParams();
 	const dispatch = useDispatch();
 
 	const socialReducer = useSelector((state) => state.dataReducer.social);
 	useEffect(() => {
 		if (socialReducer) {
 			setData(socialReducer.find(
-					(one) => one.id === Number(location.pathname.split('/')[2])
+				(one) => one.id === Number(params.id)
 			));
 		}
-	}, [socialReducer, location]);
+	}, [socialReducer, params]);
 
 	const handleFormInput = (event) => {
 		const name = event.target.name;
@@ -44,7 +44,7 @@ export default function SocialEdit() {
 	const handleReset = (event) => {
 		event.preventDefault();
 		setData(socialReducer.find(
-				(one) => one.id === Number(location.pathname.split('/')[2])
+			(one) => one.id === Number(params.id)
 		));
 	};
 

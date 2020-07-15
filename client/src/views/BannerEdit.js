@@ -6,34 +6,36 @@ import { toast } from '../helpers/swalToast';
 import AdminNavbar from '../components/AdminNavbar';
 import './AdminCrud.css';
 
-export default function GraphicEdit() {
+export default function BannerEdit() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [data, setData] = useState({
 		id: null,
-		logo_path: '',
-		main_image_path: '',
+		name: '',
+		title: '',
+		subtitle: '',
+		banner_path: '',
 	});
 	
 	const history = useHistory();
 	const params = useParams();
 	const dispatch = useDispatch();
 
-	const graphicReducer = useSelector((state) => state.dataReducer.impact);
+	const bannerReducer = useSelector((state) => state.dataReducer.banner);
 	useEffect(() => {
-		if (graphicReducer) {
-			// console.log('GRAPHICREDUCER', graphicReducer);
-			setData(graphicReducer.find(
+		if (bannerReducer) {
+			// console.log('BANNERREDUCER', bannerReducer);
+			setData(bannerReducer.find(
 					(one) => one.id === Number(params.id))
 			);
 		}
-	}, [graphicReducer, params]);
+	}, [bannerReducer, params]);
 
 	const handleFormInput = (event) => {
-		const { name, files } = event.target;
+		const { name, value } = event.target;
 		setData({
 			...data,
-			[name]: files[0]
-		})
+			[name]: value,
+		})	
 	};
 
 	const handleFormSubmit = async (event) => {
@@ -41,13 +43,22 @@ export default function GraphicEdit() {
 		if (data) {
 			try {
 				const formData = new FormData();
-				if (!data.main_image_path) throw { message: 'Main Image required' }
-				formData.append('main_image_path', data.main_image_path);
-				formData.append('logo_path', data.logo_path);
+				if (!data.banner_path) throw { message: 'Banner Image required' }
+				formData.append('title', data.title);
+				formData.append('subtitle', data.subtitle);
+				formData.append('banner_path', data.banner_path);
+				let apiURL = '';
+				if (data.name === 'Top Banner') {
+					apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';
+				} else if (data.name === 'Who We Are') {
+					apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/whoweare';
+				} else if (data.name === 'Join Us') {
+					apiURL = 'https://fathomless-plains-81425.herokuapp.com/joinus';
+				}
 				setIsLoading(true);
 				const response = await axios({
 					method: 'PUT',
-					url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + data.id,
+					url: apiURL,
 					data: formData,
 					headers: {
 						token: localStorage.access_token,
@@ -57,8 +68,16 @@ export default function GraphicEdit() {
 				console.log('EDIT RESPONSE',response);
 				if (response) {
 					dispatch({
-						type: 'UPDATE_GRAPHIC',
-						payload: { id: data.id, data: response.data }
+						type: 'UPDATE_BANNER',
+						payload: {
+							id: data.id,
+							data: {
+								title: data.title,
+								subtitle: data.subtitle,
+								// banner_path: response.data,
+								banner_path: 'https://via.placeholder.com/200x200.png?text=Grow+With+KG'
+							}
+						}
 					})
 					history.push('/dashboard');
 				}
@@ -79,7 +98,7 @@ export default function GraphicEdit() {
 
 	const handleReset = (event) => {
 		event.preventDefault();
-		setData(graphicReducer.find(
+		setData(bannerReducer.find(
 				(one) => one.id === Number(params.id))
 		);
 	};
@@ -87,32 +106,40 @@ export default function GraphicEdit() {
 	return (
 		<div className="home">
 			<AdminNavbar />
-			<h1 className="text-center my-5">Edit Infographic</h1>
+			<h1 className="text-center my-5">Edit Banner ({data.name})</h1>
 			<div className="adminCrud d-flex flex-column flex-nowrap justify-content-start align-items-center">
 			{data && (
 				<>
 					<form className="formWidth" onSubmit={handleFormSubmit}>
 						<div className="form-group">
-							<label htmlFor="main_image_path">Main Image</label>
-							<img src={data.main_image_path} alt="" className="formImg" />
+							<label htmlFor="title">Title</label>
 							<input
-								type="file"
-								className="form-control fileInput"
-								id="main_image_path"
-								name="main_image_path"
-								// value={data.main_image_path}
+								type="text"
+								id="title"
+								className="form-control"
+								value={data.title}
 								onChange={handleFormInput}
 							/>
 						</div>
 						<div className="form-group">
-							<label htmlFor="logo_path">Thumbnail</label>
-							<img src={data.logo_path} alt="" className="formImg" />
+							<label htmlFor="subtitle">Subtitle</label>
+							<textarea
+								rows="5"
+								id="subtitle"
+								className="form-control"
+								value={data.subtitle}
+								onChange={handleFormInput}
+							/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="banner_path">Main Image</label>
+							<img src={data.banner_path} alt="" className="formImg" />
 							<input
 								type="file"
 								className="form-control fileInput"
-								id="logo_path"
-								name="logo_path"
-								// value={data.logo_path}
+								id="banner_path"
+								name="banner_path"
+								// value={data.banner_path}
 								onChange={handleFormInput}
 							/>
 						</div>

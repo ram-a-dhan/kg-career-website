@@ -4,6 +4,21 @@ export default (state = [], action) => {
   switch (action.type) {
     case 'ADD_INITIAL_DATA':
       return action.payload;
+    case 'UPDATE_BANNER':
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
+      });
+      let bannerUnupdated = [...state.banner];
+      const bannerUpdated = bannerUnupdated.map(element => {
+        if (element.id === action.payload.id) {
+          return { id: element.id, ...action.payload.data }
+        } else {
+          return { ...element };
+        }
+      });
+      console.log('bannerUpdated', bannerUpdated);
+      return {...state, banner: bannerUpdated};
     case 'SUBMIT_GRAPHIC':
       toast.fire({
         icon: 'success',
