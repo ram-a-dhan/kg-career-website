@@ -28,51 +28,65 @@ export const graphicAdd = (payload, history) => {
 
 export const graphicEdit = (payload, id, history) => {
   return async(dispatch, getState) => {
-    const { data } = await axios({
-      method: 'PUT',
-      url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + id,
-      data: payload,
-      headers: {
-        token: localStorage.access_token,
-        'content-type': 'multipart/form-data'
-      },
-    });
-    dispatch({
-      type: 'UPDATE_GRAPHIC',
-      payload: { id, data }
-    });
-    history.push('/dashboard');
+    try {
+      const { data } = await axios({
+        method: 'PUT',
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + id,
+        data: payload,
+        headers: {
+          token: localStorage.access_token,
+          'content-type': 'multipart/form-data'
+        },
+      });
+      dispatch({
+        type: 'UPDATE_GRAPHIC',
+        payload: { id, data }
+      });
+      history.push('/dashboard');
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error
+      })
+    }
   }
 };
 
 export const bannerEdit = (payload, prevData, history) => {
   return async(dispatch, getState) => {
-    let apiURL = '';
-    if (prevData.name === 'Top Banner') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';
-    else if (prevData.name === 'Who We Are') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/whoweare';
-    else if (prevData.name === 'Join Us') apiURL = 'https://fathomless-plains-81425.herokuapp.com/joinus';
-    const { data } = await axios({
-      method: 'PUT',
-      url: apiURL,
-      data: payload,
-      headers: {
-        token: localStorage.access_token,
-        'content-type': 'multipart/form-data'
-      },
-    });
-    dispatch({
-      type: 'UPDATE_BANNER',
-      payload: {
-        id: prevData.id,
-        data: {
-          name: prevData.name,
-          title: prevData.title,
-          subtitle: prevData.subtitle,
-          banner_path: data.url,
+    try {
+      let apiURL = '';
+      if (prevData.name === 'Top Banner') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';
+      else if (prevData.name === 'Who We Are') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/whoweare';
+      else if (prevData.name === 'Join Us') apiURL = 'https://fathomless-plains-81425.herokuapp.com/joinus';
+      const { data } = await axios({
+        method: 'PUT',
+        url: apiURL,
+        data: payload,
+        headers: {
+          token: localStorage.access_token,
+          'content-type': 'multipart/form-data'
+        },
+      });
+      dispatch({
+        type: 'UPDATE_BANNER',
+        payload: {
+          id: prevData.id,
+          data: {
+            name: prevData.name,
+            title: prevData.title,
+            subtitle: prevData.subtitle,
+            banner_path: data.url,
+          }
         }
-      }
-    })
-    history.push('/dashboard');
+      })
+      history.push('/dashboard');
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error
+      })
+    }
   }
 };
 
