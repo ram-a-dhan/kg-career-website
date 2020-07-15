@@ -14,7 +14,6 @@ export default function Dashboard() {
 	useEffect(() => {
 		if (dataReducer) setData(dataReducer);
 	},[dataReducer]);
-	// console.log('DATAREDUCER', data);
 	
 	const handleDeleteGraphic = (graphic) => {
 		swal.fire({

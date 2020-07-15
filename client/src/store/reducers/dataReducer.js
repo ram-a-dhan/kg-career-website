@@ -14,17 +14,16 @@ export default (state = [], action) => {
         if (element.id === action.payload.id) {
           return { id: element.id, ...action.payload.data }
         } else {
-          return { ...element };
+          return {...element };
         }
       });
-      console.log('bannerUpdated', bannerUpdated);
-      return {...state, banner: bannerUpdated};
+      return {...state, banner: bannerUpdated };
     case 'SUBMIT_GRAPHIC':
       toast.fire({
         icon: 'success',
         title: 'Submit successful',
       });
-      return {...state, impact: [...state.impact, action.payload]};
+      return {...state, impact: [...state.impact, action.payload] };
     case 'UPDATE_GRAPHIC':
       toast.fire({
         icon: 'success',
@@ -35,11 +34,10 @@ export default (state = [], action) => {
         if (element.id === action.payload.id) {
           return { id: element.id, ...action.payload.data }
         } else {
-          return { ...element };
+          return {...element };
         }
       });
-      // console.log('graphicUpdated', graphicUpdated);
-      return {...state, impact: graphicUpdated};
+      return {...state, impact: graphicUpdated };
     case 'DELETE_GRAPHIC':
       toast.fire({
         icon: 'success',
@@ -47,13 +45,13 @@ export default (state = [], action) => {
       });
       let graphicUndeleted = [...state.impact];
       const graphicDeleted = graphicUndeleted.filter(element => element.id !== action.payload.id)
-      return {...state, impact: graphicDeleted};
+      return {...state, impact: graphicDeleted };
     case 'UPDATE_SOCIAL':
       toast.fire({
         icon: 'success',
         title: 'Update successful',
       });
-      return {...state, state: action.payload};
+      return {...state, state: action.payload };
     case 'ERROR_TOAST':
       let msg = '';
       if (action.payload.response) {

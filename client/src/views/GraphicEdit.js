@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import { toast } from '../helpers/swalToast';
 import AdminNavbar from '../components/AdminNavbar';
+import { graphicEdit } from '../store/actions/cmsAction';
 import './AdminCrud.css';
 
 export default function GraphicEdit() {
@@ -37,41 +37,22 @@ export default function GraphicEdit() {
 	};
 
 	const handleFormSubmit = async (event) => {
-		try {
-			event.preventDefault();
-			if (data) {
-					const formData = new FormData();
-					// eslint-disable-next-line
-					if (!data.main_image_path) throw { message: 'Main Image required' }
-					formData.append('main_image_path', data.main_image_path);
-					formData.append('logo_path', data.logo_path);
-					setIsLoading(true);
-					const response = await axios({
-						method: 'PUT',
-						url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + data.id,
-						data: formData,
-						headers: {
-							token: localStorage.access_token,
-							'content-type': 'multipart/form-data'
-						},
-					});
-					dispatch({
-						type: 'UPDATE_GRAPHIC',
-						payload: { id: data.id, data: response.data }
-					})
-					history.push('/dashboard');
-			} else {
-				toast.fire({
+		event.preventDefault();
+		if (data) {
+				const formData = new FormData();
+				if (!data.main_image_path) toast.fire({
 					icon: 'error',
 					title: 'Input at least main image'
 				});
-			}
-			setIsLoading(false);
-		} catch (error) {
-			dispatch({
-				type: 'ERROR_TOAST',
-				payload: error
-			})
+				formData.append('main_image_path', data.main_image_path);
+				formData.append('logo_path', data.logo_path);
+				setIsLoading(true);
+				dispatch(graphicEdit(formData, data.id, history));
+		} else {
+			toast.fire({
+				icon: 'error',
+				title: 'Input at least main image'
+			});
 		}
 	};
 
@@ -81,7 +62,6 @@ export default function GraphicEdit() {
 				(one) => one.id === Number(params.id))
 		);
 	};
-
 	return (
 		<div className="home">
 			<AdminNavbar />
@@ -98,7 +78,6 @@ export default function GraphicEdit() {
 								className="form-control fileInput"
 								id="main_image_path"
 								name="main_image_path"
-								// value={data.main_image_path}
 								onChange={handleFormInput}
 							/>
 						</div>
@@ -110,7 +89,6 @@ export default function GraphicEdit() {
 								className="form-control fileInput"
 								id="logo_path"
 								name="logo_path"
-								// value={data.logo_path}
 								onChange={handleFormInput}
 							/>
 						</div>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import { toast } from '../helpers/swalToast';
 import AdminNavbar from '../components/AdminNavbar';
+import { bannerEdit } from '../store/actions/cmsAction';
 import './AdminCrud.css';
 
 export default function BannerEdit() {
@@ -23,7 +23,6 @@ export default function BannerEdit() {
 	const bannerReducer = useSelector((state) => state.dataReducer.banner);
 	useEffect(() => {
 		if (bannerReducer) {
-			// console.log('BANNERREDUCER', bannerReducer);
 			setData(bannerReducer.find(
 					(one) => one.id === Number(params.id))
 			);
@@ -31,9 +30,12 @@ export default function BannerEdit() {
 	}, [bannerReducer, params]);
 
 	const handleFormInput = (event) => {
-		console.log(event.target.name);
-		const { name, value } = event.target;
-		setData({
+		const { name, value, files } = event.target;
+		if (files) setData({
+			...data,
+			[name]: files[0],
+		});
+		else setData({
 			...data,
 			[name]: value,
 		})	
@@ -45,43 +47,21 @@ export default function BannerEdit() {
 			if (data) {
 					const formData = new FormData();
 					// eslint-disable-next-line
-					if (!data.banner_path) throw { message: 'Banner Image required' }
+					if (!data.banner_path) toast.fire({
+						icon: 'error',
+						title: 'Input at least main image'
+					});
 					formData.append('title', data.title);
 					formData.append('subtitle', data.subtitle);
 					formData.append('banner_path', data.banner_path);
-					let apiURL = '';
-					if (data.name === 'Top Banner') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';
-					else if (data.name === 'Who We Are') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/whoweare';
-					else if (data.name === 'Join Us') apiURL = 'https://fathomless-plains-81425.herokuapp.com/joinus';
-					setIsLoading(true);
-					const response = await axios({
-						method: 'PUT',
-						url: apiURL,
-						data: formData,
-						headers: {
-							token: localStorage.access_token,
-							'content-type': 'multipart/form-data'
-						},
-					});
-					dispatch({
-						type: 'UPDATE_BANNER',
-						payload: {
-							id: data.id,
-							data: {
-								title: data.title,
-								subtitle: data.subtitle,
-								banner_path: response.data.url,
-							}
-						}
-					})
-					history.push('/dashboard');
+    			setIsLoading(true);
+					dispatch(bannerEdit(formData, data, history));
 			} else {
 				toast.fire({
 					icon: 'error',
 					title: 'Input at least main image'
 				});
 			}
-			setIsLoading(false);
 		} catch (error) {
 			dispatch({
 				type: 'ERROR_TOAST',
@@ -96,7 +76,6 @@ export default function BannerEdit() {
 				(one) => one.id === Number(params.id))
 		);
 	};
-	console.log(data);
 	return (
 		<div className="home">
 			<AdminNavbar />
@@ -135,7 +114,6 @@ export default function BannerEdit() {
 								className="form-control fileInput"
 								id="banner_path"
 								name="banner_path"
-								// value={data.banner_path}
 								onChange={handleFormInput}
 							/>
 						</div>
