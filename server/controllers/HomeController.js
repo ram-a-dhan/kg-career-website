@@ -153,10 +153,12 @@ class HomeController {
             const prevPathMain = impactData.main_image_path.replace(regex, 'public/');
             fs.unlinkSync(prevPathMain);
           }
-          if (req.files['logo_path'] && impactData.logo_path) {
+          if (req.files['logo_path']) {
             result.logo_path = serverUrl + req.files['logo_path'][0].path.replace('public/', '');
-            const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
-            fs.unlinkSync(prevPathLogo);
+            if (impactData.logo_path) {
+              const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
+              fs.unlinkSync(prevPathLogo);
+            }
           }
           res.status(201).json(result);
         } catch (err) {
