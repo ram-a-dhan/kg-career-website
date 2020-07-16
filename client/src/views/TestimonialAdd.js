@@ -33,21 +33,21 @@ export default function TestimonialEdit() {
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		if (data) {
-				const formData = new FormData();
-				formData.append('title', data.title);
-				formData.append('message', data.message);
-				formData.append('name', data.name);
-				formData.append('position', data.position);
-				formData.append('photo_path', data.photo_path);
-				setIsLoading(true);
-				dispatch(testimonialAdd(formData, history));
+		if (!data.title || !data.message || !data.name || !data.position || !data.photo_path) {
+      toast.fire({
+        icon: 'error',
+        title: 'Input all forms'
+      });
 		} else {
-			toast.fire({
-				icon: 'error',
-				title: 'Input at least main image'
-			});
-		}
+      const formData = new FormData();
+      formData.append('title', data.title);
+      formData.append('message', data.message);
+      formData.append('name', data.name);
+      formData.append('position', data.position);
+      formData.append('photo_path', data.photo_path);
+      setIsLoading(true);
+      dispatch(testimonialAdd(formData, history));
+    }
 	};
 	const handleReset = (event) => {
 		event.preventDefault();
@@ -64,7 +64,7 @@ export default function TestimonialEdit() {
 	return (
 		<div className="home">
 			<AdminNavbar />
-			<h1 className="text-center my-5">Edit Testimonial</h1>
+			<h1 className="text-center my-5">Add Testimonial</h1>
 			<div className="adminCrud d-flex flex-column flex-nowrap justify-content-start align-items-center">
         <form className="formWidth" onSubmit={handleFormSubmit}>
           <div className="form-group">

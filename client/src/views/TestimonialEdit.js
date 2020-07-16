@@ -44,20 +44,20 @@ export default function TestimonialEdit() {
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		if (data) {
-				const formData = new FormData();
-				formData.append('title', data.title);
-				formData.append('message', data.message);
-				formData.append('name', data.name);
-				formData.append('position', data.position);
-				formData.append('photo_path', data.photo_path);
-				setIsLoading(true);
-				dispatch(testimonialEdit(formData, data, history));
-		} else {
+		if (!data.title || !data.message || !data.name || !data.position || !data.photo_path) {
 			toast.fire({
 				icon: 'error',
-				title: 'Input at least main image'
+				title: 'Input all form'
 			});
+		} else {
+			const formData = new FormData();
+			formData.append('title', data.title);
+			formData.append('message', data.message);
+			formData.append('name', data.name);
+			formData.append('position', data.position);
+			formData.append('photo_path', data.photo_path);
+			setIsLoading(true);
+			dispatch(testimonialEdit(formData, data, history, testimonialReducer));
 		}
 	};
 

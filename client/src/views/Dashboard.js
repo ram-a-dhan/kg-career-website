@@ -26,7 +26,7 @@ export default function Dashboard() {
 			confirmButtonText: 'Delete'
 		}).then( async (result) => {
 			if (result.value) {
-				dispatch(testimonialDelete(id));
+				dispatch(testimonialDelete(id, dataReducer.testimonial));
 			}
 		})
 	}
@@ -42,7 +42,7 @@ export default function Dashboard() {
 			confirmButtonText: 'Delete'
 		}).then( async (result) => {
 			if (result.value) {
-				dispatch(graphicDelete(graphic.id));
+				dispatch(graphicDelete(graphic.id, dataReducer.impact));
 			}
 		})
 	};

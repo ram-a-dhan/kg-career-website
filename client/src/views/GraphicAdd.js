@@ -26,12 +26,8 @@ export default function GraphicAdd() {
 	
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		if (data) {
+		if (data.main_image_path) {
 			const formData = new FormData();
-			if (!data.main_image_path) toast.fire({
-				icon: 'error',
-				title: 'Input at least main image'
-			});
 			formData.append('main_image_path', data.main_image_path);
 			formData.append('logo_path', data.logo_path);
 			setIsLoading(true);

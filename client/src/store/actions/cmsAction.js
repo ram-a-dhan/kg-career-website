@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { toast } from '../../helpers/swalToast';
 
-export const graphicAdd = (payload, history) => {
+export const graphicAdd = (payload, history, setIsLoading) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
@@ -16,6 +17,10 @@ export const graphicAdd = (payload, history) => {
         type: 'SUBMIT_GRAPHIC',
         payload: data
       })
+      toast.fire({
+        icon: 'success',
+        title: 'Submit successful',
+      });
       history.push('/dashboard');
     } catch (error) {
       dispatch({
@@ -26,7 +31,7 @@ export const graphicAdd = (payload, history) => {
   }
 };
 
-export const graphicEdit = (payload, id, history) => {
+export const graphicEdit = (payload, id, history, graphicReducer) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
@@ -38,9 +43,21 @@ export const graphicEdit = (payload, id, history) => {
           'content-type': 'multipart/form-data'
         },
       });
+      let graphicUnupdated = [...graphicReducer];
+      const graphicUpdated = graphicUnupdated.map(element => {
+        if (element.id === id) {
+          return { id, ...data }
+        } else {
+          return {...element };
+        }
+      });
       dispatch({
         type: 'UPDATE_GRAPHIC',
-        payload: { id, data }
+        payload: graphicUpdated
+      });
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
       });
       history.push('/dashboard');
     } catch (error) {
@@ -52,7 +69,7 @@ export const graphicEdit = (payload, id, history) => {
   }
 };
 
-export const graphicDelete = (id) => {
+export const graphicDelete = (id, graphicReducer) => {
   return async(dispatch) => {
     try {
       const response = await axios({
@@ -63,10 +80,16 @@ export const graphicDelete = (id) => {
         },
       });
       if (response.data.msg === 'Success') {
+        let graphicUndeleted = [...graphicReducer];
+        const graphicDeleted = graphicUndeleted.filter(element => element.id !== id)
         dispatch({
           type: 'DELETE_GRAPHIC',
-          payload: { id },
+          payload: graphicDeleted
         })
+        toast.fire({
+          icon: 'success',
+          title: 'Delete successful',
+        });
       }
     } catch (error) {
       dispatch({
@@ -77,7 +100,7 @@ export const graphicDelete = (id) => {
   }
 }
 
-export const testimonialEdit = (formData, payload, history) => {
+export const testimonialEdit = (formData, payload, history, testimonialReducer) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
@@ -89,9 +112,28 @@ export const testimonialEdit = (formData, payload, history) => {
           'content-type': 'multipart/form-data'
         },
       });
+      let testimonialUnupdated = [...testimonialReducer];
+      const testimonialUpdated = testimonialUnupdated.map(element => {
+        if (element.id === payload.id) {
+          return {
+            id: payload.id,
+            title: payload.title,
+            message: payload.message,
+            name: payload.name,
+            position: payload.position,
+            photo_path: data.url
+          }
+        } else {
+          return {...element };
+        }
+      });
       dispatch({
         type: 'UPDATE_TESTIMONIAL',
-        payload: { data: payload, url: data.url }
+        payload: testimonialUpdated
+      });
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
       });
       history.push('/dashboard');
     } catch (error) {
@@ -119,6 +161,10 @@ export const testimonialAdd = (payload, history) => {
         type: 'SUBMIT_TESTIMONIAL',
         payload: data
       })
+      toast.fire({
+        icon: 'success',
+        title: 'Submit successful',
+      });
       history.push('/dashboard');
     } catch (error) {
       dispatch({
@@ -129,7 +175,7 @@ export const testimonialAdd = (payload, history) => {
   }
 }
 
-export const testimonialDelete = (id) => {
+export const testimonialDelete = (id, testimonialReducer) => {
   return async(dispatch) => {
     try {
       const response = await axios({
@@ -140,10 +186,16 @@ export const testimonialDelete = (id) => {
         },
       });
       if (response.data.msg === 'Success') {
+        let testimonialUndeleted = [...testimonialReducer];
+        const testimonialDeleted = testimonialUndeleted.filter(element => element.id !== id)
         dispatch({
           type: 'DELETE_TESTIMONIAL',
-          payload: { id },
+          payload: testimonialDeleted
         })
+        toast.fire({
+          icon: 'success',
+          title: 'Delete successful',
+        });
       }
     } catch (error) {
       dispatch({
@@ -154,7 +206,7 @@ export const testimonialDelete = (id) => {
   }
 }
 
-export const bannerEdit = (payload, prevData, history) => {
+export const bannerEdit = (payload, prevData, history, bannerReducer) => {
   return async(dispatch, getState) => {
     try {
       let apiURL = '';
@@ -170,18 +222,28 @@ export const bannerEdit = (payload, prevData, history) => {
           'content-type': 'multipart/form-data'
         },
       });
+      let bannerUnupdated = [...bannerReducer];
+      const newData = {
+        name: prevData.name,
+        title: prevData.title,
+        subtitle: prevData.subtitle,
+        banner_path: data.url,
+      }
+      const bannerUpdated = bannerUnupdated.map(element => {
+        if (element.id === prevData.id) {
+          return { id: element.id, ...newData }
+        } else {
+          return {...element };
+        }
+      });
       dispatch({
         type: 'UPDATE_BANNER',
-        payload: {
-          id: prevData.id,
-          data: {
-            name: prevData.name,
-            title: prevData.title,
-            subtitle: prevData.subtitle,
-            banner_path: data.url,
-          }
-        }
+        payload: bannerUpdated
       })
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
+      });
       history.push('/dashboard');
     } catch (error) {
       dispatch({
@@ -192,7 +254,7 @@ export const bannerEdit = (payload, prevData, history) => {
   }
 };
 
-export const updateSocial = (id, updatedData) => {
+export const updateSocial = (id, updatedData, history) => {
   return async(dispatch, getState) => {
     try {
       const response = await axios({
@@ -213,6 +275,11 @@ export const updateSocial = (id, updatedData) => {
           type: 'UPDATE_SOCIAL',
           payload: newData,
         });
+        toast.fire({
+          icon: 'success',
+          title: 'Update successful',
+        });
+        history.push('/dashboard');
       }
     } catch (error) {
       dispatch({
