@@ -77,14 +77,13 @@ export const graphicDelete = (id) => {
   }
 }
 
-export const testimonialEdit = (payload, id, history) => {
+export const testimonialEdit = (formData, payload, history) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
         method: 'PUT',
-        url: 'http://localhost:3001/home/testimonial/' + id,
-        // url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial/' + id,
-        data: payload,
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial/' + payload.id,
+        data: formData,
         headers: {
           token: localStorage.access_token,
           'content-type': 'multipart/form-data'
@@ -92,7 +91,7 @@ export const testimonialEdit = (payload, id, history) => {
       });
       dispatch({
         type: 'UPDATE_TESTIMONIAL',
-        payload: { id, data }
+        payload: { data: payload, url: data.url }
       });
       history.push('/dashboard');
     } catch (error) {
@@ -103,6 +102,32 @@ export const testimonialEdit = (payload, id, history) => {
     }
   }
 };
+
+export const testimonialAdd = (payload, history) => {
+  return async(dispatch) => {
+    try {
+      const { data } = await axios({
+        method: 'POST',
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial',
+        data: payload,
+        headers: {
+          token: localStorage.access_token,
+          'content-type': 'multipart/form-data'
+        },
+      });
+      dispatch({
+        type: 'SUBMIT_TESTIMONIAL',
+        payload: data
+      })
+      history.push('/dashboard');
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error
+      })
+    }
+  }
+}
 
 export const testimonialDelete = (id) => {
   return async(dispatch) => {

@@ -148,7 +148,7 @@ export default function Dashboard() {
 				<a href="#">
 					<button
 						className="btn btn-outline-primary mb-3"
-						// onClick={() => history.push('/testimonial-add')}
+						onClick={() => history.push('/testimonial-add')}
 					>
 						Add
 					</button>

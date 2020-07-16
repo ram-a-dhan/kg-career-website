@@ -52,7 +52,7 @@ export default function TestimonialEdit() {
 				formData.append('position', data.position);
 				formData.append('photo_path', data.photo_path);
 				setIsLoading(true);
-				dispatch(testimonialEdit(formData, data.id, history));
+				dispatch(testimonialEdit(formData, data, history));
 		} else {
 			toast.fire({
 				icon: 'error',

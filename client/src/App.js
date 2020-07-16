@@ -15,6 +15,7 @@ import GraphicAdd from './views/GraphicAdd';
 import GraphicEdit from './views/GraphicEdit';
 import SocialEdit from './views/SocialEdit';
 import TestimonialEdit from './views/TestimonialEdit';
+import TestimonialAdd from './views/TestimonialAdd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
 					<PrivateRoute exact path="/graphic-edit/:id" component={GraphicEdit} />
 					<PrivateRoute exact path="/social-edit/:id" component={SocialEdit} />
 					<PrivateRoute exact path="/testimonial-edit/:id" component={TestimonialEdit} />
+					<PrivateRoute exact path="/testimonial-add" component={TestimonialAdd} />
 				</Switch>
 				<Footer />
 			</BrowserRouter>

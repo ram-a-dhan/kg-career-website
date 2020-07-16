@@ -45,13 +45,26 @@ export default (state = [], action) => {
       });
       let testimonialUnupdated = [...state.testimonial];
       const testimonialUpdated = testimonialUnupdated.map(element => {
-        if (element.id === action.payload.id) {
-          return { id: element.id, ...action.payload.data }
+        if (element.id === action.payload.data.id) {
+          return {
+            id: action.payload.data.id,
+            title: action.payload.data.title,
+            message: action.payload.data.message,
+            name: action.payload.data.name,
+            position: action.payload.data.position,
+            photo_path: action.payload.url
+          }
         } else {
           return {...element };
         }
       });
       return {...state, testimonial: testimonialUpdated };
+    case 'SUBMIT_TESTIMONIAL':
+      toast.fire({
+        icon: 'success',
+        title: 'Submit successful',
+      });
+      return {...state, testimonial: [...state.testimonial, action.payload] };
     case 'DELETE_TESTIMONIAL':
       toast.fire({
         icon: 'success',
