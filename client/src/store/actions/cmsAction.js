@@ -52,8 +52,22 @@ export const graphicEdit = (payload, id, history) => {
   }
 };
 
+export const testimonialEdit = (payload, id, history) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios({
+        method: 'PUT',
+        url: '',
+        
+      });
+    } catch (error) {
+      
+    }
+  }
+};
+
 export const bannerEdit = (payload, prevData, history) => {
-  return async(dispatch, getState) => {
+  return async (dispatch, getState) => {
     try {
       let apiURL = '';
       if (prevData.name === 'Top Banner') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';

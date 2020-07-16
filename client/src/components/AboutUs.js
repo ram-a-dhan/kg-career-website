@@ -18,16 +18,21 @@ const AboutUs = () => {
       <div className="aboutUs" style={aboutUs}>
         <div data-aos="fade-right">
           <div className="aboutText rounded-lg" style={aboutText}>
-            <h1 className="aboutH1 text-right mb-1" style={aboutH1}>
-              { bannerData.title }
-            </h1>
-            <p className="aboutP1 text-right m-0" style={aboutP1}>
+            <h1
+              className="aboutH1 text-right mb-1"
+              style={aboutH1}
+              dangerouslySetInnerHTML={{__html: bannerData.title}}
+            ></h1>
+            <p
+              className="aboutP1 text-right m-0"
+              style={aboutP1}
+              dangerouslySetInnerHTML={{__html: bannerData.subtitle}}
+            >
               {/* Kompas Gramedia (KG) is the biggest media conglomerate in Indonesia. We aim to be&nbsp;
               <span style={{textDecoration: 'underline'}}>
                 the biggest, best, integrated and spread in South East Asia through knowledge base industry to create
                 well educated society, enlighten and respect to cultural differences and social welfare.
               </span> */}
-              { bannerData.subtitle }
             </p>
           </div>
         </div>

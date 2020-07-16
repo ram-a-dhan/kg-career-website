@@ -14,8 +14,13 @@ const GrowSlide = (props) => {
 					<h6 className="growH2 mt-2" style={growH2}>
 						&nbsp; &nbsp; &nbsp; <del>Working</del> Growing With KG
 					</h6>
-					<h1 id={`growTitle${props.testimony.id}`} className="growH1 text-left mb-3" style={growH1}>
-						&nbsp; &nbsp; {props.testimony.title}
+					<h1
+						id={`growTitle${props.testimony.id}`}
+						className="growH1 text-left mb-3"
+						style={growH1}
+						dangerouslySetInnerHTML={{__html: `&nbsp; &nbsp; ${props.testimony.title}`}}
+					>
+						{/* &nbsp; &nbsp; {props.testimony.title} */}
 					</h1>
 					<span className="d-flex flex-row flex-nowrap">
 						<p
@@ -29,9 +34,11 @@ const GrowSlide = (props) => {
 						>
 							"
 						</p>
-						<p className="growP1 mb-1 text-left" style={growP1}>
-							{props.testimony.message}
-						</p>
+						<p
+							className="growP1 mb-1 text-left"
+							style={growP1}
+							dangerouslySetInnerHTML={{__html: props.testimony.message}}
+						></p>
 					</span>
 					<p className="growP2 mb-0" style={growP2}>
 						{props.testimony.name + ', ' + props.testimony.position}

@@ -25,8 +25,16 @@ const BannerHome = () => {
 			className="bannerHome d-flex flex-column justify-content-center align-items-center"
 			style={{...bannerHome, backgroundImage: `url(${bannerData.banner_path})`,}}
 		>
-			<h1 className="bannerHomeH1 text-light text-center" style={bannerHomeH1}>{ bannerData.title }</h1>
-			<h5 className="bannerHomeH2 text-light text-center" style={bannerHomeH1}>{ bannerData.subtitle }</h5>
+			<h1
+				className="bannerHomeH1 text-light text-center"
+				style={bannerHomeH1}
+				dangerouslySetInnerHTML={{__html: bannerData.title}}
+			></h1>
+			<h5
+				className="bannerHomeH2 text-light text-center"
+				style={bannerHomeH1}
+				dangerouslySetInnerHTML={{__html: bannerData.subtitle}}
+			></h5>
 			<button
 				className="btn btn-kg rounded-pill"
 				onClick={() => clickJobs()}
