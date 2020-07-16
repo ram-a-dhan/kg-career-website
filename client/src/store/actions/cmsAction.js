@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { toast } from '../../helpers/swalToast';
 
-export const graphicAdd = (payload, history) => {
+export const graphicAdd = (payload, history, setIsLoading) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
@@ -16,6 +17,10 @@ export const graphicAdd = (payload, history) => {
         type: 'SUBMIT_GRAPHIC',
         payload: data
       })
+      toast.fire({
+        icon: 'success',
+        title: 'Submit successful',
+      });
       history.push('/dashboard');
     } catch (error) {
       dispatch({
@@ -26,7 +31,7 @@ export const graphicAdd = (payload, history) => {
   }
 };
 
-export const graphicEdit = (payload, id, history) => {
+export const graphicEdit = (payload, id, history, graphicReducer) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
@@ -38,9 +43,21 @@ export const graphicEdit = (payload, id, history) => {
           'content-type': 'multipart/form-data'
         },
       });
+      let graphicUnupdated = [...graphicReducer];
+      const graphicUpdated = graphicUnupdated.map(element => {
+        if (element.id === id) {
+          return { id, ...data }
+        } else {
+          return {...element };
+        }
+      });
       dispatch({
         type: 'UPDATE_GRAPHIC',
-        payload: { id, data }
+        payload: graphicUpdated
+      });
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
       });
       history.push('/dashboard');
     } catch (error) {
@@ -52,22 +69,145 @@ export const graphicEdit = (payload, id, history) => {
   }
 };
 
-export const testimonialEdit = (payload, id, history) => {
-  return async (dispatch, getState) => {
+export const graphicDelete = (id, graphicReducer) => {
+  return async(dispatch) => {
     try {
       const response = await axios({
-        method: 'PUT',
-        url: '',
-        
+        method: 'DELETE',
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + id,
+        headers: {
+          token: localStorage.access_token,
+        },
       });
+      if (response.data.msg === 'Success') {
+        let graphicUndeleted = [...graphicReducer];
+        const graphicDeleted = graphicUndeleted.filter(element => element.id !== id)
+        dispatch({
+          type: 'DELETE_GRAPHIC',
+          payload: graphicDeleted
+        })
+        toast.fire({
+          icon: 'success',
+          title: 'Delete successful',
+        });
+      }
     } catch (error) {
-      
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error,
+      })
+    }
+  }
+}
+
+export const testimonialEdit = (formData, payload, history, testimonialReducer) => {
+  return async(dispatch, getState) => {
+    try {
+      const { data } = await axios({
+        method: 'PUT',
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial/' + payload.id,
+        data: formData,
+        headers: {
+          token: localStorage.access_token,
+          'content-type': 'multipart/form-data'
+        },
+      });
+      let testimonialUnupdated = [...testimonialReducer];
+      const testimonialUpdated = testimonialUnupdated.map(element => {
+        if (element.id === payload.id) {
+          return {
+            id: payload.id,
+            title: payload.title,
+            message: payload.message,
+            name: payload.name,
+            position: payload.position,
+            photo_path: data.url
+          }
+        } else {
+          return {...element };
+        }
+      });
+      dispatch({
+        type: 'UPDATE_TESTIMONIAL',
+        payload: testimonialUpdated
+      });
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
+      });
+      history.push('/dashboard');
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error,
+      })
     }
   }
 };
 
-export const bannerEdit = (payload, prevData, history) => {
-  return async (dispatch, getState) => {
+export const testimonialAdd = (payload, history) => {
+  return async(dispatch) => {
+    try {
+      const { data } = await axios({
+        method: 'POST',
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial',
+        data: payload,
+        headers: {
+          token: localStorage.access_token,
+          'content-type': 'multipart/form-data'
+        },
+      });
+      dispatch({
+        type: 'SUBMIT_TESTIMONIAL',
+        payload: data
+      })
+      toast.fire({
+        icon: 'success',
+        title: 'Submit successful',
+      });
+      history.push('/dashboard');
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error
+      })
+    }
+  }
+}
+
+export const testimonialDelete = (id, testimonialReducer) => {
+  return async(dispatch) => {
+    try {
+      const response = await axios({
+        method: 'DELETE',
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial/' + id,
+        headers: {
+          token: localStorage.access_token,
+        },
+      });
+      if (response.data.msg === 'Success') {
+        let testimonialUndeleted = [...testimonialReducer];
+        const testimonialDeleted = testimonialUndeleted.filter(element => element.id !== id)
+        dispatch({
+          type: 'DELETE_TESTIMONIAL',
+          payload: testimonialDeleted
+        })
+        toast.fire({
+          icon: 'success',
+          title: 'Delete successful',
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error,
+      })
+    }
+  }
+}
+
+export const bannerEdit = (payload, prevData, history, bannerReducer) => {
+  return async(dispatch, getState) => {
     try {
       let apiURL = '';
       if (prevData.name === 'Top Banner') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';
@@ -82,18 +222,28 @@ export const bannerEdit = (payload, prevData, history) => {
           'content-type': 'multipart/form-data'
         },
       });
+      let bannerUnupdated = [...bannerReducer];
+      const newData = {
+        name: prevData.name,
+        title: prevData.title,
+        subtitle: prevData.subtitle,
+        banner_path: data.url,
+      }
+      const bannerUpdated = bannerUnupdated.map(element => {
+        if (element.id === prevData.id) {
+          return { id: element.id, ...newData }
+        } else {
+          return {...element };
+        }
+      });
       dispatch({
         type: 'UPDATE_BANNER',
-        payload: {
-          id: prevData.id,
-          data: {
-            name: prevData.name,
-            title: prevData.title,
-            subtitle: prevData.subtitle,
-            banner_path: data.url,
-          }
-        }
+        payload: bannerUpdated
       })
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
+      });
       history.push('/dashboard');
     } catch (error) {
       dispatch({
@@ -104,7 +254,7 @@ export const bannerEdit = (payload, prevData, history) => {
   }
 };
 
-export const updateSocial = (id, updatedData) => {
+export const updateSocial = (id, updatedData, history) => {
   return async(dispatch, getState) => {
     try {
       const response = await axios({
@@ -125,6 +275,11 @@ export const updateSocial = (id, updatedData) => {
           type: 'UPDATE_SOCIAL',
           payload: newData,
         });
+        toast.fire({
+          icon: 'success',
+          title: 'Update successful',
+        });
+        history.push('/dashboard');
       }
     } catch (error) {
       dispatch({

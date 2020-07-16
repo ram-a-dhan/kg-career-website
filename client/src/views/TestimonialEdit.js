@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from '../helpers/swalToast';
 import AdminNavbar from '../components/AdminNavbar';
-// import { testimonialEdit } from '../store/actions/cmsAction';
+import { testimonialEdit } from '../store/actions/cmsAction';
 import './AdminCrud.css';
 
 export default function TestimonialEdit() {
@@ -43,34 +43,21 @@ export default function TestimonialEdit() {
 	};
 
 	const handleFormSubmit = async (event) => {
-		try {
-			event.preventDefault();
-			if (data) {
-					const formData = new FormData();
-					// // eslint-disable-next-line
-					// if (!data.photo_path) toast.fire({
-					// 	icon: 'error',
-					// 	title: 'Input at least main image'
-					// });
-					formData.append('title', data.title);
-					formData.append('message', data.message);
-					formData.append('name', data.name);
-					formData.append('position', data.position);
-					formData.append('photo_path', data.photo_path);
-    			setIsLoading(true);
-					dispatch(testimonialEdit(formData, data, history));
-			}
-			// else {
-			// 	toast.fire({
-			// 		icon: 'error',
-			// 		title: 'Input at least main image'
-			// 	});
-			// }
-		} catch (error) {
-			dispatch({
-				type: 'ERROR_TOAST',
-				payload: error
-			})
+		event.preventDefault();
+		if (!data.title || !data.message || !data.name || !data.position || !data.photo_path) {
+			toast.fire({
+				icon: 'error',
+				title: 'Input all form'
+			});
+		} else {
+			const formData = new FormData();
+			formData.append('title', data.title);
+			formData.append('message', data.message);
+			formData.append('name', data.name);
+			formData.append('position', data.position);
+			formData.append('photo_path', data.photo_path);
+			setIsLoading(true);
+			dispatch(testimonialEdit(formData, data, history, testimonialReducer));
 		}
 	};
 

@@ -34,12 +34,12 @@ class HomeController {
           if (req.file) {
             const regex = new RegExp(serverUrl, "g");
             const prevPath = prevBanner.banner_path.replace(regex, 'public/');
-            fs.unlinkSync(prevPath);
+            // fs.unlinkSync(prevPath);
             result = serverUrl + req.file.path.replace('public/', '');
           }
           res.status(200).json({ url: result });
         } catch (err) {
-          if (req.file) fs.unlinkSync(req.file.path);
+          // if (req.file) fs.unlinkSync(req.file.path);
           next(err);
         }
       });
@@ -74,12 +74,12 @@ class HomeController {
           if (req.file) {
             const regex = new RegExp(serverUrl, "g");
             const prevPath = prevBanner.banner_path.replace(regex, 'public/');
-            fs.unlinkSync(prevPath);
+            // fs.unlinkSync(prevPath);
             result = serverUrl + req.file.path.replace('public/', '');
           }
           res.status(200).json({ url: result });
         } catch (err) {
-          if (req.file) fs.unlinkSync(req.file.path);
+          // if (req.file) fs.unlinkSync(req.file.path);
           next(err);
         }
       });
@@ -115,7 +115,7 @@ class HomeController {
           const result = await impact.create({ logo_path, main_image_path });
           res.status(201).json(result);
         } catch (err) {
-          if (req.file) fs.unlinkSync(req.file.path);
+          // if (req.file) fs.unlinkSync(req.file.path);
           next(err);
         }
       });
@@ -151,19 +151,19 @@ class HomeController {
           if (req.files['main_image_path'] && impactData.main_image_path) {
             result.main_image_path = serverUrl + req.files['main_image_path'][0].path.replace('public/', '');
             const prevPathMain = impactData.main_image_path.replace(regex, 'public/');
-            fs.unlinkSync(prevPathMain);
+            // fs.unlinkSync(prevPathMain);
           }
           if (req.files['logo_path']) {
             result.logo_path = serverUrl + req.files['logo_path'][0].path.replace('public/', '');
             if (impactData.logo_path) {
               const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
-              fs.unlinkSync(prevPathLogo);
+              // fs.unlinkSync(prevPathLogo);
             }
           }
           res.status(201).json(result);
         } catch (err) {
-          if (req.files['main_image_path']) fs.unlinkSync(req.files['main_image_path'][0].path);
-          if (req.files['logo_path']) fs.unlinkSync(req.files['logo_path'][0].path);
+          // if (req.files['main_image_path']) fs.unlinkSync(req.files['main_image_path'][0].path);
+          // if (req.files['logo_path']) fs.unlinkSync(req.files['logo_path'][0].path);
           next(err);
         }
       });
@@ -180,8 +180,8 @@ class HomeController {
       const regex = new RegExp(serverUrl, "g");
       const prevPathLogo = impactData.logo_path.replace(regex, 'public/');
       const prevPathMain = impactData.main_image_path.replace(regex, 'public/');
-      if (impactData.logo_path) fs.unlinkSync(prevPathLogo);
-      if (impactData.main_image_path) fs.unlinkSync(prevPathMain);
+      // if (impactData.logo_path) fs.unlinkSync(prevPathLogo);
+      // if (impactData.main_image_path) fs.unlinkSync(prevPathMain);
       res.status(200).json({ msg: 'Success' });
     } catch (err) {
       next(err);
@@ -212,18 +212,19 @@ class HomeController {
         try {
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
-          const { title, message, job_description } = req.body;
-          if (!title || !message || !job_description || !req.file) throw createError(400, 'Input all forms');
+          const { title, message, name, position } = req.body;
+          if (!title || !message || !name || !position || !req.file) throw createError(400, 'Input all forms');
           const photo_path = serverUrl + req.file.path.replace('public/', '');
           const result = await testimonial.create({
             title,
             message,
-            job_description,
+            name,
+            position,
             photo_path
           });
           res.status(201).json(result);
         } catch (err) {
-          if (req.file) fs.unlinkSync(req.file.path);
+          // if (req.file) fs.unlinkSync(req.file.path);
           next(err);
         }
       });
@@ -252,9 +253,9 @@ class HomeController {
         try {
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
-          const { title, message, job_description } = req.body;
-          let query = { title, message, job_description };
-          if (!title || !message || !job_description) throw createError(400, 'Input all forms');
+          const { title, message, name, position } = req.body;
+          let query = { title, message, name, position };
+          if (!title || !message || !name || !position ) throw createError(400, 'Input all forms');
           if (req.file) query.photo_path = serverUrl + req.file.path.replace('public/', '');
           await testimonial.update(query, {
             where: {
@@ -265,12 +266,12 @@ class HomeController {
           if (req.file) {
             const regex = new RegExp(serverUrl, "g");
             const prevPath = testimonialData.photo_path.replace(regex, 'public/');
-            fs.unlinkSync(prevPath);
+            // fs.unlinkSync(prevPath);
             result = serverUrl + req.file.path.replace('public/', '');
           }
           res.status(200).json({ url: result });
         } catch (err) {
-          if (req.file) fs.unlinkSync(req.file.path);
+          // if (req.file) fs.unlinkSync(req.file.path);
           next(err);
         }
       });
@@ -286,7 +287,7 @@ class HomeController {
       await testimonial.destroy({ where: { id } });
       const regex = new RegExp(serverUrl, "g");
       const prevPath = testimonialData.photo_path.replace(regex, 'public/');
-      fs.unlinkSync(prevPath);
+      // fs.unlinkSync(prevPath);
       res.status(200).json({ msg: 'Success' });
     } catch (err) {
       next(err);

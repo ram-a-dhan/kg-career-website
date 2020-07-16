@@ -47,7 +47,7 @@ export default function GraphicEdit() {
 				formData.append('main_image_path', data.main_image_path);
 				formData.append('logo_path', data.logo_path);
 				setIsLoading(true);
-				dispatch(graphicEdit(formData, data.id, history));
+				dispatch(graphicEdit(formData, data.id, history, graphicReducer));
 		} else {
 			toast.fire({
 				icon: 'error',

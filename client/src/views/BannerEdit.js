@@ -55,7 +55,7 @@ export default function BannerEdit() {
 					formData.append('subtitle', data.subtitle);
 					formData.append('banner_path', data.banner_path);
     			setIsLoading(true);
-					dispatch(bannerEdit(formData, data, history));
+					dispatch(bannerEdit(formData, data, history, bannerReducer));
 			} else {
 				toast.fire({
 					icon: 'error',

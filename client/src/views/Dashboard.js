@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import AdminNavbar from '../components/AdminNavbar';
-import axios from 'axios';
 import swal from 'sweetalert2';
+import { testimonialDelete, graphicDelete } from '../store/actions/cmsAction';
 import './Dashboard.css';
 
 export default function Dashboard() {
@@ -15,6 +15,21 @@ export default function Dashboard() {
 		if (dataReducer) setData(dataReducer);
 	},[dataReducer]);
 	
+	const handleDeleteTestimonial = (id) => {
+		swal.fire({
+			title: 'Delete this Testimonial?',
+			imageHeight: 200,
+			imageAlt: 'Infographic',
+			showCancelButton: true,
+			confirmButtonColor: '#DC3545',
+			cancelButtonColor: '#007BFF',
+			confirmButtonText: 'Delete'
+		}).then( async (result) => {
+			if (result.value) {
+				dispatch(testimonialDelete(id, dataReducer.testimonial));
+			}
+		})
+	}
 	const handleDeleteGraphic = (graphic) => {
 		swal.fire({
 			title: 'Delete this Infograph?',
@@ -27,26 +42,7 @@ export default function Dashboard() {
 			confirmButtonText: 'Delete'
 		}).then( async (result) => {
 			if (result.value) {
-				try {
-					const response = await axios({
-						method: 'DELETE',
-						url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + graphic.id,
-						headers: {
-							token: localStorage.access_token,
-						},
-					});
-					if (response.data.msg === 'Success') {
-						dispatch({
-							type: 'DELETE_GRAPHIC',
-							payload: { id: graphic.id },
-						})
-					}
-				} catch (error) {
-					dispatch({
-						type: 'ERROR_TOAST',
-						payload: error,
-					})
-				}
+				dispatch(graphicDelete(graphic.id, dataReducer.impact));
 			}
 		})
 	};
@@ -152,7 +148,7 @@ export default function Dashboard() {
 				<a href="#">
 					<button
 						className="btn btn-outline-primary mb-3"
-						// onClick={() => history.push('/testimonial-add')}
+						onClick={() => history.push('/testimonial-add')}
 					>
 						Add
 					</button>
@@ -181,14 +177,14 @@ export default function Dashboard() {
 											<a href="#">
 												<button
 													className="btn btn-outline-warning m-1"
-													// onClick={() => history.push('/testimonial-edit/' + testi.id)}
+													onClick={() => history.push('/testimonial-edit/' + testi.id)}
 												>
 													Edit
 												</button>
 											</a>
 												<button
 													className="btn btn-outline-danger"
-													// onClick={handleDeleteTestimonial(testi.id)}
+													onClick={ () => handleDeleteTestimonial(testi.id) }
 												>
 													Delete
 												</button>
