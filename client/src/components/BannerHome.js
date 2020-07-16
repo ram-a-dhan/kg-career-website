@@ -32,7 +32,7 @@ const BannerHome = () => {
 			></h1>
 			<h5
 				className="bannerHomeH2 text-light text-center"
-				style={bannerHomeH1}
+				style={bannerHomeH2}
 				dangerouslySetInnerHTML={{__html: bannerData.subtitle}}
 			></h5>
 			<button
@@ -57,7 +57,10 @@ const bannerHome = {
 
 const bannerHomeH1 = {
 	fontWeight: '400',
-	marginTop: '6rem',
+};
+
+const bannerHomeH2 = {
+	fontWeight: '400',
 };
 
 const buttonJoin = {

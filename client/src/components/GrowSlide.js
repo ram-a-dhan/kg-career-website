@@ -18,7 +18,7 @@ const GrowSlide = (props) => {
 						id={`growTitle${props.testimony.id}`}
 						className="growH1 text-left mb-3"
 						style={growH1}
-						dangerouslySetInnerHTML={{__html: `&nbsp; &nbsp; ${props.testimony.title}`}}
+						dangerouslySetInnerHTML={{__html: props.testimony.title}}
 					>
 						{/* &nbsp; &nbsp; {props.testimony.title} */}
 					</h1>
@@ -44,14 +44,15 @@ const GrowSlide = (props) => {
 						{props.testimony.name + ', ' + props.testimony.position}
 					</p>
 				</div>
-				<div data-aos="fade-right">
+				{/* <div data-aos="fade-right"> */}
 					<img
+						data-aos="fade-right"
 						src={ props.testimony.photo_path }
 						alt=""
 						className="growPic"
 						style={growPic}
 					/>
-				</div>
+				{/* </div> */}
 			</div>
 			<div data-aos="fade-right" id={`growShape${counter}`}></div>
 			<div

@@ -1,6 +1,7 @@
 @media (min-width: 480px) {
   .bannerHomeH1 {
     font-size: 7vh;
+	  margin-top: 20vh;
   }
   .bannerHomeH2 {
     font-size: 3vh;
@@ -15,7 +16,8 @@
 @media (max-width: 479px) {
   .bannerHomeH1 {
     font-size: 4vh;
-  }
+	  margin-top: 12vh;
+}
   .bannerHomeH2 {
     font-size: 2vh;
   }

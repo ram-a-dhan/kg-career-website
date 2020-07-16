@@ -15,8 +15,8 @@ const SocialMedia = () => {
 	}, [socialMediaReducer]);
 	return (
 		<div className="socialMedia" style={socialMedia}>
-			<div data-aos="fade-right">
-				<div className="socialText m-3 float-left d-flex flex-row justify-content-center align-items-center" style={socialText}>
+			{/* <div data-aos="fade-right"> */}
+				<div data-aos="fade-right" className="socialText m-3 float-left d-flex flex-row justify-content-center align-items-center" style={socialText}>
 					<div>
 						<h1 className="socialH1 text-left" style={socialH1}>Stay Connected!</h1>
 						<p className="socialP1 text-left" style={socialP1}>
@@ -70,10 +70,10 @@ const SocialMedia = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-			<div data-aos="fade-left">
-				<img src="./socialPic.png" alt="" className="socialPic right" style={socialPic} />
-			</div>
+			{/* </div> */}
+			{/* <div data-aos="fade-left"> */}
+				<img data-aos="fade-left" src="./socialPic.png" alt="" className="socialPic right" style={socialPic} />
+			{/* </div> */}
 		</div>
 	);
 };

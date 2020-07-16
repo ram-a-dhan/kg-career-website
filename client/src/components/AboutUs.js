@@ -37,9 +37,9 @@ const AboutUs = () => {
           </div>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div data-aos="fade-left">
-            <img src={ bannerData.banner_path } alt="" className="aboutPic" style={aboutPic} />
-          </div>
+          {/* <div data-aos="fade-left"> */}
+            <img data-aos="fade-left" src={ bannerData.banner_path } alt="" className="aboutPic" style={aboutPic} />
+          {/* </div> */}
         </div>
       </div>
       <div className="d-flex flex-row flex-wrap justify-content-end align-items-center" style={stripeContainer}>
