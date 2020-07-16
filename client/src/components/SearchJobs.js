@@ -6,6 +6,8 @@ import useFilter from '../hooks/useFilter';
 
 const SearchJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('');
   const { filtered, setFiltered, onChangeText } = useFilter(jobs);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -15,6 +17,7 @@ const SearchJobs = () => {
   const getJobs = async () => {
     const count = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=0')
     if (!count) return false;
+    setCategories(count.data.function_list);
     const vacancies = await axios.get('https://www.kalibrr.id/api/companies/kompas-gramedia/jobs?offset=0&limit=' + count.data.total_count)
     if (!vacancies) return false;
     let job = [];
@@ -37,10 +40,14 @@ const SearchJobs = () => {
     getJobs();
   };
 
+  const handleCategory = (event) => {
+    const value = event.target.value
+    setActiveCategory(`${value}`);
+  };
+
   useEffect(() => {
     getJobs();
   },[]);
-
   return (
     <div id="searchJobs" className="searchJobs d-flex flex-column justify-content-start align-items-center" style={searchJobs}>
       {
@@ -60,11 +67,44 @@ const SearchJobs = () => {
               type="search"
               onChange={onChangeText}
               placeholder="Search by Keyword"
-              className="filterBox text-dark text-center p-1" style={filterBox}
+              className="filterBox text-dark text-center p-1"
+              style={filterBox}
             />
-            {filtered.map(job => {
-              return <JobCard key={job.id} job={job} />
-            })}
+            <select
+              onChange={handleCategory}
+              className="filterBox text-dark text-center p-1"
+              style={filterBox}
+            >
+              <option value="" selected>All Jobs</option>
+              {categories.map((cat, idx) =>{
+                return (
+                  <option key={idx} value={cat}>{cat}</option>
+                )
+              })}
+            </select>
+            {/* eslint-disable-next-line */}
+            {activeCategory &&
+              filtered
+                .filter(element => 
+                  element.category === activeCategory
+                )
+                .map(job => {
+                  return <JobCard key={job.id} job={job} />
+                })
+              /* eslint-disable-next-line */
+              ||
+              filtered
+                .map(job => {
+                  return <JobCard key={job.id} job={job} />
+                })
+              // || (
+              //   <p className="text-center text-dark">
+              //     No results found.
+              //     <br />
+              //     Change the keyword and / or category.
+              //   </p>
+              // )
+            }
           </>
         )
       }
