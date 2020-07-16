@@ -52,22 +52,85 @@ export const graphicEdit = (payload, id, history) => {
   }
 };
 
-export const testimonialEdit = (payload, id, history) => {
-  return async (dispatch, getState) => {
+export const graphicDelete = (id) => {
+  return async(dispatch) => {
     try {
       const response = await axios({
-        method: 'PUT',
-        url: '',
-        
+        method: 'DELETE',
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + id,
+        headers: {
+          token: localStorage.access_token,
+        },
       });
+      if (response.data.msg === 'Success') {
+        dispatch({
+          type: 'DELETE_GRAPHIC',
+          payload: { id },
+        })
+      }
     } catch (error) {
-      
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error,
+      })
+    }
+  }
+}
+
+export const testimonialEdit = (payload, id, history) => {
+  return async(dispatch, getState) => {
+    try {
+      const { data } = await axios({
+        method: 'PUT',
+        url: 'http://localhost:3001/home/testimonial/' + id,
+        // url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial/' + id,
+        data: payload,
+        headers: {
+          token: localStorage.access_token,
+          'content-type': 'multipart/form-data'
+        },
+      });
+      dispatch({
+        type: 'UPDATE_TESTIMONIAL',
+        payload: { id, data }
+      });
+      history.push('/dashboard');
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error,
+      })
     }
   }
 };
 
+export const testimonialDelete = (id) => {
+  return async(dispatch) => {
+    try {
+      const response = await axios({
+        method: 'DELETE',
+        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial/' + id,
+        headers: {
+          token: localStorage.access_token,
+        },
+      });
+      if (response.data.msg === 'Success') {
+        dispatch({
+          type: 'DELETE_TESTIMONIAL',
+          payload: { id },
+        })
+      }
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error,
+      })
+    }
+  }
+}
+
 export const bannerEdit = (payload, prevData, history) => {
-  return async (dispatch, getState) => {
+  return async(dispatch, getState) => {
     try {
       let apiURL = '';
       if (prevData.name === 'Top Banner') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';

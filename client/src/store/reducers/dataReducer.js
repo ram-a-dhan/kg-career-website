@@ -38,6 +38,28 @@ export default (state = [], action) => {
         }
       });
       return {...state, impact: graphicUpdated };
+    case 'UPDATE_TESTIMONIAL':
+      toast.fire({
+        icon: 'success',
+        title: 'Update successful',
+      });
+      let testimonialUnupdated = [...state.testimonial];
+      const testimonialUpdated = testimonialUnupdated.map(element => {
+        if (element.id === action.payload.id) {
+          return { id: element.id, ...action.payload.data }
+        } else {
+          return {...element };
+        }
+      });
+      return {...state, testimonial: testimonialUpdated };
+    case 'DELETE_TESTIMONIAL':
+      toast.fire({
+        icon: 'success',
+        title: 'Delete successful',
+      });
+      let testimonialUndeleted = [...state.testimonial];
+      const testimonialDeleted = testimonialUndeleted.filter(element => element.id !== action.payload.id)
+      return {...state, testimonial: testimonialDeleted };
     case 'DELETE_GRAPHIC':
       toast.fire({
         icon: 'success',

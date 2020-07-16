@@ -212,13 +212,14 @@ class HomeController {
         try {
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
-          const { title, message, job_description } = req.body;
-          if (!title || !message || !job_description || !req.file) throw createError(400, 'Input all forms');
+          const { title, message, name, position } = req.body;
+          if (!title || !message || !name || !position || !req.file) throw createError(400, 'Input all forms');
           const photo_path = serverUrl + req.file.path.replace('public/', '');
           const result = await testimonial.create({
             title,
             message,
-            job_description,
+            name,
+            position,
             photo_path
           });
           res.status(201).json(result);
@@ -252,9 +253,9 @@ class HomeController {
         try {
           if (err instanceof multer.MulterError) throw createError(500, 'Internal Server Error');
           else if (err) throw createError(500, 'Internal Server Error');
-          const { title, message, job_description } = req.body;
-          let query = { title, message, job_description };
-          if (!title || !message || !job_description) throw createError(400, 'Input all forms');
+          const { title, message, name, position } = req.body;
+          let query = { title, message, name, position };
+          if (!title || !message || !name || !position ) throw createError(400, 'Input all forms');
           if (req.file) query.photo_path = serverUrl + req.file.path.replace('public/', '');
           await testimonial.update(query, {
             where: {
