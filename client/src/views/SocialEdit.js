@@ -7,6 +7,7 @@ import AdminNavbar from '../components/AdminNavbar';
 import './AdminCrud.css';
 
 export default function SocialEdit() {
+	const [isLoading, setIsLoading] = useState(false);
 	const [data, setData] = useState({
 		id: null,
 		name: '',
@@ -37,14 +38,13 @@ export default function SocialEdit() {
 
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
-		dispatch(updateSocial(data.id, { link: data.link }, history));
+		setIsLoading(true);
+		dispatch(updateSocial(data.id, { link: data.link }, history, setIsLoading));
 	};
 
-	const handleReset = (event) => {
+	const handleCancel = (event) => {
 		event.preventDefault();
-		setData(socialReducer.find(
-			(one) => one.id === Number(params.id)
-		));
+		history.push('/dashboard');
 	};
 
 	return (
@@ -64,11 +64,11 @@ export default function SocialEdit() {
 							onChange={handleFormInput}
 						/>
 					</div>
-					<button type="reset" className="btn btn-outline-secondary" onClick={handleReset}>
-						Reset
+					<button className="btn btn-outline-secondary" onClick={handleCancel}>
+						Cancel
 					</button>
 					<button type="submit" className="btn btn-outline-warning float-right">
-						Update
+						{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Update'}
 					</button>
 				</form>
 			</div>

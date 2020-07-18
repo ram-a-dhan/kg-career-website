@@ -21,17 +21,19 @@ export const graphicAdd = (payload, history, setIsLoading) => {
         icon: 'success',
         title: 'Submit successful',
       });
+      setIsLoading(false);
       history.push('/dashboard');
     } catch (error) {
       dispatch({
         type: 'ERROR_TOAST',
         payload: error
       })
+      setIsLoading(false);
     }
   }
 };
 
-export const graphicEdit = (payload, id, history, graphicReducer) => {
+export const graphicEdit = (payload, id, history, graphicReducer, setIsLoading) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
@@ -59,12 +61,14 @@ export const graphicEdit = (payload, id, history, graphicReducer) => {
         icon: 'success',
         title: 'Update successful',
       });
+      setIsLoading(false);
       history.push('/dashboard');
     } catch (error) {
       dispatch({
         type: 'ERROR_TOAST',
         payload: error
       })
+      setIsLoading(false);
     }
   }
 };
@@ -100,7 +104,7 @@ export const graphicDelete = (id, graphicReducer) => {
   }
 }
 
-export const testimonialEdit = (formData, payload, history, testimonialReducer) => {
+export const testimonialEdit = (formData, payload, history, testimonialReducer, setIsLoading) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
@@ -135,17 +139,19 @@ export const testimonialEdit = (formData, payload, history, testimonialReducer) 
         icon: 'success',
         title: 'Update successful',
       });
+      setIsLoading(false);
       history.push('/dashboard');
     } catch (error) {
       dispatch({
         type: 'ERROR_TOAST',
         payload: error,
       })
+      setIsLoading(false);
     }
   }
 };
 
-export const testimonialAdd = (payload, history) => {
+export const testimonialAdd = (payload, history, setIsLoading) => {
   return async(dispatch) => {
     try {
       const { data } = await axios({
@@ -165,12 +171,14 @@ export const testimonialAdd = (payload, history) => {
         icon: 'success',
         title: 'Submit successful',
       });
+      setIsLoading(false);
       history.push('/dashboard');
     } catch (error) {
       dispatch({
         type: 'ERROR_TOAST',
         payload: error
       })
+      setIsLoading(false);
     }
   }
 }
@@ -206,7 +214,7 @@ export const testimonialDelete = (id, testimonialReducer) => {
   }
 }
 
-export const bannerEdit = (payload, prevData, history, bannerReducer) => {
+export const bannerEdit = (payload, prevData, history, bannerReducer, setIsLoading) => {
   return async(dispatch, getState) => {
     try {
       let apiURL = '';
@@ -244,17 +252,19 @@ export const bannerEdit = (payload, prevData, history, bannerReducer) => {
         icon: 'success',
         title: 'Update successful',
       });
+      setIsLoading(false);
       history.push('/dashboard');
     } catch (error) {
       dispatch({
         type: 'ERROR_TOAST',
         payload: error
       })
+      setIsLoading(false);
     }
   }
 };
 
-export const updateSocial = (id, updatedData, history) => {
+export const updateSocial = (id, updatedData, history, setIsLoading) => {
   return async(dispatch, getState) => {
     try {
       const response = await axios({
@@ -270,7 +280,6 @@ export const updateSocial = (id, updatedData, history) => {
         newData.social.forEach((datum) => {
           if (datum.id === id) datum.link = updatedData.link;
         });
-
         dispatch({
           type: 'UPDATE_SOCIAL',
           payload: newData,
@@ -279,6 +288,7 @@ export const updateSocial = (id, updatedData, history) => {
           icon: 'success',
           title: 'Update successful',
         });
+        setIsLoading(false);
         history.push('/dashboard');
       }
     } catch (error) {
@@ -286,6 +296,7 @@ export const updateSocial = (id, updatedData, history) => {
         type: 'ERROR_TOAST',
         payload: error
       })
+      setIsLoading(false);
     }
   };
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { sanitize } from 'dompurify';
 import './AboutUs.css';
 
 const AboutUs = () => {
@@ -21,12 +22,12 @@ const AboutUs = () => {
             <h1
               className="aboutH1 text-right mb-1"
               style={aboutH1}
-              dangerouslySetInnerHTML={{__html: bannerData.title}}
+              dangerouslySetInnerHTML={{__html: sanitize(bannerData.title)}}
             ></h1>
             <p
               className="aboutP1 text-right m-0"
               style={aboutP1}
-              dangerouslySetInnerHTML={{__html: bannerData.subtitle}}
+              dangerouslySetInnerHTML={{__html: sanitize(bannerData.subtitle)}}
             >
               {/* Kompas Gramedia (KG) is the biggest media conglomerate in Indonesia. We aim to be&nbsp;
               <span style={{textDecoration: 'underline'}}>

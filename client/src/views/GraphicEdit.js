@@ -47,7 +47,7 @@ export default function GraphicEdit() {
 				formData.append('main_image_path', data.main_image_path);
 				formData.append('logo_path', data.logo_path);
 				setIsLoading(true);
-				dispatch(graphicEdit(formData, data.id, history, graphicReducer));
+				dispatch(graphicEdit(formData, data.id, history, graphicReducer, setIsLoading));
 		} else {
 			toast.fire({
 				icon: 'error',
@@ -56,12 +56,11 @@ export default function GraphicEdit() {
 		}
 	};
 
-	const handleReset = (event) => {
+	const handleCancel = (event) => {
 		event.preventDefault();
-		setData(graphicReducer.find(
-				(one) => one.id === Number(params.id))
-		);
+		history.push('/dashboard');
 	};
+
 	return (
 		<div className="home">
 			<AdminNavbar />
@@ -92,8 +91,8 @@ export default function GraphicEdit() {
 								onChange={handleFormInput}
 							/>
 						</div>
-						<button type="reset" className="btn btn-outline-secondary" onClick={handleReset}>
-							Reset
+						<button className="btn btn-outline-secondary" onClick={handleCancel}>
+							Cancel
 						</button>
 						<button type="submit" className="btn btn-outline-warning float-right">
 							{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Update'}

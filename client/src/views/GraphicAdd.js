@@ -31,7 +31,7 @@ export default function GraphicAdd() {
 			formData.append('main_image_path', data.main_image_path);
 			formData.append('logo_path', data.logo_path);
 			setIsLoading(true);
-			dispatch(graphicAdd(formData, history));
+			dispatch(graphicAdd(formData, history, setIsLoading));
 		} else {
 			toast.fire({
 				icon: 'error',
@@ -40,15 +40,9 @@ export default function GraphicAdd() {
 		}
 	};
 
-	const handleReset = (event) => {
+	const handleCancel = (event) => {
 		event.preventDefault();
-		const formData = new FormData();
-		formData.delete('main_image_path');
-		formData.delete('logo_path');
-		setData({
-			main_image_path: null,
-			logo_path: null,
-		})
+		history.push('/dashboard');
 	};
 
 	return (
@@ -77,8 +71,8 @@ export default function GraphicAdd() {
 							onChange={handleFormInput}
 						/>
 					</div>
-					<button type="reset" className="btn btn-outline-secondary" onClick={handleReset}>
-						Reset
+					<button className="btn btn-outline-secondary" onClick={handleCancel}>
+						Cancel
 					</button>
 					<button type="submit" className="btn btn-outline-primary float-right" disabled={isLoading}>
 						{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Submit'}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { clickGA } from '../helpers/clickGA';
 import { useSelector } from 'react-redux';
+import { sanitize } from 'dompurify';
 import './BannerHome.css';
 
 const BannerHome = () => {
@@ -28,12 +29,12 @@ const BannerHome = () => {
 			<h1
 				className="bannerHomeH1 text-light text-center"
 				style={bannerHomeH1}
-				dangerouslySetInnerHTML={{__html: bannerData.title}}
+				dangerouslySetInnerHTML={{__html: sanitize(bannerData.title)}}
 			></h1>
 			<h5
 				className="bannerHomeH2 text-light text-center"
 				style={bannerHomeH2}
-				dangerouslySetInnerHTML={{__html: bannerData.subtitle}}
+				dangerouslySetInnerHTML={{__html: sanitize(bannerData.subtitle)}}
 			></h5>
 			<button
 				className="btn btn-kg rounded-pill"

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AdminNavbar from '../components/AdminNavbar';
 import swal from 'sweetalert2';
 import { testimonialDelete, graphicDelete } from '../store/actions/cmsAction';
+import { sanitize } from 'dompurify';
 import './Dashboard.css';
 
 export default function Dashboard() {
@@ -72,8 +73,8 @@ export default function Dashboard() {
 								return (
 									<tr key={ban.id}>
 										<th scope="row">{ban.name}</th>
-										<td dangerouslySetInnerHTML={{__html: ban.title }}></td>
-										<td dangerouslySetInnerHTML={{__html: ban.subtitle }}></td>
+										<td dangerouslySetInnerHTML={{__html: sanitize(ban.title) }}></td>
+										<td dangerouslySetInnerHTML={{__html: sanitize(ban.subtitle) }}></td>
 										<td><img className="dashImg" src={ban.banner_path} alt="" /></td>
 										<td>
 											{/* eslint-disable-next-line */}
@@ -168,8 +169,8 @@ export default function Dashboard() {
 							data.testimonial.map(testi => {
 								return (
 									<tr key={testi.id}>
-										<th scope="row" dangerouslySetInnerHTML={{__html: testi.title }}></th>
-										<td dangerouslySetInnerHTML={{__html: testi.message }}></td>
+										<th scope="row" dangerouslySetInnerHTML={{__html: sanitize(testi.title) }}></th>
+										<td dangerouslySetInnerHTML={{__html: sanitize(testi.message) }}></td>
 										<td>{testi.name} / {testi.position}</td>
 										<td><img className="dashImg" src={testi.photo_path} alt="" /></td>
 										<td>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { sanitize } from 'dompurify';
 import './BannerJoin.css';
 
 const BannerJoin = () => {
@@ -21,7 +22,7 @@ const BannerJoin = () => {
 			<h1
 				className="bannerJoinH1 text-light text-center"
 				style={bannerJoinH1}
-				dangerouslySetInnerHTML={{__html: bannerData.title}}
+				dangerouslySetInnerHTML={{__html: sanitize(bannerData.title)}}
 			>
 				{/* It is not for the doer.
 				<br />
@@ -30,7 +31,7 @@ const BannerJoin = () => {
 			<h5
 				className="bannerJoinH2 text-light text-center"
 				style={bannerJoinH2}
-				dangerouslySetInnerHTML={{__html: bannerData.subtitle}}
+				dangerouslySetInnerHTML={{__html: sanitize(bannerData.subtitle)}}
 			>
 				{/* Inviting those that wants to be bigger than themselves.
 				<br />

@@ -5,6 +5,7 @@ import { login } from '../store/actions/authAction';
 import './Login.css';
 
 const Login = () => {
+	const [isLoading, setIsLoading] = useState(false);
 	const [credentials, setCredentials] = useState({
 		email: '',
 		password: '',
@@ -28,7 +29,8 @@ const Login = () => {
 
   const handleLoginSubmit = (event) => {
 		event.preventDefault();
-		dispatch(login(credentials));
+		setIsLoading(true);
+		dispatch(login(credentials, setIsLoading));
 	};
 	
   return (
@@ -62,7 +64,7 @@ const Login = () => {
 							type="submit"
 							className="btn btn-block btn-outline-primary"
 						>
-							Log In
+							{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Log In'}
 						</button>
 					</form>
 				</div>

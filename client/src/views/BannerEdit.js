@@ -55,7 +55,7 @@ export default function BannerEdit() {
 					formData.append('subtitle', data.subtitle);
 					formData.append('banner_path', data.banner_path);
     			setIsLoading(true);
-					dispatch(bannerEdit(formData, data, history, bannerReducer));
+					dispatch(bannerEdit(formData, data, history, bannerReducer, setIsLoading));
 			} else {
 				toast.fire({
 					icon: 'error',
@@ -70,12 +70,11 @@ export default function BannerEdit() {
 		}
 	};
 
-	const handleReset = (event) => {
+	const handleCancel = (event) => {
 		event.preventDefault();
-		setData(bannerReducer.find(
-				(one) => one.id === Number(params.id))
-		);
+		history.push('/dashboard');
 	};
+	
 	return (
 		<div className="home">
 			<AdminNavbar />
@@ -117,8 +116,8 @@ export default function BannerEdit() {
 								onChange={handleFormInput}
 							/>
 						</div>
-						<button type="reset" className="btn btn-outline-secondary" onClick={handleReset}>
-							Reset
+						<button className="btn btn-outline-secondary" onClick={handleCancel}>
+							Cancel
 						</button>
 						<button type="submit" className="btn btn-outline-warning float-right">
 							{isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Update'}

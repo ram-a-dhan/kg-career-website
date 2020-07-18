@@ -46,21 +46,15 @@ export default function TestimonialEdit() {
       formData.append('position', data.position);
       formData.append('photo_path', data.photo_path);
       setIsLoading(true);
-      dispatch(testimonialAdd(formData, history));
+      dispatch(testimonialAdd(formData, history, setIsLoading));
     }
-	};
-	const handleReset = (event) => {
+  };
+  
+	const handleCancel = (event) => {
 		event.preventDefault();
-		const formData = new FormData();
-		formData.delete('photo_path');
-		setData({
-			title: '',
-      message: '',
-      name: '',
-      position: '',
-      photo_path: '',
-		})
-	};
+		history.push('/dashboard');
+  };
+  
 	return (
 		<div className="home">
 			<AdminNavbar />
@@ -117,8 +111,8 @@ export default function TestimonialEdit() {
               onChange={handleFormInput}
             />
           </div>
-          <button type="reset" className="btn btn-outline-secondary" onClick={handleReset}>
-            Reset
+          <button className="btn btn-outline-secondary" onClick={handleCancel}>
+            Cancel
           </button>
           <button type="submit" className="btn btn-outline-warning float-right">
             {isLoading ? <div className="spinner-border spinner-border-sm" role="status"></div> : 'Add'}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const login = (credentials) => {
+export const login = (credentials, setIsLoading) => {
   return async (dispatch) => {
     try {
       const response = await axios({
@@ -13,12 +13,14 @@ export const login = (credentials) => {
         type: 'LOGIN',
         payload: response,
       }); 
+      setIsLoading(false);
       // eslint-disable-next-line
     } catch (error) {
       dispatch({
 				type: 'ERROR_TOAST',
 				payload: error
 			})
+      setIsLoading(false);
     }
   };
 };

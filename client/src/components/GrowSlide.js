@@ -1,4 +1,5 @@
 import React from 'react';
+import { sanitize } from 'dompurify';
 import './GrowWithKG.css';
 
 const GrowSlide = (props) => {
@@ -18,7 +19,7 @@ const GrowSlide = (props) => {
 						id={`growTitle${props.testimony.id}`}
 						className="growH1 text-left mb-3"
 						style={growH1}
-						dangerouslySetInnerHTML={{__html: props.testimony.title}}
+						dangerouslySetInnerHTML={{__html: sanitize(props.testimony.title)}}
 					>
 						{/* &nbsp; &nbsp; {props.testimony.title} */}
 					</h1>
@@ -37,7 +38,7 @@ const GrowSlide = (props) => {
 						<p
 							className="growP1 mb-1 text-left"
 							style={growP1}
-							dangerouslySetInnerHTML={{__html: props.testimony.message}}
+							dangerouslySetInnerHTML={{__html: sanitize(props.testimony.message)}}
 						></p>
 					</span>
 					<p className="growP2 mb-0" style={growP2}>
