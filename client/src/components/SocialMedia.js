@@ -16,7 +16,7 @@ const SocialMedia = () => {
 	return (
 		<div className="socialMedia" style={socialMedia}>
 			{/* <div data-aos="fade-right"> */}
-				<div data-aos="fade-right" className="socialText m-3 float-left d-flex flex-row justify-content-center align-items-center" style={socialText}>
+				<div data-aos="fade-right" className="socialText m-3 d-flex flex-row flex-wrap justify-content-center align-items-center" style={socialText}>
 					<div>
 						<h1 className="socialH1 text-left" style={socialH1}>Stay Connected!</h1>
 						<p className="socialP1 text-left" style={socialP1}>
@@ -72,7 +72,7 @@ const SocialMedia = () => {
 				</div>
 			{/* </div> */}
 			{/* <div data-aos="fade-left"> */}
-				<img data-aos="fade-left" src="./socialPic.png" alt="" className="socialPic right" style={socialPic} />
+				<img data-aos="fade-left" src="./socialPic.png" alt="" className="socialPic" style={socialPic} />
 			{/* </div> */}
 		</div>
 	);

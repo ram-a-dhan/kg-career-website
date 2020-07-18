@@ -13,6 +13,7 @@ export default function GraphicEdit() {
 		logo_path: '',
 		main_image_path: '',
 	});
+	const [imgPreview, setImgPreview] = useState(null);
 	
 	const history = useHistory();
 	const params = useParams();
@@ -34,6 +35,7 @@ export default function GraphicEdit() {
 			...data,
 			[name]: files[0]
 		})
+		setImgPreview(URL.createObjectURL(files[0]));
 	};
 
 	const handleFormSubmit = async (event) => {
@@ -69,6 +71,12 @@ export default function GraphicEdit() {
 			{data && (
 				<>
 					<form className="formWidth" onSubmit={handleFormSubmit}>
+						{imgPreview && (
+							<div className="form-group">
+								<img src={imgPreview} alt="Infographic Pic" className="formImg" aria-describedby="imgPreview"/>
+								<small id="imgPreview" className="form-text text-muted">Image Preview</small>	
+							</div>
+						)}
 						<div className="form-group">
 							<label htmlFor="main_image_path">Main Image</label>
 							<img src={data.main_image_path} alt="" className="formImg" />
@@ -78,6 +86,7 @@ export default function GraphicEdit() {
 								id="main_image_path"
 								name="main_image_path"
 								onChange={handleFormInput}
+								accept="image/*"
 							/>
 						</div>
 						<div className="form-group">
@@ -89,6 +98,7 @@ export default function GraphicEdit() {
 								id="logo_path"
 								name="logo_path"
 								onChange={handleFormInput}
+								accept="image/*"
 							/>
 						</div>
 						<button className="btn btn-outline-secondary" onClick={handleCancel}>

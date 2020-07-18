@@ -12,6 +12,7 @@ export default function GraphicAdd() {
 		logo_path: null,
 		main_image_path: null,
 	});
+	const [imgPreview, setImgPreview] = useState(null);
 
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export default function GraphicAdd() {
 			...data,
 			[name]: files[0]
 		})
+		setImgPreview(URL.createObjectURL(files[0]));
 	};
 	
 	const handleFormSubmit = async (event) => {
@@ -51,6 +53,12 @@ export default function GraphicAdd() {
 			<h1 className="text-center my-5">Add Infographic</h1>
 			<div className="adminCrud d-flex flex-column flex-nowrap justify-content-start align-items-center">
 				<form className="formWidth" onSubmit={handleFormSubmit}>
+					{imgPreview && (
+						<div className="form-group">
+							<img src={imgPreview} alt="Infographic Pic" className="formImg" aria-describedby="imgPreview"/>
+							<small id="imgPreview" className="form-text text-muted">Image Preview</small>
+						</div>
+					)}
 					<div className="form-group">
 						<label htmlFor="main_image_path">Main Image</label>
 						<input
@@ -59,6 +67,7 @@ export default function GraphicAdd() {
 							id="main_image_path"
 							name="main_image_path"
 							onChange={handleFormInput}
+							accept="image/*"
 						/>
 					</div>
 					<div className="form-group">
@@ -69,7 +78,8 @@ export default function GraphicAdd() {
 							id="logo_path"
 							name="logo_path"
 							onChange={handleFormInput}
-						/>
+							accept="image/*"
+							/>
 					</div>
 					<button className="btn btn-outline-secondary" onClick={handleCancel}>
 						Cancel

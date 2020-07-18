@@ -15,6 +15,7 @@ export default function BannerEdit() {
 		subtitle: '',
 		banner_path: '',
 	});
+	const [imgPreview, setImgPreview] = useState(null);
 	
 	const history = useHistory();
 	const params = useParams();
@@ -31,14 +32,18 @@ export default function BannerEdit() {
 
 	const handleFormInput = (event) => {
 		const { name, value, files } = event.target;
-		if (files) setData({
-			...data,
-			[name]: files[0],
-		});
-		else setData({
-			...data,
-			[name]: value,
-		})	
+		if (files) {
+			setData({
+				...data,
+				[name]: files[0],
+			});
+			setImgPreview(URL.createObjectURL(files[0]));
+		} else {
+			setData({
+				...data,
+				[name]: value,
+			})
+		}	
 	};
 
 	const handleFormSubmit = async (event) => {
@@ -107,13 +112,20 @@ export default function BannerEdit() {
 						</div>
 						<div className="form-group">
 							<label htmlFor="banner_path">Main Image</label>
-							<img src={data.banner_path} alt="" className="formImg" />
+							{/* eslint-disable-next-line */}
+							{imgPreview && (
+								<img src={imgPreview} alt="Banner Pic" className="formImg" />
+								/* eslint-disable-next-line */
+							) || (
+								<img src={data.banner_path} alt="Banner Pic" className="formImg" />
+							)}
 							<input
 								type="file"
 								className="form-control fileInput"
 								id="banner_path"
 								name="banner_path"
 								onChange={handleFormInput}
+								accept="image/*"
 							/>
 						</div>
 						<button className="btn btn-outline-secondary" onClick={handleCancel}>

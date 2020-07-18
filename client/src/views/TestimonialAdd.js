@@ -15,20 +15,25 @@ export default function TestimonialEdit() {
 		position: '',
 		photo_path: '',
 	});
+	const [imgPreview, setImgPreview] = useState(null);
 	
 	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const handleFormInput = (event) => {
 		const { name, value, files } = event.target;
-		if (files) setData({
-			...data,
-			[name]: files[0],
-		});
-		else setData({
-			...data,
-			[name]: value,
-		})	
+		if (files) {
+      setData({
+        ...data,
+        [name]: files[0],
+      });
+      setImgPreview(URL.createObjectURL(files[0]));
+    } else {
+      setData({
+        ...data,
+        [name]: value,
+      })	
+    }
 	};
 
 	const handleFormSubmit = async (event) => {
@@ -103,12 +108,17 @@ export default function TestimonialEdit() {
           </div>
           <div className="form-group">
             <label htmlFor="photo_path">Image</label>
+            {/* eslint-disable-next-line */}
+            {imgPreview && (
+              <img src={imgPreview} alt="Testimonial Pic" className="formImg" />
+            )}
             <input
               type="file"
               className="form-control fileInput"
               id="photo_path"
               name="photo_path"
               onChange={handleFormInput}
+              accept="image/*"
             />
           </div>
           <button className="btn btn-outline-secondary" onClick={handleCancel}>
