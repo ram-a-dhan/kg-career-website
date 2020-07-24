@@ -3,7 +3,7 @@ const multer = require('multer');
 const storage = require('../helpers/multerStorage');
 const fs = require('fs');
 
-const serverUrl = 'http://dev.growwithkg.id/' // jangan lupa ganti
+const serverUrl = 'https://dev.growwithkg.id/' // jangan lupa ganti
 
 class JoinUsController {
   static getBanner = async(req, res, next) => {
