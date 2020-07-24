@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { toast } from '../../helpers/swalToast';
 
+const baseUrl = 'http://dev.growwithkg.id';
+
 export const graphicAdd = (payload, history, setIsLoading) => {
   return async(dispatch, getState) => {
     try {
       const { data } = await axios({
         method: 'POST',
-        url: 'https://fathomless-plains-81425.herokuapp.com/home/impact',
+        url: baseUrl + '/home/impact',
         data: payload,
         headers: {
           token: localStorage.access_token,
@@ -38,7 +40,7 @@ export const graphicEdit = (payload, id, history, graphicReducer, setIsLoading) 
     try {
       const { data } = await axios({
         method: 'PUT',
-        url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + id,
+        url: baseUrl + '/home/impact/' + id,
         data: payload,
         headers: {
           token: localStorage.access_token,
@@ -78,7 +80,7 @@ export const graphicDelete = (id, graphicReducer) => {
     try {
       const response = await axios({
         method: 'DELETE',
-        url: 'https://fathomless-plains-81425.herokuapp.com/home/impact/' + id,
+        url: baseUrl + '/home/impact/' + id,
         headers: {
           token: localStorage.access_token,
         },
@@ -109,7 +111,7 @@ export const testimonialEdit = (formData, payload, history, testimonialReducer, 
     try {
       const { data } = await axios({
         method: 'PUT',
-        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial/' + payload.id,
+        url: baseUrl + '/home/testimonial/' + payload.id,
         data: formData,
         headers: {
           token: localStorage.access_token,
@@ -156,7 +158,7 @@ export const testimonialAdd = (payload, history, setIsLoading) => {
     try {
       const { data } = await axios({
         method: 'POST',
-        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial',
+        url: baseUrl + '/home/testimonial',
         data: payload,
         headers: {
           token: localStorage.access_token,
@@ -188,7 +190,7 @@ export const testimonialDelete = (id, testimonialReducer) => {
     try {
       const response = await axios({
         method: 'DELETE',
-        url: 'https://fathomless-plains-81425.herokuapp.com/home/testimonial/' + id,
+        url: baseUrl + '/home/testimonial/' + id,
         headers: {
           token: localStorage.access_token,
         },
@@ -218,9 +220,9 @@ export const bannerEdit = (payload, prevData, history, bannerReducer, setIsLoadi
   return async(dispatch, getState) => {
     try {
       let apiURL = '';
-      if (prevData.name === 'Top Banner') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/topbanner';
-      else if (prevData.name === 'Who We Are') apiURL = 'https://fathomless-plains-81425.herokuapp.com/home/whoweare';
-      else if (prevData.name === 'Join Us') apiURL = 'https://fathomless-plains-81425.herokuapp.com/joinus';
+      if (prevData.name === 'Top Banner') apiURL = baseUrl + '/home/topbanner';
+      else if (prevData.name === 'Who We Are') apiURL = baseUrl + '/home/whoweare';
+      else if (prevData.name === 'Join Us') apiURL = baseUrl + '/joinus';
       const { data } = await axios({
         method: 'PUT',
         url: apiURL,
@@ -269,7 +271,7 @@ export const updateSocial = (id, updatedData, history, setIsLoading) => {
     try {
       const response = await axios({
         method: 'PUT',
-        url: 'https://fathomless-plains-81425.herokuapp.com/home/social/' + id,
+        url: baseUrl + '/home/social/' + id,
         data: updatedData,
         headers: {
           token: localStorage.access_token,

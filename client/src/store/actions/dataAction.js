@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://fathomless-plains-81425.herokuapp.com';
+const baseUrl = 'http://dev.growwithkg.id';
 
 export default () => {
   return async dispatch => {
