@@ -69,7 +69,7 @@ export default function Dashboard() {
 					</thead>
 					<tbody>
 						{data.banner && (
-							data.banner.map(ban => {
+							data.banner.sort((a, b) => { return a.id - b.id }).map(ban => {
 								return (
 									<tr key={ban.id}>
 										<th scope="row">{ban.name}</th>
@@ -115,7 +115,7 @@ export default function Dashboard() {
 					</thead>
 					<tbody>
 						{data.impact && (
-							data.impact.map((graphic, idx) => {
+							data.impact.sort((a, b) => { return a.id - b.id }).map((graphic, idx) => {
 								return (
 									<tr key={idx}>
 										<th scope="row"><img className="dashImg" src={graphic.logo_path} alt="" /></th>
@@ -166,7 +166,7 @@ export default function Dashboard() {
 					</thead>
 					<tbody>
 						{data.testimonial && (
-							data.testimonial.map(testi => {
+							data.testimonial.sort((a, b) => { return a.id - b.id }).map(testi => {
 								return (
 									<tr key={testi.id}>
 										<th scope="row" dangerouslySetInnerHTML={{__html: sanitize(testi.title) }}></th>
@@ -208,7 +208,7 @@ export default function Dashboard() {
 					</thead>
 					<tbody>
 						{data.social && (
-							data.social.map(site => {
+							data.social.sort((a, b) => { return a.id - b.id }).map(site => {
 								return (
 									<tr key={site.id}>
 										<th scope="row">{site.name}</th>

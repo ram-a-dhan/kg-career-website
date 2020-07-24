@@ -2,7 +2,7 @@
   .socialPic {
     max-width: 30%;
     position: relative; 
-    right: 2rem;
+    /* right: 2rem; */
   }
   .socialText {
     position: relative;

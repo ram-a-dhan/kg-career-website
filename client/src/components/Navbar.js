@@ -25,7 +25,7 @@ const Navbar = () => {
 						<a href="#" onClick={() => clickHome()} className="d-block ml-4 text-dark" style={navLink}>
 							Home
 						</a>
-						<a
+						{/* <a
 							href="https://www.kalibrr.com/c/kompas-gramedia/jobs/157817/kompas-gramedia-internship-challenge-2020?ref=recruiter_job_card_clipboard_2512880"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -33,7 +33,7 @@ const Navbar = () => {
 							className="d-block ml-4 text-dark"
 							style={navLink}>
 							Join Internship Challenge
-						</a>
+						</a> */}
 			</div>
 		</div>
 	);
