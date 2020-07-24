@@ -13,7 +13,8 @@ export const graphicAdd = (payload, history, setIsLoading) => {
         data: payload,
         headers: {
           token: localStorage.access_token,
-          'content-type': 'multipart/form-data'
+          'content-type': 'multipart/form-data',
+          'Access-Control-Allow-Origin': '*',
         },
       });
       dispatch({
