@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { toast } from '../../helpers/swalToast';
 
-const baseUrl = 'http://dev.growwithkg.id';
+const baseUrl = 'https://dev.growwithkg.id';
+// const baseUrl = 'https://fathomless-plains-81425.herokuapp.com';
 
 export const graphicAdd = (payload, history, setIsLoading) => {
   return async(dispatch, getState) => {
