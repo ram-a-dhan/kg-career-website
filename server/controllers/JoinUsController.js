@@ -3,7 +3,7 @@ const multer = require('multer');
 const storage = require('../helpers/multerStorage');
 const fs = require('fs');
 
-const serverUrl = 'https://fathomless-plains-81425.herokuapp.com/' // jangan lupa ganti
+const serverUrl = 'http://dev.growwithkg.id/' // jangan lupa ganti
 
 class JoinUsController {
   static getBanner = async(req, res, next) => {
@@ -33,12 +33,12 @@ class JoinUsController {
           if (req.file) {
             const regex = new RegExp(serverUrl, "g");
             const prevPath = prevBanner.banner_path.replace(regex, 'public/');
-            // fs.unlinkSync(prevPath);
+            fs.unlinkSync(prevPath);
             result = serverUrl + req.file.path.replace('public/', '');
           }
           res.status(200).json({ url: result });
         } catch (err) {
-          // if (req.file) fs.unlinkSync(req.file.path);
+          if (req.file) fs.unlinkSync(req.file.path);
           next(err);
         }
       });
