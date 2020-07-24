@@ -4,7 +4,7 @@ const multer = require('multer');
 const fs = require('fs');
 const storage = require('../helpers/multerStorage');
 
-const serverUrl = 'http://dev.growwithkg.id/' // jangan lupa ganti
+const serverUrl = 'https://dev.growwithkg.id/' // jangan lupa ganti
 
 class HomeController {
   static getHomeBanner = async(req, res, next) => {
