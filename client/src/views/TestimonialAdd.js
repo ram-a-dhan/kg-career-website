@@ -7,7 +7,9 @@ import { testimonialAdd } from '../store/actions/cmsAction';
 import './AdminCrud.css';
 
 export default function TestimonialEdit() {
-	const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  // eslint-disable-next-line
+	const [textLimit, setTextLimit] = useState(255);
 	const [data, setData] = useState({
 		title: '',
 		message: '',
@@ -105,6 +107,7 @@ export default function TestimonialEdit() {
               name="message"
               onChange={handleFormInput}
             />
+            <small className="text-danger">Count: {data.message.length}/{textLimit} Characters</small>
           </div>
           <div className="form-group">
             <label htmlFor="photo_path">Image</label>

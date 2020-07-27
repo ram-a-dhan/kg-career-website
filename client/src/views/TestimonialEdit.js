@@ -8,6 +8,8 @@ import './AdminCrud.css';
 
 export default function TestimonialEdit() {
 	const [isLoading, setIsLoading] = useState(false);
+	// eslint-disable-next-line
+	const [textLimit, setTextLimit] = useState(255);
 	const [data, setData] = useState({
 		id: null,
 		title: '',
@@ -122,6 +124,7 @@ export default function TestimonialEdit() {
 								defaultValue={data.message}
 								onChange={handleFormInput}
 							/>
+            	<small className="text-danger">Count: {data.message.length}/{textLimit} Characters</small>
 						</div>
 						<div className="form-group">
 							<label htmlFor="photo_path">Image</label>

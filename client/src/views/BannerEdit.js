@@ -8,6 +8,8 @@ import './AdminCrud.css';
 
 export default function BannerEdit() {
 	const [isLoading, setIsLoading] = useState(false);
+  // eslint-disable-next-line
+	const [textLimit, setTextLimit] = useState(255);
 	const [data, setData] = useState({
 		id: null,
 		name: '',
@@ -57,7 +59,11 @@ export default function BannerEdit() {
 						title: 'Input at least main image'
 					});
 					formData.append('title', data.title);
-					formData.append('subtitle', data.subtitle);
+					if (data.subtitle.length) {
+						formData.append('subtitle', data.subtitle);
+					} else {
+						formData.append('subtitle', '');
+					}
 					formData.append('banner_path', data.banner_path);
     			setIsLoading(true);
 					dispatch(bannerEdit(formData, data, history, bannerReducer, setIsLoading));
@@ -109,6 +115,7 @@ export default function BannerEdit() {
 								defaultValue={data.subtitle}
 								onChange={handleFormInput}
 							/>
+							<small className="text-danger">Count: {data.subtitle.length}/{textLimit} Characters</small>
 						</div>
 						<div className="form-group">
 							<label htmlFor="banner_path">Main Image</label>
