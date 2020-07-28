@@ -9,7 +9,7 @@ import './AdminCrud.css';
 export default function TestimonialEdit() {
   const [isLoading, setIsLoading] = useState(false);
   // eslint-disable-next-line
-	const [textLimit, setTextLimit] = useState(255);
+	const [textLimit, setTextLimit] = useState(450);
 	const [data, setData] = useState({
 		title: '',
 		message: '',
@@ -45,7 +45,12 @@ export default function TestimonialEdit() {
         icon: 'error',
         title: 'Input all forms'
       });
-		} else {
+		} else if (data.message.length > textLimit) {
+      toast.fire({
+        icon: 'error',
+        title: 'Character limit exceeded'
+      });
+    } else {
       const formData = new FormData();
       formData.append('title', data.title);
       formData.append('message', data.message);

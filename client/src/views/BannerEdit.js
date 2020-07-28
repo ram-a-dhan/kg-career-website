@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast } from '../helpers/swalToast';
+// import { toast } from '../helpers/swalToast';
 import AdminNavbar from '../components/AdminNavbar';
 import { bannerEdit } from '../store/actions/cmsAction';
 import './AdminCrud.css';
@@ -9,7 +9,7 @@ import './AdminCrud.css';
 export default function BannerEdit() {
 	const [isLoading, setIsLoading] = useState(false);
   // eslint-disable-next-line
-	const [textLimit, setTextLimit] = useState(255);
+	const [textLimit, setTextLimit] = useState(300);
 	const [data, setData] = useState({
 		id: null,
 		name: '',
@@ -52,26 +52,13 @@ export default function BannerEdit() {
 		try {
 			event.preventDefault();
 			if (data) {
-					const formData = new FormData();
-					// eslint-disable-next-line
-					if (!data.banner_path) toast.fire({
-						icon: 'error',
-						title: 'Input at least main image'
-					});
-					formData.append('title', data.title);
-					if (data.subtitle.length) {
-						formData.append('subtitle', data.subtitle);
-					} else {
-						formData.append('subtitle', '');
-					}
-					formData.append('banner_path', data.banner_path);
-    			setIsLoading(true);
-					dispatch(bannerEdit(formData, data, history, bannerReducer, setIsLoading));
-			} else {
-				toast.fire({
-					icon: 'error',
-					title: 'Input at least main image'
-				});
+				const formData = new FormData();
+				formData.append('title', data.title);
+				if (data.subtitle.length > textLimit) throw new Error('Character limit exceeded')
+				formData.append('subtitle', data.subtitle);
+				formData.append('banner_path', data.banner_path);
+				setIsLoading(true);
+				dispatch(bannerEdit(formData, data, history, bannerReducer, setIsLoading));
 			}
 		} catch (error) {
 			dispatch({
