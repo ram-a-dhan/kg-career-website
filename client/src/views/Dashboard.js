@@ -56,6 +56,40 @@ export default function Dashboard() {
 			>
 				<h1 className="my-5">Dashboard</h1>
 				{/* ======================================== */}
+				<h3 className="my-5">Navbar Link</h3>
+				<table className="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col">Title</th>
+							<th scope="col">Link</th>
+							<th scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{data.navbarLink && (
+							// data.navbarLink.map(site => {
+								// return (
+									<tr /* key={site.id} */>
+										<th scope="row">{data.navbarLink.title}</th>
+										<td>{data.navbarLink.link}</td>
+										<td>
+											{/* eslint-disable-next-line */}
+											<a href="#">
+												<button 
+													className="btn btn-outline-warning m-1"
+													onClick={() => history.push('/navbar-edit')}
+												>
+													Edit
+												</button>
+											</a>
+										</td>
+									</tr>
+								// )
+							// })
+						)}
+					</tbody>
+				</table>
+				{/* ======================================== */}
 				<h3 className="my-5">Banners</h3>
 				<table className="table table-hover">
 					<thead>

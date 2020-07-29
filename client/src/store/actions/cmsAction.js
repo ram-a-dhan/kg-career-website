@@ -304,3 +304,41 @@ export const updateSocial = (id, updatedData, history, setIsLoading) => {
     }
   };
 };
+
+export const updateNavbar = (updatedData, history, setIsLoading) => {
+  return async(dispatch, getState) => {
+    try {
+      const response = await axios({
+        method: 'PUT',
+        url: baseUrl + '/home/navbar-link',
+        data: updatedData,
+        headers: {
+          token: localStorage.access_token,
+        },
+      });
+      if (response) {
+        let newData = getState().dataReducer;
+        newData.navbarLink = {
+          ...newData.navbarLink,
+          ...updatedData,
+        };
+        dispatch({
+          type: 'UPDATE_NAVBAR',
+          payload: newData,
+        });
+        toast.fire({
+          icon: 'success',
+          title: 'Update successful',
+        });
+        setIsLoading(false);
+        history.push('/dashboard');
+      }
+    } catch (error) {
+      dispatch({
+        type: 'ERROR_TOAST',
+        payload: error
+      })
+      setIsLoading(false);
+    }
+  };
+};

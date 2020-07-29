@@ -20,6 +20,8 @@ export default (state = [], action) => {
       return {...state, impact: action.payload };
     case 'UPDATE_SOCIAL':
       return {...state, state: action.payload };
+    case 'UPDATE_NAVBAR':
+      return {...state, state: action.payload };
     case 'ERROR_TOAST':
       let msg = '';
       if (action.payload.response) {

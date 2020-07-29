@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { clickGA } from '../helpers/clickGA';
 import './Container.css';
 
 const Navbar = () => {
+	// eslint-disable-next-line
+	const [navbarLink, setNavbarLink] = useState({})
 	const history = useHistory();
+	const navbarReducer = useSelector(state => state.dataReducer.navbarLink);
+	useEffect(() => {
+		if (navbarReducer) setNavbarLink(navbarReducer);
+	}, [navbarReducer]);
 
 	const clickHome = () => {
 		clickGA('Link','Go to Homepage');
@@ -34,6 +41,18 @@ const Navbar = () => {
 							style={navLink}>
 							Join Internship Challenge
 						</a> */}
+						{/* eslint-disable-next-line */}
+						{navbarLink.title && navbarLink.link && (
+							<a
+								href={navbarLink.link}
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={() => clickGA('Link (External)', `Go to ${navbarLink.title}`)}
+								className="d-block ml-4 text-dark"
+								style={navLink}>
+									{navbarLink.title}
+							</a>
+						)}
 			</div>
 		</div>
 	);

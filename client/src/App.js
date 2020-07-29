@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import JoinUs from './views/JoinUs';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
+import NavbarEdit from './views/NavbarEdit';
 import BannerEdit from './views/BannerEdit';
 import GraphicAdd from './views/GraphicAdd';
 import GraphicEdit from './views/GraphicEdit';
@@ -39,6 +40,7 @@ function App() {
           </Route>
 					<PublicRoute exact path="/login" component={Login} />
 					<PrivateRoute exact path="/dashboard" component={Dashboard} />
+					<PrivateRoute exact path="/navbar-edit" component={NavbarEdit} />
 					<PrivateRoute exact path="/banner-edit/:id" component={BannerEdit} />
 					<PrivateRoute exact path="/graphic-add" component={GraphicAdd} />
 					<PrivateRoute exact path="/graphic-edit/:id" component={GraphicEdit} />
