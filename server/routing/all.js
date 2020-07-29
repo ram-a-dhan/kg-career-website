@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { banner, impact, social, testimonial } = require('../models');
+const { banner, impact, social, testimonial, navbar_link } = require('../models');
 
 
 router.get('/', async(req, res, next) => {
@@ -8,7 +8,9 @@ router.get('/', async(req, res, next) => {
     const impactData = await impact.findAll();
     const testimonialData = await testimonial.findAll();
     const socialData = await social.findAll();
+    const navbarLink = await navbar_link.findAll();
     res.status(200).json({
+      navbarLink: navbarLink[0],
       banner: bannerData,
       impact: impactData,
       testimonial: testimonialData,

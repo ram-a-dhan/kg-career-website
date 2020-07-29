@@ -19,5 +19,7 @@ router.post('/testimonial', HomeController.createTestimonial);
 router.put('/testimonial/:id', HomeController.updateTestimonial);
 router.delete('/testimonial/:id', HomeController.deleteTestimonial);
 router.put('/social/:id', HomeController.editSocial);
+router.get('/navbar-link', HomeController.getNavbarLink);
+router.put('/navbar-link', HomeController.editNavbarLink);
 
 module.exports = router;

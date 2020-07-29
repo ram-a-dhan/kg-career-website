@@ -1,4 +1,4 @@
-const { banner, impact, testimonial, social } = require('../models');
+const { banner, impact, testimonial, social, navbar_link } = require('../models');
 const createError = require('http-errors');
 const multer = require('multer');
 const fs = require('fs');
@@ -255,7 +255,7 @@ class HomeController {
           else if (err) throw createError(500, 'Internal Server Error');
           const { title, message, name, position } = req.body;
           let query = { title, message, name, position };
-          if (!title || !message || !name || !position ) throw createError(400, 'Input all forms');
+          if (!title || !message || !name || !position) throw createError(400, 'Input all forms');
           if (req.file) query.photo_path = serverUrl + req.file.path.replace('public/', '');
           await testimonial.update(query, {
             where: {
@@ -309,6 +309,26 @@ class HomeController {
       const { link } = req.body;
       if (!link) throw createError(400, 'Input a link');
       await social.update({ link }, { where: { id } });
+      res.status(200).json({ msg: 'Success' });
+    } catch (err) {
+      next(err);
+    }
+  }
+  static getNavbarLink = async(req, res, next) => {
+    try {
+      const temp = await navbar_link.findAll();
+      const result = temp[0];
+      res.status(200).json(result);
+    } catch (err) {
+      next(err);
+    }
+  }
+  static editNavbarLink = async(req, res, next) => {
+    try {
+      const { title, link } = req.body;
+      const temp = await navbar_link.findAll();
+      const navbarLinkData = temp[0];
+      await navbar_link.update({ title, link }, { where: { id: navbarLinkData.id } });
       res.status(200).json({ msg: 'Success' });
     } catch (err) {
       next(err);
